@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getNanlabsCutoverReadiness } from '@/features/integration-sync/services/control-plane-service';
+import { getCutoverReadiness } from '@/features/integration-sync/services/control-plane-service';
 import { auth } from '@/shared/lib/auth';
 import { hasPermission } from '@/shared/lib/permissions';
 import { getTenantBySlug } from '@/shared/lib/tenant';
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ ten
   if (!tenant) return NextResponse.json({ error: 'Tenant not found' }, { status: 404 });
 
   const provider = (request.nextUrl.searchParams.get('provider') ?? 'small_improvements') as Provider;
-  const readiness = await getNanlabsCutoverReadiness({
+  const readiness = await getCutoverReadiness({
     tenantId: tenant.id,
     provider,
   });

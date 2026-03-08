@@ -403,7 +403,7 @@ export async function getIntegrationMetrics(input: {
   };
 }
 
-export async function getNanlabsCutoverReadiness(input: { tenantId: string; provider: IntegrationProvider }): Promise<{
+export async function getCutoverReadiness(input: { tenantId: string; provider: IntegrationProvider }): Promise<{
   ready: boolean;
   checks: Array<{ key: string; passed: boolean; value: number | string }>;
 }> {

@@ -3,7 +3,7 @@
 @plugin "tailwindcss-animate";
 
 /* =====================================================================
-   SkillHouse Design System
+   SaaS AI Template Design System
    Philosophy: "Intentional Craft"
    See docs/DESIGN_SYSTEM.md for full documentation of every decision.
    ===================================================================== */
@@ -73,7 +73,7 @@
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
 
-  /* --- SkillHouse Domain Colors (OKLCH, fixed across tenants) ---
+  /* --- Domain Colors (OKLCH, fixed across tenants) ---
      These encode meaning, not decoration. See Principle 1.2: "Color Encodes Meaning" */
   --color-skill: oklch(55% 0.18 290);
   --color-skill-foreground: oklch(98% 0.005 290);
@@ -838,7 +838,7 @@ div[data-state='active'] [data-badge] {
 
 /* =====================================================================
    Artistry Layer — Motion that gives life
-   See plan: "Artistry Pass: Give SkillHouse Life"
+   See plan: "Artistry Pass: Give the App Life"
    ===================================================================== */
 
 /* Hero card staggered entrance */
