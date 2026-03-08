@@ -53,11 +53,11 @@ The project uses **direnv** for environment management:
 
 | File                 | Purpose                    | Git          |
 | -------------------- | -------------------------- | ------------ |
-| `.envrc.dev.example` | Dev template with defaults | ✅ Committed |
+| `.envrc.example` | Dev template with defaults | ✅ Committed |
 | `.envrc`             | Your local environment     | ❌ Ignored   |
 | `.env.local`         | Additional overrides       | ❌ Ignored   |
 
-The DevContainer automatically copies `.envrc.dev.example` to `.envrc` on first setup. Create `.env.local` only to override specific values (e.g., API keys).
+The DevContainer automatically copies `.envrc.example` to `.envrc` on first setup. Create `.env.local` only to override specific values (e.g., API keys).
 
 ## Architecture & Routing
 

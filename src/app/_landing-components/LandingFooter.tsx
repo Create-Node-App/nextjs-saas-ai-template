@@ -13,7 +13,6 @@ export function LandingFooter() {
             <p className="text-sm text-muted-foreground max-w-xs">
               Production-ready Next.js SaaS boilerplate with multi-tenancy, AI, and integrations.
             </p>
-            <p className="text-xs text-muted-foreground mt-3">by NaNLABS</p>
           </div>
 
           {/* Product */}

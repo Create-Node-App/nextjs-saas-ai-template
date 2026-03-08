@@ -1,15 +1,15 @@
 #!/bin/bash
 # =============================================================================
-# Post-create script for SkillHouse DevContainer
+# Post-create script for Next.js SaaS AI Template DevContainer
 # This script runs after the container is created
 # =============================================================================
 
 set -e
 
-echo "🚀 Setting up SkillHouse development environment..."
+echo "🚀 Setting up Next.js SaaS AI Template development environment..."
 
 # Navigate to workspace
-cd /workspaces/internal-skillshouse-app || cd /workspaces/*
+cd /workspaces/*
 
 # -----------------------------------------------------------------------------
 # Install dependencies
@@ -23,13 +23,13 @@ pnpm install --force
 # -----------------------------------------------------------------------------
 echo "🔧 Configuring environment..."
 
-# Copy .envrc.dev.example to .envrc if it doesn't exist
+# Copy .envrc.example to .envrc if it doesn't exist
 if [ ! -f .envrc ]; then
-  echo "📝 Creating .envrc from .envrc.dev.example..."
-  cp .envrc.dev.example .envrc
+  echo "📝 Creating .envrc from .envrc.example..."
+  cp .envrc.example .envrc
 
-    # Update DATABASE_URL for Docker network
-    sed -i 's|postgresql://skillhouse:skillhouse@localhost:5432/skillhouse_dev|postgresql://skillhouse:skillhouse@db:5432/skillhouse_dev|g' .envrc
+    # Update DATABASE_URL to use container hostname
+    sed -i 's|@localhost:5432|@db:5432|g' .envrc
 
     echo "✅ .envrc created with DevContainer settings"
 else
@@ -52,7 +52,7 @@ direnv allow .
 # Setup database
 # -----------------------------------------------------------------------------
 echo "🗄️  Waiting for database to be ready..."
-until pg_isready -h db -p 5432 -U skillhouse -d skillhouse_dev > /dev/null 2>&1; do
+until pg_isready -h db -p 5432 -U saas_app -d saas_template_dev > /dev/null 2>&1; do
     echo "   Waiting for PostgreSQL..."
     sleep 2
 done
@@ -74,9 +74,9 @@ until curl -sf http://minio:9000/minio/health/live > /dev/null 2>&1; do
 done
 
 # Configure mc (MinIO Client) and create bucket
-mc alias set skillhouse http://minio:9000 skillhouse skillhouse123 2>/dev/null || true
-mc mb skillhouse/skillhouse-uploads --ignore-existing 2>/dev/null || true
-mc anonymous set download skillhouse/skillhouse-uploads 2>/dev/null || true
+mc alias set saas-template http://minio:9000 saas_app saas_app123 2>/dev/null || true
+mc mb saas-template/saas-template-uploads --ignore-existing 2>/dev/null || true
+mc anonymous set download saas-template/saas-template-uploads 2>/dev/null || true
 
 # Configure CORS for browser uploads
 echo "🔧 Configuring MinIO CORS policy..."
@@ -92,18 +92,18 @@ cat > /tmp/cors.json << 'EOF'
   ]
 }
 EOF
-mc anonymous set-json /tmp/cors.json skillhouse/skillhouse-uploads 2>/dev/null || \
+mc anonymous set-json /tmp/cors.json saas-template/saas-template-uploads 2>/dev/null || \
   echo "   (CORS may need manual setup via MinIO console)"
 rm -f /tmp/cors.json
 
-echo "✅ MinIO bucket 'skillhouse-uploads' ready"
+echo "✅ MinIO bucket 'saas-template-uploads' ready"
 
 # -----------------------------------------------------------------------------
 # Done!
 # -----------------------------------------------------------------------------
 echo ""
 echo "═══════════════════════════════════════════════════════════════════════════"
-echo "  ✅ SkillHouse development environment is ready!"
+echo "  ✅ Next.js SaaS AI Template development environment is ready!"
 echo "═══════════════════════════════════════════════════════════════════════════"
 echo ""
 echo "  Environment is managed by direnv (auto-loads when you cd into project)"
@@ -118,8 +118,8 @@ echo ""
 echo "  Database connection:"
 echo "    Host: db (or localhost from outside container)"
 echo "    Port: 5432"
-echo "    User: skillhouse"
-echo "    Database: skillhouse_dev"
+echo "    User: saas_app"
+echo "    Database: saas_template_dev"
 echo ""
 echo "  To customize environment: edit .env.local (overrides .envrc defaults)"
 echo ""
