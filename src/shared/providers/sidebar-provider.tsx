@@ -6,7 +6,7 @@ import { createContext, type ReactNode, useCallback, useContext, useEffect, useR
 // Sidebar Context
 // ============================================================================
 
-const SIDEBAR_STORAGE_KEY = 'skillshouse:sidebar:collapsed';
+const SIDEBAR_STORAGE_KEY = 'saas-template:sidebar:collapsed';
 
 /**
  * Sidebar context type

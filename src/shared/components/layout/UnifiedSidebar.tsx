@@ -28,7 +28,7 @@ interface UnifiedSidebarProps {
  * Unified sidebar that renders navigation based on current view.
  *
  * Features:
- * - Single sidebar component for all views (My, Manager, 1:1, Admin)
+ * - Single sidebar component for all views (My, Admin)
  * - View switcher to navigate between views
  * - Collapsible on desktop with hover-to-expand peek overlay
  * - Keyboard shortcut (Cmd+\ / Ctrl+\) to toggle
