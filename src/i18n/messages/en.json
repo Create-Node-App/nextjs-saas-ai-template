@@ -89,7 +89,9 @@
     "openAdminPanel": "Open Admin Panel",
     "viewMy": "My View",
     "viewAdmin": "Admin View",
-    "switchView": "Switch view"
+    "switchView": "Switch view",
+    "knowledgeBase": "Knowledge Base",
+    "manager": "Manager"
   },
   "profile": {
     "title": "Profile",
@@ -102,7 +104,7 @@
     "myInterests": "My Interests",
     "myCapabilities": "My Capabilities",
     "completionTitle": "Profile Completion",
-    "completionDescription": "Complete your profile to unlock full potential",
+    "completionDescription": "Complete these steps to get the most out of the platform",
     "addSkills": "Add Skills",
     "uploadEvidence": "Upload Evidence",
     "completeProfile": "Complete Profile",
@@ -232,7 +234,11 @@
       "linkedinNotConnected": "Not connected",
       "connectLinkedInHint": "Connect to verify your LinkedIn identity and import your profile picture.",
       "connectLinkedInConnectedHint": "Your LinkedIn account is linked and verified."
-    }
+    },
+    "addBio": "Add a bio to your profile",
+    "uploadAvatar": "Upload a profile photo",
+    "connectGitHub": "Connect your GitHub account",
+    "inviteTeamMember": "Invite a team member"
   },
   "admin": {
     "title": "Admin",
@@ -1426,7 +1432,7 @@
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Welcome to {name}",
-    "platformDescription": "Your AI-native skills management platform",
+    "platformDescription": "Your AI-native SaaS platform",
     "adminBadge": "ADMIN",
     "adminAccessMessage": "You have admin access to this tenant",
     "openAdminPanel": "Open Admin Panel",
@@ -1485,7 +1491,21 @@
     "assignmentsCompleted": "Completed",
     "roadmaps": "Roadmaps",
     "trainings": "Trainings",
-    "overdueAssignments": "overdue assignments"
+    "overdueAssignments": "overdue assignments",
+    "teamMembers": "Team Members",
+    "activePlatformMembers": "Active platform members",
+    "webhooksActive": "Active Webhooks",
+    "activeWebhookEndpoints": "Active webhook endpoints",
+    "inviteMember": "Invite Member",
+    "onboardNewTeamMember": "Onboard a new team member",
+    "viewDirectory": "View Directory",
+    "browseTeamMembers": "Browse team members",
+    "manageSettings": "Manage Settings",
+    "configureYourTenant": "Configure your tenant",
+    "addBio": "Add a bio to your profile",
+    "uploadAvatar": "Upload a profile photo",
+    "connectGitHub": "Connect your GitHub account",
+    "inviteTeamMember": "Invite a team member"
   },
   "members": {
     "title": "Team Members",

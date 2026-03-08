@@ -10,10 +10,8 @@ import {
   DEFAULT_EVIDENCE_UPLOAD,
   DEFAULT_FEATURES,
   DEFAULT_INTEGRATIONS,
-  DEFAULT_PERFORMANCE,
   DEFAULT_PROCESSING,
   DEFAULT_QUIZ,
-  DEFAULT_SKILL_LEVELS,
   DEFAULT_SKILL_MATCHING,
   DEFAULT_STORAGE,
   DEFAULT_TAXONOMY,
@@ -23,8 +21,6 @@ import {
   getDepartments,
   getSkillCategories,
   getSkillCategoryById,
-  getSkillLevelLabel,
-  getSkillLevels,
   hasAIConfigured,
   hasStorageConfigured,
   isFeatureEnabled,
@@ -50,7 +46,6 @@ describe('tenant-settings', () => {
       expect(result.ai).toEqual(DEFAULT_AI);
       expect(result.storage).toEqual(DEFAULT_STORAGE);
       expect(result.departments).toEqual(DEFAULT_DEPARTMENTS);
-      expect(result.skillLevels).toEqual(DEFAULT_SKILL_LEVELS);
       expect(result.taxonomy).toEqual(DEFAULT_TAXONOMY);
     });
 
@@ -64,7 +59,7 @@ describe('tenant-settings', () => {
       const result = applySettingsDefaults(settings);
 
       expect(result.features.bulkImport).toBe(false);
-      expect(result.features.evidenceUpload).toBe(true); // default
+      expect(result.features.knowledgeBase).toBe(true); // default
       expect(result.ui.primaryColor).toBe('#FF0000');
       expect(result.ui.secondaryColor).toBe('#7C6EAF'); // default
     });
@@ -198,49 +193,6 @@ describe('tenant-settings', () => {
     });
   });
 
-  describe('getSkillLevels', () => {
-    it('should return custom levels when defined', () => {
-      const customLevels = [
-        { value: 0, label: 'None' },
-        { value: 1, label: 'Basic' },
-        { value: 2, label: 'Pro' },
-      ];
-      const settings: TenantSettingsInput = {
-        skillLevels: { scale: 3, levels: customLevels },
-      };
-
-      const result = getSkillLevels(settings);
-      expect(result).toEqual(customLevels);
-    });
-
-    it('should return sorted levels', () => {
-      const unsortedLevels = [
-        { value: 2, label: 'Mid' },
-        { value: 0, label: 'Low' },
-        { value: 1, label: 'High' },
-      ];
-      const settings: TenantSettingsInput = {
-        skillLevels: { scale: 3, levels: unsortedLevels },
-      };
-
-      const result = getSkillLevels(settings);
-      expect(result[0].value).toBe(0);
-      expect(result[1].value).toBe(1);
-      expect(result[2].value).toBe(2);
-    });
-
-    it('should return default levels when not defined', () => {
-      const result = getSkillLevels({});
-      expect(result).toEqual(DEFAULT_SKILL_LEVELS.levels);
-    });
-
-    it('should return default levels for empty array', () => {
-      const settings: TenantSettingsInput = { skillLevels: { scale: 5, levels: [] } };
-      const result = getSkillLevels(settings);
-      expect(result).toEqual(DEFAULT_SKILL_LEVELS.levels);
-    });
-  });
-
   describe('getSkillCategories', () => {
     it('should return custom categories when defined', () => {
       const customCategories = [
@@ -287,31 +239,6 @@ describe('tenant-settings', () => {
 
     it('should return empty array when not defined', () => {
       expect(getDepartments({})).toEqual([]);
-    });
-  });
-
-  describe('getSkillLevelLabel', () => {
-    it('should return label for existing level', () => {
-      const settings: TenantSettingsInput = {
-        skillLevels: {
-          scale: 5,
-          levels: [
-            { value: 0, label: 'None' },
-            { value: 1, label: 'Basic' },
-          ],
-        },
-      };
-
-      expect(getSkillLevelLabel(settings, 0)).toBe('None');
-      expect(getSkillLevelLabel(settings, 1)).toBe('Basic');
-    });
-
-    it('should return fallback for non-existing level', () => {
-      const settings: TenantSettingsInput = {
-        skillLevels: { scale: 5, levels: [{ value: 0, label: 'None' }] },
-      };
-
-      expect(getSkillLevelLabel(settings, 5)).toBe('Level 5');
     });
   });
 
@@ -424,14 +351,6 @@ describe('tenant-settings', () => {
       expect(DEFAULT_QUIZ.enabled).toBe(true);
       expect(DEFAULT_QUIZ.questionsPerQuiz).toBe(10);
       expect(DEFAULT_QUIZ.cacheTtlDays).toBe(-1);
-    });
-
-    it('should have correct DEFAULT_PERFORMANCE', () => {
-      expect(DEFAULT_PERFORMANCE.scale).toBe(5);
-      expect(DEFAULT_PERFORMANCE.overallCalculation).toBe('average');
-      // Career Level Framework: 4 transversal dimensions (Technical Skills, Delivery, Client, Leadership)
-      expect(DEFAULT_PERFORMANCE.subordinateDimensions?.length).toBe(4);
-      expect(DEFAULT_PERFORMANCE.upwardDimensions?.length).toBe(5);
     });
   });
 });

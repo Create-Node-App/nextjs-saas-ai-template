@@ -1,20 +1,11 @@
 /**
  * Dashboard Feature
  *
- * Personal dashboard with skill stats, activity, and quick actions.
+ * Personal dashboard with stats, activity, and quick actions.
  */
 
 // Components
-export { ActivityFeed, ContextualTips, ProfileCompletion, QuickActions, StatsCards, TopSkills } from './components';
-
-// Actions
+export { ActivityFeed, ContextualTips, ProfileCompletion, QuickActions, StatsCards } from './components';
 
 // Types
-export type {
-  ActivityItem,
-  DashboardStats,
-  DashboardStatsResult,
-  GrowthSuggestion,
-  GrowthSuggestionsResult,
-  SkillSummary,
-} from './types';
+export type { ActivityItem, DashboardStats, DashboardStatsResult } from './types';

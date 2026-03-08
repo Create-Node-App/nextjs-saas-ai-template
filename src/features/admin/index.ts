@@ -20,7 +20,6 @@ export { BulkImportDialog } from './components/BulkImportDialog';
 export { MembersClient } from './components/MembersClient';
 export { InvitesClient } from './components/InvitesClient';
 export { SettingsClient } from './components/SettingsClient';
-export { ProcessingDashboard } from './components/ProcessingDashboard';
 export { AuditLogsClient } from './components/AuditLogsClient';
 export { PersonRelationsDialog } from './components/PersonRelationsDialog';
 export { RolesClient } from './components/RolesClient';

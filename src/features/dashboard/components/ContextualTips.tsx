@@ -3,7 +3,7 @@
 /**
  * Contextual Tips Component
  *
- * Shows relevant tips and suggestions based on user's profile state.
+ * Shows generic platform tips to help users get started.
  */
 
 import { ArrowRight, Lightbulb, Sparkles, X } from 'lucide-react';
@@ -25,91 +25,55 @@ interface Tip {
 interface ContextualTipsProps {
   tenantSlug: string;
   profileCompletion: number;
-  skillsCount: number;
-  evidenceCount: number;
-  pendingSkillsCount?: number;
   className?: string;
 }
 
-export function ContextualTips({
-  tenantSlug,
-  profileCompletion,
-  skillsCount,
-  evidenceCount,
-  pendingSkillsCount = 0,
-  className,
-}: ContextualTipsProps) {
+export function ContextualTips({ tenantSlug, profileCompletion, className }: ContextualTipsProps) {
   const [dismissedTips, setDismissedTips] = useState<Set<string>>(new Set());
 
   const dismissTip = useCallback((tipId: string) => {
     setDismissedTips((prev) => new Set([...prev, tipId]));
   }, []);
 
-  // Generate tips based on user state
-  const tips: Tip[] = [];
-
-  // New user - hasn't uploaded anything
-  if (profileCompletion < 20 && skillsCount === 0) {
-    tips.push({
-      id: 'welcome',
-      title: 'Welcome to A8n Hub! 🎉',
-      description: 'Get started by uploading your CV. Our AI will extract your skills automatically.',
-      href: `/t/${tenantSlug}/onboarding/cv`,
-      actionLabel: 'Upload CV',
-      type: 'action',
-    });
-  }
-
-  // Has pending skills to review
-  if (pendingSkillsCount > 0) {
-    tips.push({
-      id: 'pending-skills',
-      title: `You have ${pendingSkillsCount} skills to review`,
-      description: 'Review and confirm your skill levels to complete your profile.',
-      href: `/t/${tenantSlug}/profile?tab=evidence`,
-      actionLabel: 'Review Skills',
-      type: 'action',
-    });
-  }
-
-  // Has skills but no self-assessment
-  if (skillsCount > 0 && skillsCount < 5) {
-    tips.push({
-      id: 'add-more-skills',
-      title: 'Expand your skill profile',
-      description: 'Add more skills through self-assessment to get better role matching.',
-      href: `/t/${tenantSlug}/self-assessment`,
-      actionLabel: 'Self-assess',
-      type: 'info',
-    });
-  }
-
-  // No evidence uploaded
-  if (evidenceCount === 0 && skillsCount > 0) {
-    tips.push({
-      id: 'upload-evidence',
-      title: 'Add evidence to your skills',
-      description: 'Upload documents, certificates, or links to validate your skills.',
-      href: `/t/${tenantSlug}/profile?tab=evidence`,
-      actionLabel: 'Add Evidence',
-      type: 'info',
-    });
-  }
-
-  // Profile completion milestone
-  if (profileCompletion >= 80 && profileCompletion < 100) {
-    tips.push({
-      id: 'almost-complete',
-      title: 'Almost there! 🚀',
-      description: 'Complete a few more items to reach 100% profile completion.',
+  const tips: Tip[] = [
+    {
+      id: 'complete-profile',
+      title: 'Complete your profile',
+      description: 'Add a bio, avatar, and connect your GitHub account to help team members find you.',
       href: `/t/${tenantSlug}/profile`,
-      actionLabel: 'View Profile',
-      type: 'success',
-    });
-  }
+      actionLabel: 'Go to profile',
+      type: 'action',
+    },
+    {
+      id: 'invite-team',
+      title: 'Invite your team',
+      description: 'Get the most out of the platform by inviting your colleagues.',
+      href: `/t/${tenantSlug}/admin/invites`,
+      actionLabel: 'Invite members',
+      type: 'info',
+    },
+    {
+      id: 'try-assistant',
+      title: 'Try the AI assistant',
+      description: 'Ask questions, search your knowledge base, and get instant answers.',
+      href: `/t/${tenantSlug}/assistant`,
+      actionLabel: 'Open assistant',
+      type: 'info',
+    },
+    {
+      id: 'setup-integrations',
+      title: 'Set up integrations',
+      description: 'Connect GitHub and other tools to enrich your team data automatically.',
+      href: `/t/${tenantSlug}/admin/integrations`,
+      actionLabel: 'View integrations',
+      type: 'info',
+    },
+  ];
 
-  // Filter dismissed tips
-  const visibleTips = tips.filter((tip) => !dismissedTips.has(tip.id));
+  // Hide the profile tip once profile is reasonably complete
+  const visibleTips = tips
+    .filter((tip) => !dismissedTips.has(tip.id))
+    .filter((tip) => tip.id !== 'complete-profile' || profileCompletion < 80);
 
   if (visibleTips.length === 0) {
     return null;
@@ -135,13 +99,7 @@ export function ContextualTips({
               tip.type === 'success' && 'bg-green-500/10 text-green-500',
             )}
           >
-            {tip.type === 'action' ? (
-              <Sparkles className="h-5 w-5" />
-            ) : tip.type === 'success' ? (
-              <Lightbulb className="h-5 w-5" />
-            ) : (
-              <Lightbulb className="h-5 w-5" />
-            )}
+            {tip.type === 'action' ? <Sparkles className="h-5 w-5" /> : <Lightbulb className="h-5 w-5" />}
           </div>
 
           <div className="flex-1 min-w-0">

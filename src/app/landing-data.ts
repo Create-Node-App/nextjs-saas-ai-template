@@ -32,59 +32,109 @@ export interface FeatureBlockWithIconKeys {
   features: Array<{ title: string; description: string; iconKey: string }>;
 }
 
-// Re-export for use in page (icons passed from page to avoid loading in server module)
 export const LANDING_FEATURE_BLOCKS: FeatureBlockWithIconKeys[] = [
   {
-    title: 'For you',
-    description: 'Your profile, skills, and growth in one place.',
+    title: 'For your users',
+    description: 'Everything your users need to get started and stay productive.',
     features: [
       {
         title: 'Profile',
-        description: 'Skills, interests, evidence, capabilities, and recognitions.',
+        description: 'Complete user profiles with avatars and GitHub integration.',
         iconKey: 'user',
       },
-      { title: 'Self-assessment', description: 'Rate your skills with configurable levels.', iconKey: 'target' },
-      { title: 'Quiz (AI)', description: 'AI-generated quizzes to validate your level.', iconKey: 'sparkles' },
-      { title: 'Growth paths', description: 'Suggested learning paths based on your goals.', iconKey: 'trending' },
-      { title: 'AI Assistant', description: 'Chat for career guidance and skill recommendations.', iconKey: 'message' },
-    ],
-  },
-  {
-    title: 'Team & people',
-    description: 'Find people and celebrate wins.',
-    features: [
-      { title: 'Directory / Team', description: 'Browse your team and organization.', iconKey: 'users' },
-      { title: 'People finder', description: 'Search by skills and capabilities, export to CSV.', iconKey: 'search' },
-      { title: 'Recognitions', description: 'Give and receive praise with categories.', iconKey: 'award' },
-      { title: 'Org chart', description: 'Visualize reporting and structure.', iconKey: 'git-branch' },
-    ],
-  },
-  {
-    title: 'Management',
-    description: 'Lead with 1:1s, feedback, and goals.',
-    features: [
-      { title: '1:1 meetings', description: 'Agenda and notes with @mentions.', iconKey: 'calendar' },
       {
-        title: 'Structured feedback',
-        description: 'Strength, improvement, and general feedback.',
-        iconKey: 'message-square',
+        title: 'AI Assistant',
+        description: 'Natural language chat powered by OpenAI or Anthropic.',
+        iconKey: 'message',
       },
-      { title: 'Praise recommendations', description: 'AI-suggested recognitions for achievements.', iconKey: 'award' },
-      { title: 'Assignments', description: 'Assign learning (roadmaps/trainings) to your team.', iconKey: 'book' },
-      { title: 'OKRs', description: 'Team objectives and key results.', iconKey: 'target' },
-      { title: 'Analytics', description: 'Team overview and performance insights.', iconKey: 'bar-chart' },
+      {
+        title: 'Knowledge Base',
+        description: "Search and browse your organization's docs and content.",
+        iconKey: 'file-text',
+      },
+      {
+        title: 'Directory',
+        description: 'Find and connect with team members across your organization.',
+        iconKey: 'users',
+      },
     ],
   },
   {
-    title: 'Administration',
-    description: 'Full control for admins and HR.',
+    title: 'For your team',
+    description: 'Collaboration and visibility tools for growing teams.',
     features: [
-      { title: 'Skills & capabilities', description: 'Manage taxonomy and job descriptions.', iconKey: 'layers' },
-      { title: 'Knowledge base', description: 'Role profiles, roadmaps, and trainings.', iconKey: 'file-text' },
-      { title: 'Members & invites', description: 'Onboard people and manage access.', iconKey: 'users' },
-      { title: 'CV processing', description: 'Extract skills from uploaded CVs.', iconKey: 'file-search' },
-      { title: 'Recognition categories', description: 'Configure praise categories.', iconKey: 'award' },
-      { title: 'Roles, settings, audit', description: 'Permissions, tenant config, and audit log.', iconKey: 'shield' },
+      {
+        title: 'People Directory',
+        description: 'Browse and search team members with filters.',
+        iconKey: 'search',
+      },
+      {
+        title: 'Org Chart',
+        description: 'Visualize team structure and reporting relationships.',
+        iconKey: 'git-branch',
+      },
+      {
+        title: 'Activity Feed',
+        description: 'Real-time updates on team and platform activity.',
+        iconKey: 'trending',
+      },
+      {
+        title: 'Webhooks',
+        description: 'Push events to external systems as things happen.',
+        iconKey: 'target',
+      },
+    ],
+  },
+  {
+    title: 'For administrators',
+    description: 'Full control for admins managing the platform.',
+    features: [
+      {
+        title: 'Member Management',
+        description: 'Invite, manage, and deactivate team members.',
+        iconKey: 'users',
+      },
+      {
+        title: 'Roles & Permissions',
+        description: 'Fine-grained PBAC with custom role bundles.',
+        iconKey: 'shield',
+      },
+      {
+        title: 'Audit Logs',
+        description: 'Complete trail of all actions across the platform.',
+        iconKey: 'file-text',
+      },
+      {
+        title: 'Settings',
+        description: 'Tenant-level config, branding, and feature flags.',
+        iconKey: 'target',
+      },
+    ],
+  },
+  {
+    title: 'AI & Integrations',
+    description: 'Connect AI and external systems to your platform.',
+    features: [
+      {
+        title: 'AI Chat',
+        description: 'Conversational search across all your data.',
+        iconKey: 'message',
+      },
+      {
+        title: 'Vector Search',
+        description: 'Semantic search powered by pgvector embeddings.',
+        iconKey: 'search',
+      },
+      {
+        title: 'GitHub Integration',
+        description: 'Sync user profiles and activity from GitHub.',
+        iconKey: 'git-branch',
+      },
+      {
+        title: 'Integration Engine',
+        description: 'Connect any external system with the sync framework.',
+        iconKey: 'layers',
+      },
     ],
   },
 ];
@@ -93,58 +143,35 @@ export const LANDING_PRICING_PLANS: PricingPlan[] = [
   {
     name: 'Free',
     price: '$0',
-    description: 'For individuals getting started.',
+    description: 'Up to 10 users. Get started with the essentials.',
     features: [
-      'Profile and self-assessment',
-      'Skills catalog (read-only)',
+      'Up to 10 users',
+      'AI assistant (limited)',
+      'GitHub integration',
       'Knowledge base (read)',
-      'Sample roadmap',
-      'AI Assistant (limited)',
+      'Community support',
     ],
     cta: 'Get Started',
   },
   {
-    name: 'Team',
+    name: 'Pro',
     price: 'Demo',
-    description: 'For small teams.',
-    features: [
-      'Everything in Free',
-      'Team directory & people finder',
-      'Recognitions (give & receive)',
-      'Growth paths & personal assignments',
-      'OKRs (view) & org chart',
-    ],
-    cta: 'Get Started',
-  },
-  {
-    name: 'Manager',
-    price: 'Demo',
-    description: 'For team leads.',
+    description: 'For growing teams that need more power.',
     highlighted: true,
     features: [
-      'Everything in Team',
-      'Manager dashboard',
-      '1:1 meetings (agenda & notes)',
-      'Structured feedback',
-      'Praise recommendations',
-      'Team OKRs & assignments',
-      'Analytics',
+      'Unlimited users',
+      'Custom roles & permissions',
+      'Webhooks & audit logs',
+      'Full knowledge base',
+      'Priority support',
     ],
     cta: 'Get Started',
   },
   {
     name: 'Enterprise',
     price: 'Demo',
-    description: 'Full admin and HR.',
-    features: [
-      'Everything in Manager',
-      'Admin panel: skills, capabilities, job descriptions',
-      'Roadmaps & trainings management',
-      'Members, invites, onboarding',
-      'CV processing',
-      'Recognition categories, roles, settings',
-      'Audit log',
-    ],
+    description: 'For organizations with advanced needs.',
+    features: ['Everything in Pro', 'SSO (Auth0)', 'Custom integrations', 'SLA guarantee', 'Dedicated support'],
     cta: 'Contact us',
   },
 ];

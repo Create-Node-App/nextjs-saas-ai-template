@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Award, CheckCircle, FileText, Sparkles, Target, User } from 'lucide-react';
+import { ArrowRight, CheckCircle, Github, Image, Mail, User } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
@@ -20,10 +20,10 @@ interface CompletionItem {
 interface ProfileCompletionWidgetProps {
   tenantSlug: string;
   profileCompletion: {
-    hasSkills: boolean;
-    hasEvidence: boolean;
-    hasInterests: boolean;
-    hasCapabilities: boolean;
+    hasBio: boolean;
+    hasAvatar: boolean;
+    hasGitHub: boolean;
+    hasInvitedMember: boolean;
     percentage: number;
   };
   variant?: 'card' | 'inline' | 'compact';
@@ -40,32 +40,32 @@ export function ProfileCompletionWidget({
 
   const items: CompletionItem[] = [
     {
-      id: 'skills',
-      label: t('addSkills'),
-      completed: profileCompletion.hasSkills,
-      href: `/t/${tenantSlug}/profile?tab=skills`,
-      icon: Sparkles,
+      id: 'bio',
+      label: t('addBio'),
+      completed: profileCompletion.hasBio,
+      href: `/t/${tenantSlug}/profile`,
+      icon: User,
     },
     {
-      id: 'evidence',
-      label: t('uploadEvidence'),
-      completed: profileCompletion.hasEvidence,
-      href: `/t/${tenantSlug}/profile?tab=evidence`,
-      icon: FileText,
+      id: 'avatar',
+      label: t('uploadAvatar'),
+      completed: profileCompletion.hasAvatar,
+      href: `/t/${tenantSlug}/profile`,
+      icon: Image,
     },
     {
-      id: 'interests',
-      label: 'Set interests',
-      completed: profileCompletion.hasInterests,
-      href: `/t/${tenantSlug}/profile?tab=interests`,
-      icon: Target,
+      id: 'github',
+      label: t('connectGitHub'),
+      completed: profileCompletion.hasGitHub,
+      href: `/t/${tenantSlug}/profile`,
+      icon: Github,
     },
     {
-      id: 'capabilities',
-      label: 'Match capabilities',
-      completed: profileCompletion.hasCapabilities,
-      href: `/t/${tenantSlug}/profile?tab=capabilities`,
-      icon: Award,
+      id: 'invite',
+      label: t('inviteTeamMember'),
+      completed: profileCompletion.hasInvitedMember,
+      href: `/t/${tenantSlug}/admin/invites`,
+      icon: Mail,
     },
   ];
 
@@ -73,7 +73,7 @@ export function ProfileCompletionWidget({
   const nextIncomplete = items.find((i) => !i.completed);
 
   if (profileCompletion.percentage >= 100) {
-    return null; // Don't show widget if profile is complete
+    return null;
   }
 
   if (variant === 'compact') {
@@ -103,19 +103,13 @@ export function ProfileCompletionWidget({
         <div className="flex-shrink-0">
           <div className="relative w-16 h-16">
             <svg className="w-16 h-16 -rotate-90">
-              <defs>
-                <linearGradient id="profileCompletionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(var(--primary))" />
-                  <stop offset="100%" stopColor="hsl(var(--secondary))" />
-                </linearGradient>
-              </defs>
               <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="4" className="text-muted" />
               <circle
                 cx="32"
                 cy="32"
                 r="28"
                 fill="none"
-                stroke="url(#profileCompletionGradient)"
+                stroke="hsl(var(--primary))"
                 strokeWidth="4"
                 strokeDasharray={175.9}
                 strokeDashoffset={175.9 * (1 - profileCompletion.percentage / 100)}
@@ -143,7 +137,6 @@ export function ProfileCompletionWidget({
     );
   }
 
-  // Card variant (default)
   return (
     <Card className={cn('overflow-hidden', className)}>
       <CardHeader className="bg-primary/10 pb-4">

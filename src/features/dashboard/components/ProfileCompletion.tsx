@@ -27,15 +27,16 @@ interface ProfileCompletionProps {
   steps?: ProfileCompletionStep[];
 }
 
-const getDefaultSteps = (t: (key: string) => string): ProfileCompletionStep[] => [
-  { label: t('uploadCVOrOnboarding'), completed: false, href: '/onboarding/cv', action: 'onboarding' },
-  { label: t('completeSkillSelfAssessment'), completed: false, href: '/self-assessment', action: 'assessment' },
-  { label: t('declareSkillInterests'), completed: false, href: '/profile?tab=interests', action: 'interests' },
+const getDefaultSteps = (t: (key: string) => string, tenantSlug: string): ProfileCompletionStep[] => [
+  { label: t('addBio'), completed: false, href: `/t/${tenantSlug}/profile`, action: 'profile' },
+  { label: t('uploadAvatar'), completed: false, href: `/t/${tenantSlug}/profile`, action: 'avatar' },
+  { label: t('connectGitHub'), completed: false, href: `/t/${tenantSlug}/profile`, action: 'github' },
+  { label: t('inviteTeamMember'), completed: false, href: `/t/${tenantSlug}/admin/invites`, action: 'invite' },
 ];
 
 export function ProfileCompletion({ tenantSlug, percentage, steps }: ProfileCompletionProps) {
   const t = useTranslations('dashboard');
-  const defaultSteps = getDefaultSteps(t);
+  const defaultSteps = getDefaultSteps(t, tenantSlug);
   const finalSteps = steps || defaultSteps;
   return (
     <Card data-tutorial="profile-completion" className="border-0 shadow-md relative overflow-hidden rounded-xl">
@@ -52,7 +53,7 @@ export function ProfileCompletion({ tenantSlug, percentage, steps }: ProfileComp
         <CardDescription>{t('completeProfileToUnlock')}</CardDescription>
       </CardHeader>
       <CardContent className="relative">
-        {/* Progress bar – aligned with OKR/Learning widgets */}
+        {/* Progress bar */}
         <div className="mb-6">
           <div className="flex justify-between text-sm mb-2">
             <span className="text-muted-foreground">{t('progress')}</span>
@@ -64,7 +65,6 @@ export function ProfileCompletion({ tenantSlug, percentage, steps }: ProfileComp
         {/* Steps */}
         <div className="space-y-3">
           {finalSteps.map((step, index) => {
-            const href = step.href ? `/t/${tenantSlug}${step.href}` : undefined;
             const StepContent = (
               <div
                 className={cn(
@@ -82,16 +82,16 @@ export function ProfileCompletion({ tenantSlug, percentage, steps }: ProfileComp
                 <span className={cn('text-sm flex-1', step.completed ? 'text-primary font-medium' : 'text-foreground')}>
                   {step.label}
                 </span>
-                {!step.completed && href && <span className="text-xs text-primary font-medium">→</span>}
+                {!step.completed && step.href && <span className="text-xs text-primary font-medium">→</span>}
               </div>
             );
 
-            if (step.completed || !href) {
+            if (step.completed || !step.href) {
               return <div key={index}>{StepContent}</div>;
             }
 
             return (
-              <Link key={index} href={href} className="block">
+              <Link key={index} href={step.href} className="block">
                 {StepContent}
               </Link>
             );

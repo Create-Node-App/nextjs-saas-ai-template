@@ -38,14 +38,10 @@ export const DARK_MODE_PALETTE = {
  * Brightened versions of domain colors to maintain readability in dark mode.
  */
 export const DARK_MODE_DOMAIN_COLORS = {
-  skill: '#8b5cf6', // Violet - purple tinted
-  okr: '#10b981', // Emerald - green tinted
-  learning: '#3b82f6', // Blue
-  performance: '#f59e0b', // Amber - orange tinted
+  performance: '#f59e0b', // Amber - orange tinted (analytics)
   project: '#6366f1', // Indigo
-  recognition: '#ec4899', // Pink
-  oneonone: '#14b8a6', // Teal
-  interest: '#eab308', // Yellow
+  knowledge: '#0ea5e9', // Sky
+  team: '#3b82f6', // Blue
 } as const;
 
 /**

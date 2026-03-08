@@ -51,7 +51,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             <Sparkles className="h-8 w-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold brand-gradient-text mb-2">Welcome to Next.js SaaS AI Template</h1>
-          <p className="text-muted-foreground">Sign in to manage your skills and career growth</p>
+          <p className="text-muted-foreground">Sign in to your workspace</p>
         </div>
         <LoginForm initialEmail={emailParam ?? ''} />
       </div>

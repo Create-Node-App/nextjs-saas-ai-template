@@ -4,20 +4,20 @@ const STEPS = [
   {
     step: 1,
     icon: Settings2,
-    title: 'Set up your org',
-    description: 'Create your tenant, define skills taxonomy, invite your team, and configure roles.',
+    title: 'Deploy & configure',
+    description: 'Deploy the template, create your tenant, configure branding, roles, and connect your AI provider.',
   },
   {
     step: 2,
     icon: Rocket,
-    title: 'Discover & assess',
-    description: 'Members assess their skills, AI processes CVs, and the people finder goes live.',
+    title: 'Invite users',
+    description: 'Invite your team members, assign roles, and let them set up their profiles and connect integrations.',
   },
   {
     step: 3,
     icon: TrendingUp,
-    title: 'Grow together',
-    description: 'Track OKRs, run 1:1s, give feedback, assign learning paths, and celebrate wins.',
+    title: 'Launch with AI',
+    description: 'Connect your knowledge base, enable the AI assistant, set up webhooks, and go live.',
   },
 ];
 

@@ -148,24 +148,14 @@ export async function getAllRoles(): Promise<Record<string, TenantRole>> {
  * This provides a clean API for checking what a user can do
  */
 export const RoleCapabilities = {
-  member: ['view_own_profile', 'self_assess', 'use_assistant', 'view_knowledge'] as const,
-  manager: [
-    'view_own_profile',
-    'self_assess',
-    'use_assistant',
-    'view_knowledge',
-    'view_team',
-    'view_team_reports',
-  ] as const,
+  member: ['view_own_profile', 'use_assistant', 'view_knowledge'] as const,
+  manager: ['view_own_profile', 'use_assistant', 'view_knowledge', 'view_team', 'view_team_reports'] as const,
   admin: [
     'view_own_profile',
-    'self_assess',
     'use_assistant',
     'view_knowledge',
     'view_team',
     'view_team_reports',
-    'manage_capabilities',
-    'manage_role_profiles',
     'manage_members',
     'manage_knowledge',
     'view_admin',
@@ -185,15 +175,12 @@ export function roleHasCapability(role: TenantRole | undefined, capability: Capa
 /** Map capability to permission key for authorization */
 const CAPABILITY_TO_PERMISSION: Record<Capability, string> = {
   view_own_profile: 'profile:read',
-  self_assess: 'self_assess',
   use_assistant: 'assistant:use',
   view_knowledge: 'knowledge:read',
   view_team: 'manager:team',
   view_team_reports: 'team:reports',
-  manage_capabilities: 'admin:capabilities',
-  manage_role_profiles: 'admin:role_profiles',
   manage_members: 'admin:members',
-  manage_knowledge: 'admin:skills',
+  manage_knowledge: 'admin:knowledge',
   view_admin: 'admin:dashboard',
 };
 

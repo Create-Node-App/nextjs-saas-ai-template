@@ -9,23 +9,23 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What data do I need to get started?',
-    a: 'Just your team roster. You can import from CSV, connect HRIS integrations (BambooHR, Deel), or add members manually. Skills taxonomy can be bootstrapped with AI.',
+    a: 'Just your team roster. You can import from CSV, invite members manually, or use the bulk import feature. The platform is ready to use immediately after setup.',
   },
   {
     q: 'Does it work with our existing tools?',
-    a: 'Next.js SaaS AI Template integrates with Slack, GitHub, GitLab, Google Workspace, LinkedIn, BambooHR, Deel, Lattice, Small Improvements, and ResourceGuru. More integrations are coming.',
+    a: 'The template integrates with GitHub out of the box, and includes a flexible integration framework to connect any external system via webhooks or custom sync adapters.',
   },
   {
     q: 'How does the AI assistant work?',
-    a: "The AI uses your organization's skill taxonomy, role profiles, and individual data to give personalized career guidance, generate quizzes, recommend learning paths, and suggest recognitions.",
+    a: "The AI uses your organization's knowledge base and user data to answer questions, search documents, and provide contextual help. Supports OpenAI and Anthropic models.",
   },
   {
     q: 'Is my data secure?',
-    a: "Absolutely. Next.js SaaS AI Template is multi-tenant by design — each organization's data is fully isolated. We use enterprise-grade authentication (Auth.js) and role-based access control.",
+    a: "Absolutely. The template is multi-tenant by design — each organization's data is fully isolated. Enterprise-grade authentication (Auth.js) and permission-based access control (PBAC) are included.",
   },
   {
-    q: 'Can managers see everything?',
-    a: "No. Visibility is permission-based, not role-based. Managers see only their direct reports' data. 1:1 facilitators have read-only access to their people's projects and performance.",
+    q: 'Can I migrate my existing data?',
+    a: 'Yes. The bulk import feature supports CSV import for team members. The integration engine can sync data from external systems on a schedule.',
   },
 ];
 

@@ -101,7 +101,7 @@ describe('FeatureGate', () => {
   });
 
   it('should handle multiple children', () => {
-    const settings = applySettingsDefaults({ features: { assessments: true } });
+    const settings = applySettingsDefaults({ features: { quiz: true } });
     const Wrapper = createWrapper({
       id: 'tenant-123',
       slug: 'test',
@@ -111,7 +111,7 @@ describe('FeatureGate', () => {
 
     render(
       <Wrapper>
-        <FeatureGate feature="assessments">
+        <FeatureGate feature="quiz">
           <div data-testid="child1">Child 1</div>
           <div data-testid="child2">Child 2</div>
         </FeatureGate>

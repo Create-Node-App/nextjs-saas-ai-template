@@ -70,7 +70,7 @@ export function HeroProductPreview() {
           }}
         >
           <TrendingUp className="h-4 w-4" aria-hidden />
-          <span>+23% growth this quarter</span>
+          <span>+42% faster onboarding</span>
         </div>
       </div>
 
@@ -132,7 +132,7 @@ export function HeroProductPreview() {
         </div>
       </div>
 
-      {/* ─── Card 2: OKR Progress — domain: okr (emerald) ─── */}
+      {/* ─── Card 2: Platform Activity — domain: activity (emerald) ─── */}
       <div
         className={cn(
           'absolute top-4 right-2 w-56 lg:w-68 rounded-2xl backdrop-blur-sm',
@@ -160,7 +160,7 @@ export function HeroProductPreview() {
             >
               <Target className="h-4 w-4" style={{ color: 'oklch(58% 0.17 155)' }} />
             </div>
-            <p className="text-sm font-semibold text-foreground">OKR Progress</p>
+            <p className="text-sm font-semibold text-foreground">Platform Activity</p>
           </div>
           <div className="space-y-3">
             <div>
@@ -294,7 +294,7 @@ export function HeroProductPreview() {
           }}
         >
           <Award className="h-4 w-4" aria-hidden />
-          <span>12 recognitions</span>
+          <span>12 integrations</span>
         </div>
       </div>
 

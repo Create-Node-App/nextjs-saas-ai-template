@@ -44,7 +44,7 @@ function stripTags(html: string): string {
 }
 
 /**
- * Renders sanitized HTML (e.g. from TipTap). Use for performance assessment notes
+ * Renders sanitized HTML (e.g. from TipTap). Use for rich text content
  * and dimension notes when content is stored as HTML.
  * Sanitization runs only in the browser; on server renders plain-text fallback.
  */

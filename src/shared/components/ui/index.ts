@@ -18,7 +18,6 @@ export { ScrollArea, ScrollBar } from './scroll-area';
 export { RadioGroup, RadioGroupItem } from './radio-group';
 export { Avatar, AvatarImage, AvatarFallback } from './avatar';
 export { Badge, badgeVariants, type BadgeProps } from './badge';
-export { CapabilityMatchCard, type CapabilityMatchCardProps } from './capability-match-card';
 export {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -37,7 +36,6 @@ export {
   DropdownMenuRadioGroup,
 } from './dropdown-menu';
 export { StarRating } from './star-rating';
-export { ComparedLevelBadge, type ComparedLevelBadgeProps } from './compared-level-badge';
 export {
   WizardStepIndicator,
   type WizardStepIndicatorProps,

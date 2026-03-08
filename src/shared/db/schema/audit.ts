@@ -21,8 +21,8 @@ export const auditEvents = appSchema.table(
     actorId: uuid('actor_id').references(() => persons.id, { onDelete: 'set null' }),
 
     // What happened
-    action: text('action').notNull(), // e.g., 'assessment.created', 'skill.updated'
-    entityType: text('entity_type').notNull(), // e.g., 'assessment', 'person', 'skill'
+    action: text('action').notNull(), // e.g., 'person.created', 'integration.sync_completed'
+    entityType: text('entity_type').notNull(), // e.g., 'person', 'knowledge_doc', 'integration'
     entityId: uuid('entity_id'), // ID of the affected entity
 
     // Change details

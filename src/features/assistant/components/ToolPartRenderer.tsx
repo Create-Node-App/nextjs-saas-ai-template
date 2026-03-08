@@ -6,32 +6,26 @@
  */
 
 import { ChevronDown, ChevronUp, FileText, Loader2, Search, Target, Users } from 'lucide-react';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { Badge } from '@/shared/components/ui/badge';
 import { cn } from '@/shared/lib/utils';
 
-import { CapabilityRequirementsCard } from './CapabilityRequirementsCard';
 import { ComparisonTableCard } from './ComparisonTableCard';
 import { KnowledgeDocRow } from './KnowledgeDocCard';
 import { PersonMiniCard } from './PersonMiniCard';
 import type {
   CompareCandidatesOutput,
   FindCandidatesOutput,
-  GetCapabilityOutput,
   GetPersonOutput,
-  ListCapabilitiesOutput,
   SearchKnowledgeOutput,
   SearchPeopleOutput,
 } from '../types/genui';
 import {
   compareCandidatesOutputSchema,
   findCandidatesOutputSchema,
-  getCapabilityOutputSchema,
   getPersonOutputSchema,
-  listCapabilitiesOutputSchema,
   searchKnowledgeOutputSchema,
   searchPeopleOutputSchema,
 } from '../types/genui';
@@ -255,71 +249,10 @@ export function ToolPartRenderer({
       );
     }
 
-    case 'tool-getCapability': {
-      const parsed = getCapabilityOutputSchema.safeParse(partOutput);
-      if (!parsed.success) return null;
-      const data = parsed.data as GetCapabilityOutput;
-      return (
-        <CapabilityRequirementsCard
-          capability={{
-            name: data.name,
-            requirements: data.requirements,
-            raw: '',
-          }}
-          capabilityId={data.capabilityId}
-          tenantSlug={tenantSlug}
-          className={cn('mt-2', className)}
-        />
-      );
-    }
-
-    case 'tool-listCapabilities': {
-      const parsed = listCapabilitiesOutputSchema.safeParse(partOutput);
-      if (!parsed.success) return null;
-      const data = parsed.data as ListCapabilitiesOutput;
-      if (data.items.length === 0) return null;
-      const capabilitiesUrl = tenantSlug ? `/t/${tenantSlug}/capabilities` : undefined;
-
-      const headerLabel = data.summary ? data.summary.split('\n')[0].replace(/[#*]/g, '').trim() : 'Capabilities';
-
-      const rows = data.items.map((item) => {
-        const row = (
-          <div
-            key={item.id}
-            className={cn(
-              'flex items-center gap-2.5 px-3 py-2 transition-colors group',
-              capabilitiesUrl && 'hover:bg-muted/60 cursor-pointer',
-            )}
-          >
-            <div className="p-1 rounded shrink-0 bg-purple-500/15 text-purple-600 dark:text-purple-400">
-              <Target className="h-3.5 w-3.5" aria-hidden />
-            </div>
-            <span className="font-medium text-sm truncate flex-1 min-w-0 group-hover:text-primary transition-colors">
-              {item.name}
-            </span>
-          </div>
-        );
-        return capabilitiesUrl ? (
-          <Link key={item.id} href={capabilitiesUrl} aria-label={item.name}>
-            {row}
-          </Link>
-        ) : (
-          <div key={item.id}>{row}</div>
-        );
-      });
-
-      return (
-        <CollapsibleList
-          total={data.items.length}
-          header={
-            <ResultHeader icon={<Target className="h-3.5 w-3.5" />} label={headerLabel} count={data.items.length} />
-          }
-          className={cn('mt-2', className)}
-        >
-          {rows}
-        </CollapsibleList>
-      );
-    }
+    case 'tool-getCapability':
+    case 'tool-listCapabilities':
+      // Capability tools removed - return null
+      return null;
 
     case 'tool-searchKnowledge': {
       const parsed = searchKnowledgeOutputSchema.safeParse(partOutput);

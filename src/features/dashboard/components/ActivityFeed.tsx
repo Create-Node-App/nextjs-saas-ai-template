@@ -7,7 +7,7 @@
  */
 
 import { formatDistanceToNow } from 'date-fns';
-import { Activity, Bot, ClipboardCheck, FileText, Heart, User, Zap } from 'lucide-react';
+import { Activity, Bot, User, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
@@ -24,34 +24,15 @@ interface ActivityFeedProps {
 }
 
 const activityIcons = {
-  assessment: ClipboardCheck,
-  interest: Heart,
-  evidence: FileText,
   profile_update: User,
   ai_conversation: Bot,
+  member_joined: User,
+  invitation_sent: Activity,
+  integration_synced: Zap,
 };
 
 // Design System compliant: solid colors with subtle backgrounds (10% opacity)
-// See DESIGN_SYSTEM.md Section 11.1 - no gradients on icons/containers
 const activityConfig = {
-  assessment: {
-    iconBg: 'bg-green-500/10 dark:bg-green-500/20',
-    iconColor: 'text-green-600 dark:text-green-400',
-    bg: 'bg-green-500/10 dark:bg-green-500/20',
-    text: 'text-green-600 dark:text-green-400',
-  },
-  interest: {
-    iconBg: 'bg-rose-500/10 dark:bg-rose-500/20',
-    iconColor: 'text-rose-600 dark:text-rose-400',
-    bg: 'bg-rose-500/10 dark:bg-rose-500/20',
-    text: 'text-rose-600 dark:text-rose-400',
-  },
-  evidence: {
-    iconBg: 'bg-blue-500/10 dark:bg-blue-500/20',
-    iconColor: 'text-blue-600 dark:text-blue-400',
-    bg: 'bg-blue-500/10 dark:bg-blue-500/20',
-    text: 'text-blue-600 dark:text-blue-400',
-  },
   profile_update: {
     iconBg: 'bg-purple-500/10 dark:bg-purple-500/20',
     iconColor: 'text-purple-600 dark:text-purple-400',
@@ -63,6 +44,24 @@ const activityConfig = {
     iconColor: 'text-amber-600 dark:text-amber-400',
     bg: 'bg-amber-500/10 dark:bg-amber-500/20',
     text: 'text-amber-600 dark:text-amber-400',
+  },
+  member_joined: {
+    iconBg: 'bg-green-500/10 dark:bg-green-500/20',
+    iconColor: 'text-green-600 dark:text-green-400',
+    bg: 'bg-green-500/10 dark:bg-green-500/20',
+    text: 'text-green-600 dark:text-green-400',
+  },
+  invitation_sent: {
+    iconBg: 'bg-blue-500/10 dark:bg-blue-500/20',
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    bg: 'bg-blue-500/10 dark:bg-blue-500/20',
+    text: 'text-blue-600 dark:text-blue-400',
+  },
+  integration_synced: {
+    iconBg: 'bg-cyan-500/10 dark:bg-cyan-500/20',
+    iconColor: 'text-cyan-600 dark:text-cyan-400',
+    bg: 'bg-cyan-500/10 dark:bg-cyan-500/20',
+    text: 'text-cyan-600 dark:text-cyan-400',
   },
 };
 

@@ -8,15 +8,9 @@ import { tenants } from './tenants';
  * Embedding entity type enum - What the embedding represents
  */
 export const embeddingEntityTypeEnum = appSchema.enum('embedding_entity_type', [
-  'skill', // Skill name + description
-  'skill_alias', // Skill alias text
-  'capability', // Capability name + description + requirements
-  'evidence', // Evidence content
-  'cv_chunk', // Chunk from CV extraction
+  'evidence', // Evidence/document content
   'knowledge_doc', // Knowledge document title + summary
   'knowledge_doc_version', // Chunk from knowledge document
-  'assessment_note', // Assessment notes/feedback
-  'person_profile', // Person profile with skills, interests, and metadata
 ]);
 
 /**

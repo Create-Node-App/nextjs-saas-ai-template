@@ -112,7 +112,6 @@ export async function POST(_request: Request, context: { params: Promise<{ tenan
           tenantId: tenantRecord.id,
           accessToken,
           syncRepositories: ghSettings?.syncRepositories ?? true,
-          inferSkills: ghSettings?.inferSkills ?? true,
           syncContributions: ghSettings?.syncContributions ?? true,
           includeArchived: ghSettings?.includeArchived ?? false,
           includeForks: ghSettings?.includeForks ?? false,

@@ -2,21 +2,17 @@
 
 import { createContext, type ReactNode, useCallback, useContext, useMemo, useState, useTransition } from 'react';
 
-import type { SkillCategory, SkillLevel, TenantSettings } from '@/shared/lib/tenant-settings';
+import type { SkillCategory, TenantSettings } from '@/shared/lib/tenant-settings';
 import {
   DEFAULT_AI,
   DEFAULT_BULK_IMPORT,
   DEFAULT_EVIDENCE_UPLOAD,
   DEFAULT_FEATURES,
-  DEFAULT_JOURNEY_SCORE,
-  DEFAULT_PERFORMANCE,
   DEFAULT_PROCESSING,
   DEFAULT_QUIZ,
-  DEFAULT_SKILL_LEVELS,
   DEFAULT_SKILL_MATCHING,
   DEFAULT_STORAGE,
   DEFAULT_TAXONOMY,
-  DEFAULT_TRACK,
   DEFAULT_UI,
 } from '@/shared/lib/tenant-settings';
 
@@ -42,12 +38,8 @@ export interface SettingsContextValue {
   evidenceUpload: NonNullable<TenantSettings['evidenceUpload']>;
   ai: NonNullable<TenantSettings['ai']>;
   storage: NonNullable<TenantSettings['storage']>;
-  skillLevels: NonNullable<TenantSettings['skillLevels']>;
   taxonomy: NonNullable<TenantSettings['taxonomy']>;
   quiz: NonNullable<TenantSettings['quiz']>;
-  performance: NonNullable<TenantSettings['performance']>;
-  track: NonNullable<TenantSettings['track']>;
-  journeyScore: NonNullable<TenantSettings['journeyScore']>;
 
   // State
   name: string;
@@ -63,10 +55,6 @@ export interface SettingsContextValue {
     section: string,
     data: Partial<TenantSettings> | { name?: string; description?: string },
   ) => Promise<void>;
-
-  // Skill levels
-  handleUpdateSkillLevel: (value: number, updates: Partial<SkillLevel>) => void;
-  handleResetSkillLevels: () => void;
 
   // Categories
   handleAddCategory: () => void;
@@ -129,15 +117,8 @@ export function SettingsProvider({
   );
   const ai = useMemo(() => ({ ...DEFAULT_AI, ...settings.ai }), [settings.ai]);
   const storage = useMemo(() => ({ ...DEFAULT_STORAGE, ...settings.storage }), [settings.storage]);
-  const skillLevels = useMemo(() => ({ ...DEFAULT_SKILL_LEVELS, ...settings.skillLevels }), [settings.skillLevels]);
   const taxonomy = useMemo(() => ({ ...DEFAULT_TAXONOMY, ...settings.taxonomy }), [settings.taxonomy]);
   const quiz = useMemo(() => ({ ...DEFAULT_QUIZ, ...settings.quiz }), [settings.quiz]);
-  const performance = useMemo(() => ({ ...DEFAULT_PERFORMANCE, ...settings.performance }), [settings.performance]);
-  const track = useMemo(() => ({ ...DEFAULT_TRACK, ...settings.track }), [settings.track]);
-  const journeyScore = useMemo(
-    () => ({ ...DEFAULT_JOURNEY_SCORE, ...(settings.journeyScore ?? settings.track?.journeyScore) }),
-    [settings.journeyScore, settings.track],
-  );
 
   // Save handler
   const handleSave = useCallback(
@@ -169,20 +150,6 @@ export function SettingsProvider({
     },
     [tenantSlug],
   );
-
-  // Skill levels management
-  const handleUpdateSkillLevel = useCallback(
-    (value: number, updates: Partial<SkillLevel>) => {
-      const currentLevels = skillLevels.levels ?? DEFAULT_SKILL_LEVELS.levels!;
-      const newLevels = currentLevels.map((l) => (l.value === value ? { ...l, ...updates } : l));
-      setSettings((prev) => ({ ...prev, skillLevels: { ...skillLevels, levels: newLevels } }));
-    },
-    [skillLevels],
-  );
-
-  const handleResetSkillLevels = useCallback(() => {
-    setSettings((prev) => ({ ...prev, skillLevels: DEFAULT_SKILL_LEVELS }));
-  }, []);
 
   // Categories management
   const handleAddCategory = useCallback(() => {
@@ -230,12 +197,8 @@ export function SettingsProvider({
       evidenceUpload,
       ai,
       storage,
-      skillLevels,
       taxonomy,
       quiz,
-      performance,
-      track,
-      journeyScore,
       name,
       description,
       isPending,
@@ -244,8 +207,6 @@ export function SettingsProvider({
       setDescription,
       setSettings,
       handleSave,
-      handleUpdateSkillLevel,
-      handleResetSkillLevels,
       handleAddCategory,
       handleUpdateCategory,
       handleRemoveCategory,
@@ -264,17 +225,11 @@ export function SettingsProvider({
       evidenceUpload,
       ai,
       storage,
-      skillLevels,
       taxonomy,
       quiz,
-      performance,
-      track,
-      journeyScore,
       isPending,
       saveStatus,
       handleSave,
-      handleUpdateSkillLevel,
-      handleResetSkillLevels,
       handleAddCategory,
       handleUpdateCategory,
       handleRemoveCategory,

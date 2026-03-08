@@ -1,29 +1,18 @@
 'use client';
 
 import {
-  Award,
-  BarChart2,
   BarChart3,
-  BookOpen,
   Brain,
   Building2,
-  CalendarCheck,
   ClipboardList,
   Database,
   FileSpreadsheet,
-  FileText,
-  Gauge,
-  GraduationCap,
   LayoutDashboard,
   Link2,
   Mail,
   Palette,
-  Rocket,
   Settings,
   Sliders,
-  Sparkles,
-  Tag,
-  Target,
   UserPlus,
   Users,
 } from 'lucide-react';
@@ -44,7 +33,6 @@ interface AdminViewNavProps {
 
 export function AdminViewNav({ basePath, permissions, onItemClick }: AdminViewNavProps) {
   const tAdmin = useTranslations('admin');
-  const tNav = useTranslations('nav');
   const adminBase = `${basePath}/admin`;
 
   return (
@@ -72,64 +60,8 @@ export function AdminViewNav({ basePath, permissions, onItemClick }: AdminViewNa
 
       <SidebarSeparator />
 
-      {/* Content & Knowledge */}
-      {canShowNavAny(permissions, [
-        'admin:skills',
-        'admin:capabilities',
-        'admin:role_profiles',
-        'admin:trainings',
-        'admin:roadmaps',
-      ]) && (
-        <SidebarSection title={tAdmin('contentManagement')} icon={<BookOpen className="h-4 w-4" />} variant="knowledge">
-          {canShowNav(permissions, 'admin:skills') && (
-            <SidebarNavItem href={`${adminBase}/skills`} label={tNav('skills')} icon={Sparkles} onClick={onItemClick} />
-          )}
-          {canShowNav(permissions, 'admin:capabilities') && (
-            <SidebarNavItem
-              href={`${adminBase}/capabilities`}
-              label={tNav('capabilities')}
-              icon={GraduationCap}
-              onClick={onItemClick}
-            />
-          )}
-          {canShowNav(permissions, 'admin:role_profiles') && (
-            <SidebarNavItem
-              href={`${adminBase}/role-profiles`}
-              label={tNav('roleProfiles')}
-              icon={Users}
-              onClick={onItemClick}
-            />
-          )}
-          {canShowNav(permissions, 'admin:trainings') && (
-            <SidebarNavItem
-              href={`${adminBase}/trainings`}
-              label={tNav('trainings')}
-              icon={BookOpen}
-              onClick={onItemClick}
-            />
-          )}
-          {canShowNav(permissions, 'admin:roadmaps') && (
-            <SidebarNavItem
-              href={`${adminBase}/roadmaps`}
-              label={tNav('roadmaps')}
-              icon={Rocket}
-              onClick={onItemClick}
-            />
-          )}
-        </SidebarSection>
-      )}
-
       {/* People & Operations */}
-      {canShowNavAny(permissions, [
-        'admin:members',
-        'admin:invites',
-        'admin:onboard',
-        'admin:processing',
-        'admin:settings',
-        'admin:okrs',
-        'admin:review_cycles',
-        'admin:recognitions',
-      ]) && (
+      {canShowNavAny(permissions, ['admin:members', 'admin:invites', 'admin:onboard', 'admin:settings']) && (
         <SidebarSection title={tAdmin('peopleManagement')} icon={<Users className="h-4 w-4" />} variant="team">
           {canShowNav(permissions, 'admin:members') && (
             <SidebarNavItem
@@ -150,60 +82,11 @@ export function AdminViewNav({ basePath, permissions, onItemClick }: AdminViewNa
               onClick={onItemClick}
             />
           )}
-          {canShowNav(permissions, 'admin:processing') && (
-            <SidebarNavItem
-              href={`${adminBase}/processing`}
-              label={tAdmin('processing')}
-              icon={FileText}
-              onClick={onItemClick}
-            />
-          )}
           {canShowNav(permissions, 'admin:settings') && (
             <SidebarNavItem
               href={`${adminBase}/departments`}
               label={tAdmin('departments')}
               icon={Building2}
-              onClick={onItemClick}
-            />
-          )}
-          {canShowNav(permissions, 'admin:okrs') && (
-            <SidebarNavItem href={`${adminBase}/okrs`} label={tNav('okrs')} icon={Target} onClick={onItemClick} />
-          )}
-          {canShowNav(permissions, 'admin:review_cycles') && (
-            <SidebarNavItem
-              href={`${adminBase}/review-cycles`}
-              label={tAdmin('reviewCycles.title')}
-              icon={CalendarCheck}
-              onClick={onItemClick}
-            />
-          )}
-          {canShowNav(permissions, 'admin:review_cycles') && (
-            <SidebarNavItem
-              href={`${adminBase}/assessment-templates`}
-              label="Assessment Templates"
-              icon={FileText}
-              onClick={onItemClick}
-            />
-          )}
-          <SidebarNavItem
-            href={`${adminBase}/meeting-templates`}
-            label="Meeting Templates"
-            icon={ClipboardList}
-            onClick={onItemClick}
-          />
-          {canShowNav(permissions, 'admin:review_cycles') && (
-            <SidebarNavItem
-              href={`${adminBase}/pulse-surveys`}
-              label="Pulse Surveys"
-              icon={BarChart2}
-              onClick={onItemClick}
-            />
-          )}
-          {canShowNav(permissions, 'admin:recognitions') && (
-            <SidebarNavItem
-              href={`${adminBase}/recognitions`}
-              label={tAdmin('recognitions')}
-              icon={Award}
               onClick={onItemClick}
             />
           )}
@@ -218,9 +101,7 @@ export function AdminViewNav({ basePath, permissions, onItemClick }: AdminViewNa
         'admin:roles',
         'admin:audit',
         'admin:integrations',
-        'admin:skills',
         'admin:members',
-        'admin:capabilities',
       ]) && (
         <SidebarSection
           title="Settings & System"
@@ -250,18 +131,6 @@ export function AdminViewNav({ basePath, permissions, onItemClick }: AdminViewNa
                 onClick={onItemClick}
               />
               <SidebarNavItem
-                href={`${adminBase}/settings/skill-levels`}
-                label={tAdmin('settingsTabs.skillLevels')}
-                icon={GraduationCap}
-                onClick={onItemClick}
-              />
-              <SidebarNavItem
-                href={`${adminBase}/settings/categories`}
-                label={tAdmin('settingsTabs.categories')}
-                icon={Tag}
-                onClick={onItemClick}
-              />
-              <SidebarNavItem
                 href={`${adminBase}/settings/ai-provider`}
                 label={tAdmin('settingsTabs.aiProvider')}
                 icon={Brain}
@@ -271,18 +140,6 @@ export function AdminViewNav({ basePath, permissions, onItemClick }: AdminViewNa
                 href={`${adminBase}/settings/storage`}
                 label={tAdmin('settingsTabs.storage')}
                 icon={Database}
-                onClick={onItemClick}
-              />
-              <SidebarNavItem
-                href={`${adminBase}/settings/performance`}
-                label={tAdmin('settingsTabs.performance')}
-                icon={Gauge}
-                onClick={onItemClick}
-              />
-              <SidebarNavItem
-                href={`${adminBase}/settings/track`}
-                label={tAdmin('settingsTabs.track')}
-                icon={Building2}
                 onClick={onItemClick}
               />
             </>
@@ -303,12 +160,7 @@ export function AdminViewNav({ basePath, permissions, onItemClick }: AdminViewNa
               onClick={onItemClick}
             />
           )}
-          {canShowNavAny(permissions, [
-            'admin:skills',
-            'admin:members',
-            'admin:capabilities',
-            'admin:integrations',
-          ]) && (
+          {canShowNav(permissions, 'admin:members') && (
             <SidebarNavItem
               href={`${adminBase}/bulk-import`}
               label={tAdmin('bulkImport')}

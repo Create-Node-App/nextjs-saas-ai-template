@@ -23,7 +23,6 @@ import {
 import { useCallback, useMemo, useState, useTransition } from 'react';
 
 import {
-  Badge,
   Button,
   Card,
   CardContent,
@@ -39,7 +38,7 @@ import {
   TabsTrigger,
 } from '@/shared/components/ui';
 import { useUrlTab } from '@/shared/hooks';
-import type { SkillCategory, SkillLevel, TenantSettings } from '@/shared/lib/tenant-settings';
+import type { SkillCategory, TenantSettings } from '@/shared/lib/tenant-settings';
 import {
   aiProviders,
   DEFAULT_AI,
@@ -48,7 +47,6 @@ import {
   DEFAULT_FEATURES,
   DEFAULT_PROCESSING,
   DEFAULT_QUIZ,
-  DEFAULT_SKILL_LEVELS,
   DEFAULT_SKILL_MATCHING,
   DEFAULT_STORAGE,
   DEFAULT_TAXONOMY,
@@ -86,33 +84,9 @@ const FEATURE_FLAGS: Array<{
     category: 'core',
   },
   {
-    key: 'evidenceUpload',
-    label: 'Evidence Upload',
-    description: 'Allow continuous evidence upload for team members',
-    category: 'core',
-  },
-  {
-    key: 'skillVerification',
-    label: 'Skill Verification',
-    description: 'Enable skill verification workflow',
-    category: 'core',
-  },
-  {
     key: 'knowledgeBase',
     label: 'Knowledge Base',
     description: 'Enable knowledge documents management',
-    category: 'core',
-  },
-  {
-    key: 'assessments',
-    label: 'Assessments',
-    description: 'Enable skill assessments functionality',
-    category: 'core',
-  },
-  {
-    key: 'roleProfiles',
-    label: 'Role Profiles',
-    description: 'Enable role profiles management',
     category: 'core',
   },
   {
@@ -123,39 +97,27 @@ const FEATURE_FLAGS: Array<{
     category: 'core',
   },
   {
-    key: 'trainings',
-    label: 'Trainings',
-    description: 'Enable training management',
-    category: 'core',
-  },
-  {
-    key: 'interests',
-    label: 'Interests',
-    description: 'Enable interests tracking',
-    category: 'core',
-  },
-  {
-    key: 'skillAutoCreation',
-    label: 'Auto-Create Skills',
-    description: 'Automatically create new skills from evidence processing',
-    category: 'ai',
-  },
-  {
-    key: 'aiSkillExtraction',
-    label: 'AI Skill Extraction',
-    description: 'Use AI to extract skills from documents',
-    category: 'ai',
-  },
-  {
     key: 'quiz',
     label: 'Quiz Assessments',
     description: 'AI-generated quizzes for skill assessment',
     category: 'ai',
   },
   {
+    key: 'aiAssistantEnabled',
+    label: 'AI Assistant',
+    description: 'Enable the AI assistant for all users',
+    category: 'ai',
+  },
+  {
     key: 'webhooks',
     label: 'Webhooks',
     description: 'Enable webhook notifications',
+    category: 'integrations',
+  },
+  {
+    key: 'githubIntegrationEnabled',
+    label: 'GitHub Integration',
+    description: 'Enable GitHub user profile sync',
     category: 'integrations',
   },
   {
@@ -210,7 +172,6 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
   );
   const ai = useMemo(() => ({ ...DEFAULT_AI, ...settings.ai }), [settings.ai]);
   const storage = useMemo(() => ({ ...DEFAULT_STORAGE, ...settings.storage }), [settings.storage]);
-  const skillLevels = useMemo(() => ({ ...DEFAULT_SKILL_LEVELS, ...settings.skillLevels }), [settings.skillLevels]);
   const taxonomy = useMemo(() => ({ ...DEFAULT_TAXONOMY, ...settings.taxonomy }), [settings.taxonomy]);
   const quiz = useMemo(() => ({ ...DEFAULT_QUIZ, ...settings.quiz }), [settings.quiz]);
 
@@ -318,20 +279,6 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
     // Clear test result when settings change
     setStorageTestResult(null);
   };
-
-  // Skill levels management
-  const handleUpdateSkillLevel = useCallback(
-    (value: number, updates: Partial<SkillLevel>) => {
-      const currentLevels = skillLevels.levels ?? DEFAULT_SKILL_LEVELS.levels!;
-      const newLevels = currentLevels.map((l) => (l.value === value ? { ...l, ...updates } : l));
-      setSettings({ ...settings, skillLevels: { ...skillLevels, levels: newLevels } });
-    },
-    [skillLevels, settings],
-  );
-
-  const handleResetSkillLevels = useCallback(() => {
-    setSettings({ ...settings, skillLevels: DEFAULT_SKILL_LEVELS });
-  }, [settings]);
 
   // Categories management
   const handleAddCategory = useCallback(() => {
@@ -621,53 +568,6 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
             </CardContent>
           </Card>
         </div>
-      </TabsContent>
-
-      {/* Skill Levels Tab */}
-      <TabsContent value="skill-levels">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              <span className="flex items-center gap-2">
-                <GraduationCap className="h-5 w-5" />
-                Skill Levels
-              </span>
-              <Button variant="outline" size="sm" onClick={handleResetSkillLevels}>
-                Reset to Default
-              </Button>
-            </CardTitle>
-            <CardDescription>
-              Customize the proficiency scale used for skill assessments. Labels will be used throughout the
-              application.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid gap-3">
-              {(skillLevels.levels ?? DEFAULT_SKILL_LEVELS.levels!).map((level) => (
-                <div key={level.value} className="flex items-center gap-3 p-3 border rounded-lg bg-card">
-                  <Badge variant="outline" className="w-8 justify-center font-mono">
-                    {level.value}
-                  </Badge>
-                  <Input
-                    value={level.label}
-                    onChange={(e) => handleUpdateSkillLevel(level.value, { label: e.target.value })}
-                    placeholder="Level label"
-                    className="w-40"
-                  />
-                  <Input
-                    value={level.description ?? ''}
-                    onChange={(e) => handleUpdateSkillLevel(level.value, { description: e.target.value })}
-                    placeholder="Description (optional)"
-                    className="flex-1"
-                  />
-                </div>
-              ))}
-            </div>
-            <Button onClick={() => handleSave('skillLevels', { skillLevels })} disabled={isPending} className="mt-4">
-              Save Skill Levels
-            </Button>
-          </CardContent>
-        </Card>
       </TabsContent>
 
       {/* Skill Categories Tab */}

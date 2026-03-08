@@ -20,7 +20,7 @@ import { isFeatureEnabled, parseTenantSettings } from '@/shared/lib/tenant-setti
 // ============================================================================
 
 export interface WebhookEventPayload {
-  /** Event type (e.g., 'recognition.created') */
+  /** Event type (e.g., 'person.created', 'integration.sync_completed') */
   event: string;
   /** Unique event ID for deduplication */
   eventId: string;
@@ -68,7 +68,7 @@ export function signPayload(secret: string, payload: WebhookEventPayload): strin
  * 4. Attempts immediate delivery (best-effort)
  *
  * @param tenantSlug - Tenant identifier
- * @param eventType - Event type (e.g., 'recognition.created')
+ * @param eventType - Event type (e.g., 'person.created')
  * @param data - Event payload data
  */
 export async function emitWebhookEvent(

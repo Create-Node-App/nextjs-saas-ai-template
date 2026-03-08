@@ -148,20 +148,18 @@ describe('audit-service', () => {
       expect(AuditActions.PERSON_DELETED).toBe('person.deleted');
     });
 
-    it('should have skill actions', () => {
-      expect(AuditActions.SKILL_CREATED).toBe('skill.created');
-      expect(AuditActions.SKILL_VERIFIED).toBe('skill.verified');
-    });
-
     it('should have file actions', () => {
       expect(AuditActions.FILE_UPLOADED).toBe('file.uploaded');
-      expect(AuditActions.CV_PROCESSING_STARTED).toBe('cv.processing_started');
-      expect(AuditActions.CV_PROCESSING_COMPLETED).toBe('cv.processing_completed');
+      expect(AuditActions.FILE_DELETED).toBe('file.deleted');
     });
 
     it('should have AI actions', () => {
       expect(AuditActions.AI_CONVERSATION).toBe('ai.conversation');
-      expect(AuditActions.AI_ROADMAP_GENERATED).toBe('ai.roadmap_generated');
+    });
+
+    it('should have integration actions', () => {
+      expect(AuditActions.INTEGRATION_SYNC_COMPLETED).toBe('integration.sync_completed');
+      expect(AuditActions.INTEGRATION_SYNC_FAILED).toBe('integration.sync_failed');
     });
 
     it('should have auth actions', () => {

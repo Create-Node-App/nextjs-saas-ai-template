@@ -58,7 +58,6 @@ describe('rbac', () => {
   describe('RoleCapabilities', () => {
     it('should define member capabilities', () => {
       expect(RoleCapabilities.member).toContain('view_own_profile');
-      expect(RoleCapabilities.member).toContain('self_assess');
       expect(RoleCapabilities.member).toContain('use_assistant');
       expect(RoleCapabilities.member).toContain('view_knowledge');
     });
@@ -72,7 +71,7 @@ describe('rbac', () => {
     it('should define admin capabilities (includes all)', () => {
       expect(RoleCapabilities.admin).toContain('view_own_profile');
       expect(RoleCapabilities.admin).toContain('view_team');
-      expect(RoleCapabilities.admin).toContain('manage_capabilities');
+      expect(RoleCapabilities.admin).toContain('manage_knowledge');
       expect(RoleCapabilities.admin).toContain('manage_members');
       expect(RoleCapabilities.admin).toContain('view_admin');
     });
@@ -81,7 +80,7 @@ describe('rbac', () => {
   describe('roleHasCapability', () => {
     it('should return true for member capability with member role', () => {
       expect(roleHasCapability('member', 'view_own_profile')).toBe(true);
-      expect(roleHasCapability('member', 'self_assess')).toBe(true);
+      expect(roleHasCapability('member', 'use_assistant')).toBe(true);
     });
 
     it('should return false for manager capability with member role', () => {
@@ -100,7 +99,7 @@ describe('rbac', () => {
     });
 
     it('should return true for admin capabilities with admin role', () => {
-      expect(roleHasCapability('admin', 'manage_capabilities')).toBe(true);
+      expect(roleHasCapability('admin', 'manage_knowledge')).toBe(true);
       expect(roleHasCapability('admin', 'manage_members')).toBe(true);
       expect(roleHasCapability('admin', 'view_admin')).toBe(true);
       expect(roleHasCapability('admin', 'view_own_profile')).toBe(true);
@@ -308,9 +307,6 @@ describe('rbac', () => {
     it('should check correct permission for each capability', async () => {
       mockHasPermissionFn.mockResolvedValue(true);
 
-      await hasCapability('test-tenant', 'self_assess');
-      expect(mockHasPermissionFn).toHaveBeenCalledWith('test-tenant', 'self_assess');
-
       await hasCapability('test-tenant', 'use_assistant');
       expect(mockHasPermissionFn).toHaveBeenCalledWith('test-tenant', 'assistant:use');
 
@@ -319,6 +315,9 @@ describe('rbac', () => {
 
       await hasCapability('test-tenant', 'manage_members');
       expect(mockHasPermissionFn).toHaveBeenCalledWith('test-tenant', 'admin:members');
+
+      await hasCapability('test-tenant', 'manage_knowledge');
+      expect(mockHasPermissionFn).toHaveBeenCalledWith('test-tenant', 'admin:knowledge');
     });
   });
 });

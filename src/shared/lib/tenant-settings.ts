@@ -7,40 +7,20 @@ import { z } from 'zod';
 export const featureFlagsSchema = z.object({
   /** Enable bulk import functionality in admin */
   bulkImport: z.boolean().optional().default(true),
-  /** Enable continuous evidence upload for persons */
-  evidenceUpload: z.boolean().optional().default(true),
-  /** Allow auto-creation of skills from evidence processing */
-  skillAutoCreation: z.boolean().optional().default(true),
-  /** Enable AI-powered skill extraction from documents */
-  aiSkillExtraction: z.boolean().optional().default(true),
-  /** Enable skill verification workflow */
-  skillVerification: z.boolean().optional().default(true),
   /** Enable knowledge base features */
   knowledgeBase: z.boolean().optional().default(true),
-  /** Enable assessments functionality */
-  assessments: z.boolean().optional().default(true),
-  /** Enable performance features and pages */
-  performance: z.boolean().optional().default(true),
-  /** Enable TRACK account strategy features */
-  track: z.boolean().optional().default(true),
-  /** Enable role profiles management */
-  roleProfiles: z.boolean().optional().default(true),
-  /** Enable training management */
-  trainings: z.boolean().optional().default(true),
-  /** Enable interests tracking */
-  interests: z.boolean().optional().default(true),
   /** Enable AI-generated quiz assessments */
   quiz: z.boolean().optional().default(true),
   /** Enable webhook notifications */
   webhooks: z.boolean().optional().default(false),
   /** Enable HRIS integration */
   hrisIntegration: z.boolean().optional().default(false),
-  /** When on, admins can create new roles in addition to system roles (Member, Manager, Admin, etc.). When off, only system roles are available. */
+  /** When on, admins can create new roles in addition to system roles. */
   allowCustomRoles: z.boolean().optional().default(true),
-  /** Enable Google Calendar + Gemini meeting features for 1:1 meetings. */
-  meetingsGeminiOneOnOne: z.boolean().optional().default(true),
-  /** Enable Google Calendar + Gemini meeting features for TRACK cadences. */
-  meetingsGeminiTrackCadence: z.boolean().optional().default(false),
+  /** Enable GitHub integration */
+  githubIntegrationEnabled: z.boolean().optional().default(true),
+  /** Enable AI assistant */
+  aiAssistantEnabled: z.boolean().optional().default(true),
 });
 
 export type FeatureFlags = z.infer<typeof featureFlagsSchema>;
@@ -152,26 +132,19 @@ export type UISettings = z.infer<typeof uiSchema>;
 // ============================================================================
 
 export const webhookEventTypes = [
-  // Skill events
-  'skill.created',
-  'skill.updated',
-  'skill.deleted',
-  'skill.auto_created',
-  'skill.verified',
   // Person events
   'person.created',
   'person.updated',
-  'person.skill_added',
-  'person.skill_removed',
-  // Evidence events
-  'evidence.uploaded',
-  'evidence.processed',
+  // Member events
+  'member.invited',
+  'member.joined',
+  'member.deactivated',
+  // Integration events
+  'integration.synced',
+  'integration.failed',
   // Bulk import events
   'bulk_import.completed',
   'bulk_import.failed',
-  // Recognition events
-  'recognition.created',
-  'recognition.deleted',
 ] as const;
 
 export type WebhookEventType = (typeof webhookEventTypes)[number];
@@ -290,24 +263,11 @@ const smallImprovementsSettingsSchema = integrationBaseSchema.extend({
    * Company subdomain for Small Improvements (e.g., 'acme' for acme.small-improvements.com).
    */
   companySubdomain: z.string().optional(),
-  /** Sync objectives/OKRs from Small Improvements */
-  syncObjectives: z.boolean().optional().default(true),
-  /** Sync praise/kudos from Small Improvements */
-  syncPraise: z.boolean().optional().default(true),
-  /** Sync 1:1 meeting notes from Small Improvements */
-  syncMeetings: z.boolean().optional().default(false),
-  /** Sync feedback from Small Improvements */
-  syncFeedback: z.boolean().optional().default(false),
   /** Default SI sync mode for control-plane operations */
   defaultSyncMode: z
     .enum(['migration_full', 'sync_incremental', 'reconcile', 'dry_run'])
     .optional()
     .default('sync_incremental'),
-  /** Default entity selection for SI strong sync */
-  defaultEntities: z
-    .array(z.enum(['objectives', 'praise', 'meetings', 'feedback']))
-    .optional()
-    .default(['objectives', 'praise']),
   /** Last sync timestamp */
   lastSyncAt: z.string().datetime().optional(),
 });
@@ -384,8 +344,6 @@ const githubSettingsSchema = integrationBaseSchema.extend({
   organizationFilter: z.string().optional(),
   /** Sync repositories and language stats */
   syncRepositories: z.boolean().optional().default(true),
-  /** Infer technical skills from repository languages */
-  inferSkills: z.boolean().optional().default(true),
   /** Track contribution stats (commits, PRs, reviews) */
   syncContributions: z.boolean().optional().default(true),
   /** Include archived repositories */
@@ -519,29 +477,6 @@ export type Department = z.infer<typeof departmentSchema>;
 export type DepartmentsSettings = z.infer<typeof departmentsSchema>;
 
 // ============================================================================
-// Skill Levels Schema (Tenant-configurable)
-// ============================================================================
-
-export const skillLevelSchema = z.object({
-  /** Level value (0-based, supports 0-10) */
-  value: z.number().int().min(0).max(10),
-  /** Display label */
-  label: z.string().min(1).max(50),
-  /** Description of this level */
-  description: z.string().max(200).optional(),
-});
-
-export const skillLevelsSettingsSchema = z.object({
-  /** Number of levels in the scale (3-10) */
-  scale: z.number().int().min(3).max(10).optional().default(5),
-  /** Custom labels for each level */
-  levels: z.array(skillLevelSchema).optional(),
-});
-
-export type SkillLevel = z.infer<typeof skillLevelSchema>;
-export type SkillLevelsSettings = z.infer<typeof skillLevelsSettingsSchema>;
-
-// ============================================================================
 // Skill Categories Schema (Tenant-configurable Taxonomy)
 // ============================================================================
 
@@ -649,80 +584,6 @@ export const quizSettingsSchema = z.object({
 export type QuizSettings = z.infer<typeof quizSettingsSchema>;
 
 // ============================================================================
-// Performance Assessment Schema (tenant-configurable)
-// ============================================================================
-
-const performanceDimensionSchema = z.object({
-  id: z.string().min(1),
-  name: z.string().min(1).max(100),
-});
-
-const performanceLevelSchema = z.object({
-  value: z.number().int().min(0),
-  /** Short label shown in the level selector (~6 chars recommended for compact UI). Configurable per tenant. */
-  label: z.string().min(1).max(50),
-  /** Optional longer description (e.g. for tooltips or admin reference). */
-  description: z.string().max(200).optional(),
-});
-
-export const performanceSettingsSchema = z.object({
-  /** Scale: min/max level (e.g. 5 = 1-5) */
-  scale: z.number().int().min(1).max(10).optional().default(5),
-  /** Level labels for the scale */
-  levels: z.array(performanceLevelSchema).optional(),
-  /** Dimensions used for supervisor → subordinate assessments */
-  subordinateDimensions: z.array(performanceDimensionSchema).optional(),
-  /** Dimensions used for subordinate → manager (upward) assessments */
-  upwardDimensions: z.array(performanceDimensionSchema).optional(),
-  /** Dimensions used for peer reviews within 360 review cycles */
-  peerDimensions: z.array(performanceDimensionSchema).optional(),
-  /** How to compute overall score from dimension values */
-  overallCalculation: z.enum(['average', 'weighted_average']).optional().default('average'),
-  /** Optional weights per dimension ID for weighted_average */
-  dimensionWeights: z.record(z.string(), z.number()).optional().default({}),
-});
-
-export type PerformanceSettings = z.infer<typeof performanceSettingsSchema>;
-
-// ============================================================================
-// TRACK Settings Schema (tenant-configurable)
-// ============================================================================
-
-const trackOptionSchema = z.object({
-  id: z.string().min(1),
-  name: z.string().min(1).max(100),
-  description: z.string().max(500).optional(),
-  color: z.string().optional(),
-  order: z.number().int().optional(),
-});
-
-const trackJourneyDimensionSchema = z.object({
-  id: z.string().min(1),
-  name: z.string().min(1).max(100),
-  inverseRisk: z.boolean().optional().default(false),
-  description: z.string().max(500).optional(),
-});
-
-export const journeyScoreSettingsSchema = z.object({
-  scale: z.number().int().min(1).max(10).optional().default(5),
-  dimensions: z.array(trackJourneyDimensionSchema).optional(),
-});
-
-export type JourneyScoreSettings = z.infer<typeof journeyScoreSettingsSchema>;
-
-export const trackSettingsSchema = z.object({
-  accountMaturityLevels: z.array(trackOptionSchema).optional(),
-  accountTeamRoles: z.array(trackOptionSchema).optional(),
-  noteTypes: z.array(trackOptionSchema).optional(),
-  contactSeniorityLevels: z.array(trackOptionSchema).optional(),
-  contactInfluenceTypes: z.array(trackOptionSchema).optional(),
-  accountTiers: z.array(trackOptionSchema).optional(),
-  journeyScore: journeyScoreSettingsSchema.optional(),
-});
-
-export type TrackSettings = z.infer<typeof trackSettingsSchema>;
-
-// ============================================================================
 // Complete Tenant Settings Schema
 // ============================================================================
 
@@ -738,18 +599,10 @@ export const tenantSettingsSchema = z.object({
   storage: storageSettingsSchema.optional(),
   /** Tenant departments configuration */
   departments: departmentsSchema.optional(),
-  /** Skill levels configuration */
-  skillLevels: skillLevelsSettingsSchema.optional(),
   /** Skill taxonomy (categories) configuration */
   taxonomy: taxonomySchema.optional(),
   /** Quiz configuration */
   quiz: quizSettingsSchema.optional(),
-  /** Performance assessment dimensions and scale */
-  performance: performanceSettingsSchema.optional(),
-  /** TRACK framework configuration */
-  track: trackSettingsSchema.optional(),
-  /** Journey score settings (legacy top-level compatibility) */
-  journeyScore: journeyScoreSettingsSchema.optional(),
 });
 
 export type TenantSettings = z.infer<typeof tenantSettingsSchema>;
@@ -766,23 +619,13 @@ export type TenantSettingsInput = z.input<typeof tenantSettingsSchema>;
 
 export const DEFAULT_FEATURES: NonNullable<TenantSettings['features']> = {
   bulkImport: true,
-  evidenceUpload: true,
-  skillAutoCreation: true,
-  aiSkillExtraction: true,
-  skillVerification: true,
   knowledgeBase: true,
-  assessments: true,
-  performance: true,
-  track: true,
-  roleProfiles: true,
-  trainings: true,
-  interests: true,
   quiz: true,
   webhooks: false,
   hrisIntegration: false,
   allowCustomRoles: true,
-  meetingsGeminiOneOnOne: true,
-  meetingsGeminiTrackCadence: false,
+  githubIntegrationEnabled: true,
+  aiAssistantEnabled: true,
 };
 
 export const DEFAULT_SKILL_MATCHING: NonNullable<TenantSettings['skillMatching']> = {
@@ -874,18 +717,6 @@ export const DEFAULT_DEPARTMENTS: NonNullable<TenantSettings['departments']> = {
   list: [],
 };
 
-export const DEFAULT_SKILL_LEVELS: NonNullable<TenantSettings['skillLevels']> = {
-  scale: 6,
-  levels: [
-    { value: 0, label: 'No Experience', description: 'No knowledge or experience with this skill' },
-    { value: 1, label: 'Beginner', description: 'Basic understanding, needs guidance' },
-    { value: 2, label: 'Familiar', description: 'Can work with some guidance' },
-    { value: 3, label: 'Competent', description: 'Can work independently' },
-    { value: 4, label: 'Advanced', description: 'Can mentor others' },
-    { value: 5, label: 'Expert', description: 'Deep expertise, can architect solutions' },
-  ],
-};
-
 export const DEFAULT_TAXONOMY: NonNullable<TenantSettings['taxonomy']> = {
   skillCategories: [
     { id: 'technical', name: 'Technical', color: '#3B82F6', sortOrder: 1 },
@@ -905,91 +736,6 @@ export const DEFAULT_QUIZ: NonNullable<TenantSettings['quiz']> = {
   generationTimeoutSeconds: 60,
 };
 
-export const DEFAULT_PERFORMANCE: NonNullable<TenantSettings['performance']> = {
-  scale: 5,
-  /** Brief labels (~6 chars) for compact level selector; description holds full text. Configurable via tenant settings. */
-  levels: [
-    { value: 1, label: 'Needs', description: 'Does not meet expectations' },
-    { value: 2, label: 'Develop', description: 'Partially meets expectations' },
-    { value: 3, label: 'Meets', description: 'Consistently meets expectations' },
-    { value: 4, label: 'Exceeds', description: 'Often exceeds expectations' },
-    { value: 5, label: 'Top', description: 'Consistently exceeds at a high level' },
-  ],
-  /** Career Level Framework: four transversal dimensions (Technical Skills, Delivery, Client, Leadership) */
-  subordinateDimensions: [
-    { id: 'technical_skills', name: 'Technical Skills' },
-    { id: 'delivery', name: 'Delivery' },
-    { id: 'client', name: 'Client' },
-    { id: 'leadership', name: 'Leadership' },
-  ],
-  upwardDimensions: [
-    { id: 'leadership', name: 'Leadership' },
-    { id: 'communication', name: 'Communication' },
-    { id: 'support', name: 'Support & feedback' },
-    { id: 'clarity', name: 'Clarity & direction' },
-    { id: 'recognition', name: 'Recognition' },
-  ],
-  overallCalculation: 'average',
-  dimensionWeights: {},
-};
-
-export const DEFAULT_JOURNEY_SCORE: NonNullable<NonNullable<TenantSettings['track']>['journeyScore']> = {
-  scale: 5,
-  dimensions: [
-    { id: 'health', name: 'Health Score', inverseRisk: false },
-    { id: 'time_to_value', name: 'Time to Value', inverseRisk: false },
-    { id: 'adoption', name: 'Adoption', inverseRisk: false },
-    { id: 'renewal_risk', name: 'Renewal Risk', inverseRisk: true },
-    { id: 'expansion', name: 'Expansion Potential', inverseRisk: false },
-  ],
-};
-
-export const DEFAULT_TRACK: NonNullable<TenantSettings['track']> = {
-  accountMaturityLevels: [
-    { id: 'vendor', name: 'Vendor', order: 1 },
-    { id: 'reliable_operator', name: 'Reliable Operator', order: 2 },
-    { id: 'results_oriented', name: 'Results Oriented', order: 3 },
-    { id: 'trusted_advisor', name: 'Trusted Advisor', order: 4 },
-    { id: 'strategic_partner', name: 'Strategic Partner', order: 5 },
-  ],
-  accountTeamRoles: [
-    { id: 'account_owner', name: 'Account Owner', order: 1 },
-    { id: 'delivery_lead', name: 'Delivery Lead', order: 2 },
-    { id: 'exec_sponsor', name: 'Exec Sponsor', order: 3 },
-    { id: 'recruiting_lead', name: 'Recruiting Lead', order: 4 },
-    { id: 'finance_lead', name: 'Finance Lead', order: 5 },
-    { id: 'technical_sme', name: 'Technical SME', order: 6 },
-    { id: 'marketing_lead', name: 'Marketing Lead', order: 7 },
-    { id: 'other', name: 'Other', order: 8 },
-  ],
-  noteTypes: [
-    { id: 'strategic', name: 'Strategic', color: 'purple', order: 1 },
-    { id: 'competitive', name: 'Competitive', color: 'red', order: 2 },
-    { id: 'budget', name: 'Budget', color: 'green', order: 3 },
-    { id: 'relationship', name: 'Relationship', color: 'blue', order: 4 },
-    { id: 'risk', name: 'Risk', color: 'amber', order: 5 },
-    { id: 'opportunity', name: 'Opportunity', color: 'teal', order: 6 },
-  ],
-  contactSeniorityLevels: [
-    { id: 'executive', name: 'Executive', order: 1 },
-    { id: 'senior', name: 'Senior', order: 2 },
-    { id: 'mid', name: 'Mid-level', order: 3 },
-    { id: 'junior', name: 'Junior', order: 4 },
-  ],
-  contactInfluenceTypes: [
-    { id: 'champion', name: 'Champion', color: 'green', order: 1 },
-    { id: 'supporter', name: 'Supporter', color: 'blue', order: 2 },
-    { id: 'neutral', name: 'Neutral', color: 'slate', order: 3 },
-    { id: 'risk', name: 'Risk', color: 'red', order: 4 },
-  ],
-  accountTiers: [
-    { id: 'T1', name: 'T1', order: 1 },
-    { id: 'T2', name: 'T2', order: 2 },
-    { id: 'T3', name: 'T3', order: 3 },
-  ],
-  journeyScore: DEFAULT_JOURNEY_SCORE,
-};
-
 // ============================================================================
 // Utility Functions
 // ============================================================================
@@ -1006,10 +752,7 @@ export type AppliedTenantSettings = Required<{
   ai: NonNullable<TenantSettings['ai']>;
   storage: NonNullable<TenantSettings['storage']>;
   departments: NonNullable<TenantSettings['departments']>;
-  skillLevels: NonNullable<TenantSettings['skillLevels']>;
   taxonomy: NonNullable<TenantSettings['taxonomy']>;
-  track: NonNullable<TenantSettings['track']>;
-  journeyScore: NonNullable<TenantSettings['journeyScore']>;
 }>;
 
 /**
@@ -1030,10 +773,7 @@ export function applySettingsDefaults(settings: TenantSettingsInput): AppliedTen
     ai: { ...DEFAULT_AI, ...settings.ai },
     storage: { ...DEFAULT_STORAGE, ...settings.storage },
     departments: { ...DEFAULT_DEPARTMENTS, ...settings.departments },
-    skillLevels: { ...DEFAULT_SKILL_LEVELS, ...settings.skillLevels },
     taxonomy: { ...DEFAULT_TAXONOMY, ...settings.taxonomy },
-    track: { ...DEFAULT_TRACK, ...settings.track },
-    journeyScore: { ...DEFAULT_JOURNEY_SCORE, ...(settings.journeyScore ?? settings.track?.journeyScore) },
   } as AppliedTenantSettings;
 }
 
@@ -1084,14 +824,7 @@ export function mergeTenantSettings(
     storage: partial.storage !== undefined ? { ...existing.storage, ...partial.storage } : existing.storage,
     departments:
       partial.departments !== undefined ? { ...existing.departments, ...partial.departments } : existing.departments,
-    skillLevels:
-      partial.skillLevels !== undefined ? { ...existing.skillLevels, ...partial.skillLevels } : existing.skillLevels,
     taxonomy: partial.taxonomy !== undefined ? { ...existing.taxonomy, ...partial.taxonomy } : existing.taxonomy,
-    track: partial.track !== undefined ? { ...existing.track, ...partial.track } : existing.track,
-    journeyScore:
-      partial.journeyScore !== undefined
-        ? { ...existing.journeyScore, ...partial.journeyScore }
-        : existing.journeyScore,
   } as TenantSettings;
 }
 
@@ -1132,17 +865,6 @@ export function hasStorageConfigured(settings: TenantSettings | TenantSettingsIn
 }
 
 /**
- * Get skill levels for a tenant (with defaults)
- */
-export function getSkillLevels(settings: TenantSettings | TenantSettingsInput): SkillLevel[] {
-  const levels = settings.skillLevels?.levels;
-  if (levels && levels.length > 0) {
-    return levels.sort((a, b) => a.value - b.value);
-  }
-  return DEFAULT_SKILL_LEVELS.levels!;
-}
-
-/**
  * Get skill categories for a tenant (with defaults)
  */
 export function getSkillCategories(settings: TenantSettings | TenantSettingsInput): SkillCategory[] {
@@ -1164,15 +886,6 @@ export function getDepartments(settings: TenantSettings | TenantSettingsInput): 
   if (!list) return [];
   // Apply default sortOrder if missing
   return list.map((d) => ({ ...d, sortOrder: d.sortOrder ?? 0 })) as Department[];
-}
-
-/**
- * Get skill level label by value
- */
-export function getSkillLevelLabel(settings: TenantSettings | TenantSettingsInput, value: number): string {
-  const levels = getSkillLevels(settings);
-  const level = levels.find((l) => l.value === value);
-  return level?.label ?? `Level ${value}`;
 }
 
 /**

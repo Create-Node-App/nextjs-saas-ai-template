@@ -3,7 +3,7 @@
  *
  * GET /api/tenants/[tenant]/files/[fileId]
  * Redirects to a presigned download URL. Used as img src or link href for
- * assessment note attachments.
+ * file attachments.
  */
 
 import { and, eq } from 'drizzle-orm';

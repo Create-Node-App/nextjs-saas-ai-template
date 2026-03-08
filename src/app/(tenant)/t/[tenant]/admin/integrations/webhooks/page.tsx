@@ -52,7 +52,7 @@ export default async function WebhooksPage({ params }: WebhooksPageProps) {
             </CardTitle>
             <CardDescription>
               Webhooks allow you to send real-time notifications to external services when events happen in Agentic A8n
-              Hub. For example, send a message to Slack when someone receives public recognition.
+              Hub. For example, send a message to Slack when a new member joins.
             </CardDescription>
           </CardHeader>
           <CardContent>

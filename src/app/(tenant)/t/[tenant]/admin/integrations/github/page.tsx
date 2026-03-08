@@ -50,7 +50,7 @@ export default async function GitHubPage({ params }: GitHubPageProps) {
       <div className="space-y-6">
         <AdminPageHeader
           title="GitHub"
-          description="Track contributions and infer technical skills from GitHub repositories."
+          description="Track contributions and activity from GitHub repositories."
           backHref={`/t/${tenant}/admin/integrations`}
           backLabel="Integrations"
         />
@@ -95,7 +95,7 @@ export default async function GitHubPage({ params }: GitHubPageProps) {
     <div className="space-y-6">
       <AdminPageHeader
         title="GitHub"
-        description="Track contributions and infer technical skills from GitHub repositories."
+        description="Track contributions and activity from GitHub repositories."
         backHref={`/t/${tenant}/admin/integrations`}
         backLabel="Integrations"
       />
@@ -129,5 +129,5 @@ export default async function GitHubPage({ params }: GitHubPageProps) {
 
 export const metadata = {
   title: 'GitHub | Integrations | Admin',
-  description: 'Connect GitHub and sync contributions and skills',
+  description: 'Connect GitHub and sync contributions and activity',
 };

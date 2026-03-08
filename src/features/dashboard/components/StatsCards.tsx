@@ -7,7 +7,7 @@
  * Each card links to the page that shows the corresponding data.
  */
 
-import { GraduationCap, MessageSquare, Route, Sparkles } from 'lucide-react';
+import { MessageSquare, Users, Webhook } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
@@ -23,39 +23,30 @@ function AnimatedValue({ target }: { target: number }) {
 
 interface StatsCardsProps {
   tenantSlug: string;
-  catalogSkills: number;
-  assessedSkills: number;
+  membersCount?: number;
   conversationsCount?: number;
-  capabilitiesCount?: number;
-  growthPathsCount?: number;
-  capabilitiesMatched?: number;
-  capabilitiesTotal?: number;
+  webhooksCount?: number;
 }
 
 export function StatsCards({
   tenantSlug,
-  catalogSkills,
-  assessedSkills,
+  membersCount = 0,
   conversationsCount = 0,
-  capabilitiesCount,
-  growthPathsCount = 0,
-  capabilitiesMatched,
-  capabilitiesTotal,
+  webhooksCount = 0,
 }: StatsCardsProps) {
   const t = useTranslations('dashboard');
   const base = `/t/${tenantSlug}`;
 
-  // Personal metrics cards (shown first) – each has href to the page for that data
-  const personalCards = [
+  const cards = [
     {
-      title: t('mySkills'),
-      value: assessedSkills,
-      description: t('skillsAssessed'),
-      icon: Sparkles,
-      accentBorder: 'border-l-green-500',
-      iconBg: 'bg-green-500/10 dark:bg-green-500/20',
-      iconColor: 'text-green-500',
-      href: `${base}/profile?tab=skills`,
+      title: t('teamMembers'),
+      value: membersCount,
+      description: t('activePlatformMembers'),
+      icon: Users,
+      accentBorder: 'border-l-primary',
+      iconBg: 'bg-primary/10 dark:bg-primary/20',
+      iconColor: 'text-primary',
+      href: `${base}/people`,
     },
     {
       title: t('aiConversations'),
@@ -68,50 +59,19 @@ export function StatsCards({
       href: `${base}/assistant`,
     },
     {
-      title: t('myGrowthPaths'),
-      value: growthPathsCount,
-      description: t('growthPathsActive'),
-      icon: Route,
+      title: t('webhooksActive'),
+      value: webhooksCount,
+      description: t('activeWebhookEndpoints'),
+      icon: Webhook,
       accentBorder: 'border-l-violet-500',
       iconBg: 'bg-violet-500/10 dark:bg-violet-500/20',
       iconColor: 'text-violet-500',
-      href: `${base}/growth`,
-    },
-    {
-      title: t('capabilitiesStatus'),
-      value:
-        capabilitiesMatched !== undefined && capabilitiesTotal !== undefined
-          ? `${capabilitiesMatched}/${capabilitiesTotal}`
-          : (capabilitiesCount ?? 0),
-      description:
-        capabilitiesMatched !== undefined && capabilitiesTotal !== undefined
-          ? t('capabilitiesStatusDescription', { matched: capabilitiesMatched, total: capabilitiesTotal })
-          : capabilitiesCount
-            ? t('capabilitiesMatched')
-            : t('completeAssessmentToSee'),
-      icon: GraduationCap,
-      accentBorder: 'border-l-cyan-500',
-      iconBg: 'bg-cyan-500/10 dark:bg-cyan-500/20',
-      iconColor: 'text-cyan-500',
-      href: `${base}/growth`,
+      href: `${base}/admin/webhooks`,
     },
   ];
 
-  const informationalCard = {
-    title: t('catalogSkills'),
-    value: catalogSkills,
-    description: t('skillsAvailable'),
-    icon: Sparkles,
-    accentBorder: 'border-l-primary',
-    iconBg: 'bg-primary/10 dark:bg-primary/20',
-    iconColor: 'text-primary',
-    href: `${base}/skills`,
-  };
-
-  const cards = [...personalCards, informationalCard];
-
   return (
-    <div data-tutorial="stats-cards" className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+    <div data-tutorial="stats-cards" className="grid gap-4 grid-cols-1 sm:grid-cols-3">
       {cards.map((card, index) => {
         const content = (
           <Card
@@ -128,7 +88,7 @@ export function StatsCards({
                 <div>
                   <p className="text-sm font-medium text-muted-foreground mb-1">{card.title}</p>
                   <p className="text-3xl font-bold tracking-tight">
-                    {typeof card.value === 'string' ? card.value : <AnimatedValue target={card.value} />}
+                    <AnimatedValue target={card.value} />
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">{card.description}</p>
                 </div>

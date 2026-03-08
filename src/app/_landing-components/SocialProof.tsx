@@ -39,7 +39,7 @@ const testimonials: Testimonial[] = [
     role: 'People Operations Manager',
     company: 'GrowthStudio',
     image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus',
-    text: 'The AI-powered skill extraction saves us hours every week. Teams love the personalized growth recommendations.',
+    text: 'The AI assistant and integration engine saved our team weeks of setup. Shipping our SaaS has never been faster.',
     rating: 5,
   },
   {

@@ -14,17 +14,15 @@ import remarkGfm from 'remark-gfm';
 
 import { cn } from '@/shared/lib/utils';
 
-import { CapabilityRequirementsCard } from './CapabilityRequirementsCard';
 import { ComparisonTableCard } from './ComparisonTableCard';
 import { PersonMiniCard } from './PersonMiniCard';
-import { SkillInlineList } from './SkillInlineCard';
 import { detectAllPatterns, type DetectedPattern } from '../utils/pattern-detectors';
 
 interface ChatMessageRendererProps {
   content: string;
   className?: string;
   isUserMessage?: boolean;
-  /** When set, GenUI fallback components (e.g. SkillInlineList, CapabilityRequirementsCard) get links. */
+  /** When set, GenUI components get links. */
   tenantSlug?: string;
 }
 
@@ -36,12 +34,8 @@ function PatternRenderer({ pattern, tenantSlug }: { pattern: DetectedPattern; te
   switch (pattern.type) {
     case 'person':
       return <PersonMiniCard person={pattern.data} className="my-2" tenantSlug={tenantSlug} />;
-    case 'skill_list':
-      return <SkillInlineList skills={pattern.data} className="my-2" tenantSlug={tenantSlug} />;
     case 'comparison':
       return <ComparisonTableCard comparison={pattern.data} className="my-3" tenantSlug={tenantSlug} />;
-    case 'capability':
-      return <CapabilityRequirementsCard capability={pattern.data} className="my-3" tenantSlug={tenantSlug} />;
     default:
       return null;
   }

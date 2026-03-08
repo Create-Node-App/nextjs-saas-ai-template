@@ -55,8 +55,6 @@ export async function PATCH(request: Request, { params }: RouteParams) {
         break;
 
       case 'features':
-      case 'skillMatching':
-      case 'processing':
       case 'ui':
       case 'bulkImport':
       case 'integrations':
@@ -69,9 +67,6 @@ export async function PATCH(request: Request, { params }: RouteParams) {
         break;
       }
       case 'taxonomy':
-      case 'performance':
-      case 'track':
-      case 'journeyScore':
         settings = await updateTenantSettings(tenant, data as Partial<TenantSettings>);
         break;
 

@@ -36,7 +36,7 @@ export const webhookEndpoints = appSchema.table(
     /** Secret for HMAC signature verification */
     secret: varchar('secret', { length: 64 }).notNull(),
 
-    /** Array of subscribed event types (e.g., ['recognition.created', 'skill.verified']) */
+    /** Array of subscribed event types (e.g., ['person.created', 'integration.sync_completed']) */
     events: text('events').array().notNull(),
 
     /** Whether the webhook is active */

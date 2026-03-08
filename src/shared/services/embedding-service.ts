@@ -1,8 +1,8 @@
 /**
  * Embedding Service - Generate and store embeddings using OpenAI
  *
- * Handles embedding generation for skills, evidences, CV chunks, and
- * other entities that need semantic search capability via pgvector.
+ * Handles embedding generation for documents, knowledge base entries, and
+ * other entities that need semantic search via pgvector.
  *
  * Supports tenant-specific AI settings with fallback to environment variables.
  */

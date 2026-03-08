@@ -14,7 +14,6 @@ interface SyncGitHubOptions {
   accessToken: string;
   organizationFilter?: string;
   syncRepositories: boolean;
-  inferSkills: boolean;
   syncContributions: boolean;
   includeArchived: boolean;
   includeForks: boolean;

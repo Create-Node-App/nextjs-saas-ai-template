@@ -6,8 +6,8 @@
  * Provides:
  * - GlobalSearchProvider for command palette
  * - SidebarProvider for collapse state
- * - ViewProvider for view switching (My, Manager, 1:1, Admin)
- * - UnifiedSidebar across all views (My, Manager, 1:1, Admin)
+ * - ViewProvider for view switching (My, Admin)
+ * - UnifiedSidebar across all views (My, Admin)
  * - Top header with profile access
  */
 

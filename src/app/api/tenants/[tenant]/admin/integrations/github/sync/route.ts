@@ -75,7 +75,7 @@ export async function POST(_request: Request, context: { params: Promise<{ tenan
           tenantId: tenantRecord.id,
           provider: 'github',
           mode: 'sync_incremental',
-          entities: ['repositories', 'contributions', 'skills'],
+          entities: ['repositories', 'contributions'],
           triggeredByPersonId: membership?.personId ?? undefined,
         });
 
@@ -84,7 +84,6 @@ export async function POST(_request: Request, context: { params: Promise<{ tenan
           accessToken: account.access_token!,
           organizationFilter: ghSettings?.organizationFilter,
           syncRepositories: ghSettings?.syncRepositories ?? true,
-          inferSkills: ghSettings?.inferSkills ?? true,
           syncContributions: ghSettings?.syncContributions ?? true,
           includeArchived: ghSettings?.includeArchived ?? false,
           includeForks: ghSettings?.includeForks ?? false,

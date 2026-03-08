@@ -479,21 +479,17 @@ export async function getWebhookDeliveries(
 
 export async function getAvailableEventTypes(): Promise<{ value: string; label: string; category: string }[]> {
   const eventCategories: Record<string, { events: WebhookEventType[]; label: string }> = {
-    skill: {
-      events: ['skill.created', 'skill.updated', 'skill.deleted', 'skill.auto_created', 'skill.verified'],
-      label: 'Skills',
-    },
     person: {
-      events: ['person.created', 'person.updated', 'person.skill_added', 'person.skill_removed'],
+      events: ['person.created', 'person.updated'],
       label: 'People',
     },
-    evidence: {
-      events: ['evidence.uploaded', 'evidence.processed'],
-      label: 'Evidence',
+    member: {
+      events: ['member.invited', 'member.joined', 'member.deactivated'],
+      label: 'Members',
     },
-    recognition: {
-      events: ['recognition.created', 'recognition.deleted'],
-      label: 'Recognition',
+    integration: {
+      events: ['integration.synced', 'integration.failed'],
+      label: 'Integrations',
     },
     bulk: {
       events: ['bulk_import.completed', 'bulk_import.failed'],

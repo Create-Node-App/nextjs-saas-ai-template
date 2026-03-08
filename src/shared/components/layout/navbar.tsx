@@ -38,7 +38,7 @@ export function Navbar({ tenantSlug }: NavbarProps) {
   const tCommon = useTranslations();
 
   // Get feature flags
-  const featureFlags = useFeatureFlags(['knowledgeBase', 'assessments', 'interests']);
+  const featureFlags = useFeatureFlags(['knowledgeBase']);
 
   const basePath = tenantSlug ? `/t/${tenantSlug}` : '';
 
@@ -54,11 +54,7 @@ export function Navbar({ tenantSlug }: NavbarProps) {
   const navItems = useMemo(() => {
     const items = [
       { href: `${basePath}`, label: t('dashboard'), exact: true },
-      { href: `${basePath}/okrs`, label: t('okrs') },
-      { href: `${basePath}/learning`, label: t('learning') },
-      { href: `${basePath}/growth`, label: t('growth') },
-      { href: `${basePath}/skills`, label: t('skills') },
-      { href: `${basePath}/people`, label: t('peopleFinder') },
+      { href: `${basePath}/people`, label: t('directory') },
       { href: `${basePath}/team`, label: t('team') },
     ];
 

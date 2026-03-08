@@ -21,7 +21,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: 'Next.js SaaS AI Template | AI-Native Skills Management',
-  description: 'AI-native platform for skills management, career growth, and team development',
+  description: 'Production-ready Next.js SaaS boilerplate with multi-tenancy, AI assistant, and integrations',
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
