@@ -7,7 +7,7 @@ order: 14
 
 # AI Assistant
 
-The **AI Assistant** is Agentic A8n Hub’s conversational interface. You can **chat** in natural language to search for people by skills, get **recommendations**, and ask questions about the platform — without switching to multiple menus or search screens.
+The **AI Assistant** is Next.js SaaS AI Template’s conversational interface. You can **chat** in natural language to search for people by skills, get **recommendations**, and ask questions about the platform — without switching to multiple menus or search screens.
 
 ## Where to Find the AI Assistant
 
@@ -29,7 +29,7 @@ The AI Assistant understands **natural language**. You can ask things like:
 | **Platform help**   | “How do I assess my skills?” “Where do I give feedback?”                          |
 | **Recommendations** | “Who can mentor me on system design?” “Suggest a training for API skills.”        |
 
-Phrase your question as you would to a colleague; the assistant will interpret and use Agentic A8n Hub data (skills, people, learning, your profile) to answer.
+Phrase your question as you would to a colleague; the assistant will interpret and use Next.js SaaS AI Template data (skills, people, learning, your profile) to answer.
 
 ## Searching for People by Skills
 
@@ -66,7 +66,7 @@ The assistant maps your question to skills, people, docs, or processes and respo
 ## Limits and Privacy
 
 - **Permissions** — The assistant only returns people and data you’re allowed to see. You won’t see private or out-of-scope information.
-- **Accuracy** — Answers are based on current Agentic A8n Hub data (e.g. assessed skills). If something looks wrong, check the underlying profile or ask an admin.
+- **Accuracy** — Answers are based on current Next.js SaaS AI Template data (e.g. assessed skills). If something looks wrong, check the underlying profile or ask an admin.
 - **Actions** — The assistant can **show** and **suggest**; actual actions (e.g. submitting an assessment, sending recognition) you do in the main app.
 
 > **Tip:** Use the AI Assistant as your first stop for “who,” “what,” and “how” questions. It can save time and point you to the right place in the platform.

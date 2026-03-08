@@ -58,7 +58,7 @@ pnpm start             # or: node .next/standalone/server.js
 1. Provision a PostgreSQL 15+ instance with pgvector:
    ```sql
    CREATE EXTENSION IF NOT EXISTS vector;
-   CREATE SCHEMA IF NOT EXISTS a8n_hub;
+   CREATE SCHEMA IF NOT EXISTS saas_template;
    ```
 2. Set `DATABASE_URL` and run migrations:
    ```bash
@@ -74,8 +74,8 @@ pnpm start             # or: node .next/standalone/server.js
 A `compose.yml` is included for local development (app + postgres + minio). For production, build the image and configure environment variables through your container orchestration tool.
 
 ```bash
-docker build -t agentic-a8n-hub .
-docker run -p 3000:3000 --env-file .env agentic-a8n-hub
+docker build -t nextjs-saas-ai-template .
+docker run -p 3000:3000 --env-file .env nextjs-saas-ai-template
 ```
 
 ## CI / CD

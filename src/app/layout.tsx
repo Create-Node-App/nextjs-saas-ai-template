@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Agentic A8n Hub | AI-Native Skills Management',
+  title: 'Next.js SaaS AI Template | AI-Native Skills Management',
   description: 'AI-native platform for skills management, career growth, and team development',
 };
 

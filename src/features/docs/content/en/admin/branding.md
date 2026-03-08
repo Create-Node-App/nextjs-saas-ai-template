@@ -1,13 +1,13 @@
 ---
 title: Branding & Customization
-description: Customize your Agentic A8n Hub tenant with colors, typography, density, surface styles, and other visual settings.
+description: Customize your Next.js SaaS AI Template tenant with colors, typography, density, surface styles, and other visual settings.
 section: admin
 order: 2
 ---
 
 # Branding & Customization
 
-Agentic A8n Hub is highly customizable to match your organization's visual identity and design preferences. This guide walks through the branding settings available to admins.
+Next.js SaaS AI Template is highly customizable to match your organization's visual identity and design preferences. This guide walks through the branding settings available to admins.
 
 ---
 
@@ -26,7 +26,7 @@ All changes apply immediately to your tenant across all users and devices.
 
 ### Colors
 
-Customize the three primary colors that define your brand in Agentic A8n Hub:
+Customize the three primary colors that define your brand in Next.js SaaS AI Template:
 
 #### Primary Color
 
@@ -55,7 +55,7 @@ Customize the three primary colors that define your brand in Agentic A8n Hub:
 
 #### Color Contrast Feedback
 
-- **WCAG Validation** — When you set a color pair, Agentic A8n Hub automatically checks if it meets Web Content Accessibility Guidelines (WCAG) standards for contrast.
+- **WCAG Validation** — When you set a color pair, Next.js SaaS AI Template automatically checks if it meets Web Content Accessibility Guidelines (WCAG) standards for contrast.
 - **Green check** — Your color pair meets **WCAG AA** (4.5:1 contrast ratio for normal text).
 - **Orange warning** — Good contrast, but consider improving for AA compliance.
 - **Recommendation** — If contrast is low, the system suggests lighter or darker shades to meet accessibility standards.
@@ -96,7 +96,7 @@ Choose from several professionally maintained font families:
 Control how much spacing (padding and margin) is used throughout the interface.
 
 - **Compact** (0.75x) — Reduced spacing. More data per screen. Good for teams managing many items.
-- **Default** (1x) — Balanced spacing. Standard Agentic A8n Hub experience.
+- **Default** (1x) — Balanced spacing. Standard Next.js SaaS AI Template experience.
 - **Comfortable** (1.25x) — Increased spacing. Better for accessibility and readability. Recommended for aging audiences or accessibility-first organizations.
 
 **Tips:**
@@ -172,12 +172,12 @@ Before saving, use the **preview panel** in the Branding settings to:
 ### Consistency
 
 - Match the colors and fonts on your marketing site, if possible.
-- Use consistent branding across Agentic A8n Hub, email templates, and integrations.
+- Use consistent branding across Next.js SaaS AI Template, email templates, and integrations.
 
 ### Accessibility
 
 - Always maintain good contrast (WCAG AA or AAA).
-- Use Agentic A8n Hub's built-in contrast validator when picking colors.
+- Use Next.js SaaS AI Template's built-in contrast validator when picking colors.
 - Don't rely solely on color to communicate meaning (e.g., use icons + color for status).
 
 ### Performance
@@ -208,7 +208,7 @@ If you want to start over:
 2. Click **Reset to Defaults** (if available)
 3. Confirm
 
-This will revert all colors, fonts, density, and surface styles to Agentic A8n Hub defaults. Your tenant name and logo remain unchanged.
+This will revert all colors, fonts, density, and surface styles to Next.js SaaS AI Template defaults. Your tenant name and logo remain unchanged.
 
 ---
 
@@ -218,7 +218,7 @@ This will revert all colors, fonts, density, and surface styles to Agentic A8n H
 
 - Refresh the page or clear browser cache (Cmd+Shift+R on Mac, Ctrl+Shift+R on Windows).
 - Check your internet connection.
-- If the issue persists, contact Agentic A8n Hub support.
+- If the issue persists, contact Next.js SaaS AI Template support.
 
 **My custom font isn't showing:**
 
@@ -244,6 +244,6 @@ This will revert all colors, fonts, density, and surface styles to Agentic A8n H
 - **Explore other settings** → [Settings Overview](./settings)
 - **Add integrations** → [Integrations Guide](./integrations)
 - **Manage members and roles** → [Members & Invitations](./members)
-- **Want more design guidance?** → Contact your Agentic A8n Hub designer or reach out to <support@example.com>
+- **Want more design guidance?** → Contact your Next.js SaaS AI Template designer or reach out to <support@example.com>
 
-Your brand matters. Take time to get the colors and typography perfect—it's one of the first things people see in Agentic A8n Hub every day.
+Your brand matters. Take time to get the colors and typography perfect—it's one of the first things people see in Next.js SaaS AI Template every day.

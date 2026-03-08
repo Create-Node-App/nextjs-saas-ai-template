@@ -4,7 +4,7 @@ import { appSchema } from './schema';
 /**
  * Tenants table - Multi-tenancy support
  *
- * Each tenant represents an organization using Agentic A8n Hub.
+ * Each tenant represents an organization using Next.js SaaS AI Template.
  * All data is scoped to a tenant for isolation.
  *
  * Note: settings is stored as JSON text. Use parseTenantSettings() from

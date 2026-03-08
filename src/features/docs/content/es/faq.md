@@ -1,13 +1,13 @@
 ---
 title: Preguntas frecuentes
-description: Preguntas comunes sobre Agentic A8n Hub: restablecer contraseña, roles, manager vs. 1:1er, integraciones, funciones con IA, exportación de datos y cómo obtener ayuda.
+description: Preguntas comunes sobre Next.js SaaS AI Template: restablecer contraseña, roles, manager vs. 1:1er, integraciones, funciones con IA, exportación de datos y cómo obtener ayuda.
 section: faq
 order: 1
 ---
 
 # Preguntas frecuentes
 
-Respuestas a preguntas comunes sobre Agentic A8n Hub. Para guías por rol, consultá [Member](/docs/member), [Manager](/docs/manager), [Facilitador 1:1](/docs/one-on-one) y [Admin](/docs/admin).
+Respuestas a preguntas comunes sobre Next.js SaaS AI Template. Para guías por rol, consultá [Member](/docs/member), [Manager](/docs/manager), [Facilitador 1:1](/docs/one-on-one) y [Admin](/docs/admin).
 
 ## ¿Cómo restablezco mi contraseña?
 
@@ -17,7 +17,7 @@ Respuestas a preguntas comunes sobre Agentic A8n Hub. Para guías por rol, consu
 
 ## ¿Cómo funcionan los roles?
 
-Agentic A8n Hub usa **permisos**, no cargos. Los **roles** (p. ej. Member, Manager, Admin, 1:1er) son conjuntos de **permisos**. Lo que podés hacer lo determinan los **permisos** que tenés.
+Next.js SaaS AI Template usa **permisos**, no cargos. Los **roles** (p. ej. Member, Manager, Admin, 1:1er) son conjuntos de **permisos**. Lo que podés hacer lo determinan los **permisos** que tenés.
 
 - Podés tener **varios roles** en un tenant (p. ej. Member + 1:1er). Tu acceso efectivo es la **unión** de todos los permisos de todos tus roles.
 - Solo los **admins** pueden asignar o cambiar roles (Admin → Miembros). Si no ves una sección (p. ej. Manager o 1:1), es probable que no tengas el rol/permisos correctos — pedile a tu admin.
@@ -44,7 +44,7 @@ Entonces: podés ser **facilitador 1:1** de alguien sin ser su **manager**, y vi
 
 ## ¿Cómo funcionan las funciones con IA?
 
-Agentic A8n Hub puede usar IA para:
+Next.js SaaS AI Template puede usar IA para:
 
 - **People Finder** — Búsqueda en lenguaje natural y por capacidad (p. ej. "¿Quién sabe React?"). Usa embeddings y/o modelos de chat según la configuración.
 - **Procesamiento de CV** — Extraer texto y **habilidades sugeridas** de CVs subidos durante el onboarding. Los admins revisan y verifican o fusionan habilidades.
@@ -54,7 +54,7 @@ Los admins definen el **proveedor y modelo de IA** en **Admin** → **Configurac
 
 ## ¿Qué es la evidencia de "Sincronización de Integración"?
 
-Cuando tu admin ejecuta una sincronización desde una integración (ej. GitHub, Deel, Resource Guru, Small Improvements), Agentic A8n Hub **crea automáticamente un registro de evidencia** en el perfil de cada persona sincronizada. Esto muestra qué datos se sincronizaron y cuándo. Aparece en tu pestaña **Evidencia** junto con CVs y otros documentos.
+Cuando tu admin ejecuta una sincronización desde una integración (ej. GitHub, Deel, Resource Guru, Small Improvements), Next.js SaaS AI Template **crea automáticamente un registro de evidencia** en el perfil de cada persona sincronizada. Esto muestra qué datos se sincronizaron y cuándo. Aparece en tu pestaña **Evidencia** junto con CVs y otros documentos.
 
 - Estos registros se etiquetan como **"Sincronización"** e incluyen un resumen (ej. "GitHub Profile — 25 repos, TypeScript, Python").
 - Cada sync **actualiza** el registro existente en lugar de crear duplicados. La fecha muestra la última sincronización.
@@ -93,6 +93,6 @@ Si no ves una opción de exportación, tu rol puede no tener permiso o la funci�
 
 - **En la app**: Usá el link **Ayuda** o **Docs** (suele estar en el encabezado o pie) para abrir esta documentación.
 - **Tu admin**: Para acceso, roles, invitaciones o comportamiento específico del tenant, contactá a tu **admin del tenant** o a IT.
-- **Soporte**: Si tu organización tiene un canal de soporte o contacto con el proveedor de Agentic A8n Hub, usalo para bugs, caídas o problemas de cuenta.
+- **Soporte**: Si tu organización tiene un canal de soporte o contacto con el proveedor de Next.js SaaS AI Template, usalo para bugs, caídas o problemas de cuenta.
 
 > **Tip:** Agregá [Docs](/docs) a favoritos y usá la barra lateral para ir a tu rol (Member, Manager, Facilitador 1:1, Admin) para guías paso a paso.

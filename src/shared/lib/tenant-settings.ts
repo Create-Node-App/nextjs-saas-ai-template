@@ -346,7 +346,7 @@ const googleWorkspaceSettingsSchema = integrationBaseSchema.extend({
    */
   autoImportGeminiNotes: z.boolean().optional().default(true),
   /**
-   * Auto-generate a meeting notes draft in Agentic A8n Hub from agenda + imported notes.
+   * Auto-generate a meeting notes draft in Next.js SaaS AI Template from agenda + imported notes.
    */
   autoDraftMeetingNotes: z.boolean().optional().default(true),
   /**

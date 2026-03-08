@@ -4,7 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
 const FAQ_ITEMS = [
   {
-    q: 'Is Agentic A8n Hub free to try?',
+    q: 'Is Next.js SaaS AI Template free to try?',
     a: 'Yes! The demo environment is fully functional with no payment required. Explore every feature with sample data.',
   },
   {
@@ -13,7 +13,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Does it work with our existing tools?',
-    a: 'Agentic A8n Hub integrates with Slack, GitHub, GitLab, Google Workspace, LinkedIn, BambooHR, Deel, Lattice, Small Improvements, and ResourceGuru. More integrations are coming.',
+    a: 'Next.js SaaS AI Template integrates with Slack, GitHub, GitLab, Google Workspace, LinkedIn, BambooHR, Deel, Lattice, Small Improvements, and ResourceGuru. More integrations are coming.',
   },
   {
     q: 'How does the AI assistant work?',
@@ -21,7 +21,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Is my data secure?',
-    a: "Absolutely. Agentic A8n Hub is multi-tenant by design — each organization's data is fully isolated. We use enterprise-grade authentication (Auth.js) and role-based access control.",
+    a: "Absolutely. Next.js SaaS AI Template is multi-tenant by design — each organization's data is fully isolated. We use enterprise-grade authentication (Auth.js) and role-based access control.",
   },
   {
     q: 'Can managers see everything?',

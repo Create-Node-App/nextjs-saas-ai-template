@@ -34,7 +34,7 @@ export const WithSkillAction: Story = {
     <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>Skill card</CardTitle>
-        <CardDescription>Example with Agentic A8n Hub skill variant.</CardDescription>
+        <CardDescription>Example with Next.js SaaS AI Template skill variant.</CardDescription>
       </CardHeader>
       <CardContent>
         <p>Content for a skill-related card.</p>
@@ -51,7 +51,7 @@ export const WithInterestAction: Story = {
     <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>Interest card</CardTitle>
-        <CardDescription>Example with Agentic A8n Hub interest variant.</CardDescription>
+        <CardDescription>Example with Next.js SaaS AI Template interest variant.</CardDescription>
       </CardHeader>
       <CardContent>
         <p>Content for an interest-related card.</p>

@@ -7,7 +7,7 @@ order: 2
 
 # Dashboard
 
-Tu Dashboard es tu base en Agentic A8n Hub. Muestra estadísticas clave, acciones rápidas, recomendaciones impulsadas por IA y actividad reciente para que puedas seguir al día con habilidades, aprendizaje y metas.
+Tu Dashboard es tu base en Next.js SaaS AI Template. Muestra estadísticas clave, acciones rápidas, recomendaciones impulsadas por IA y actividad reciente para que puedas seguir al día con habilidades, aprendizaje y metas.
 
 ## Tarjetas de estadísticas
 
@@ -34,7 +34,7 @@ Usalas para mantener el ritmo en crecimiento y feedback sin recorrer menús.
 
 ## Recomendaciones de IA
 
-Agentic A8n Hub usa IA para sugerir qué hacer después. Las recomendaciones pueden incluir:
+Next.js SaaS AI Template usa IA para sugerir qué hacer después. Las recomendaciones pueden incluir:
 
 - **Habilidades a evaluar** — Habilidades que no evaluaste o que están desactualizadas
 - **Aprendizaje para iniciar** — Roadmaps o capacitaciones que coinciden con tus intereses y nivel

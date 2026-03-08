@@ -16,7 +16,7 @@ services:
     command: sleep infinity
     environment:
       # Database connection for development
-      DATABASE_URL: postgresql://a8nhub:a8nhub@db:5432/a8n_hub_dev
+      DATABASE_URL: postgresql://saas_app:saas_app@db:5432/saas_template_dev
       # Node environment
       NODE_ENV: development
       # pnpm store location
@@ -25,9 +25,9 @@ services:
       S3_ENDPOINT: http://minio:9000
       # Public endpoint for browser-accessible presigned URLs
       S3_PUBLIC_ENDPOINT: http://localhost:9000
-      S3_ACCESS_KEY: a8nhub
-      S3_SECRET_KEY: a8nhub123
-      S3_BUCKET: a8n-hub-uploads
+      S3_ACCESS_KEY: saas_app
+      S3_SECRET_KEY: saas_app123
+      S3_BUCKET: saas-template-uploads
       S3_REGION: us-east-1
     depends_on:
       db:
@@ -50,11 +50,11 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
     environment:
-      POSTGRES_USER: a8nhub
-      POSTGRES_PASSWORD: a8nhub
-      POSTGRES_DB: a8n_hub_dev
+      POSTGRES_USER: saas_app
+      POSTGRES_PASSWORD: saas_app
+      POSTGRES_DB: saas_template_dev
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U a8nhub -d a8n_hub_dev']
+      test: ['CMD-SHELL', 'pg_isready -U saas_app -d saas_template_dev']
       interval: 5s
       timeout: 5s
       retries: 5
@@ -64,7 +64,7 @@ services:
 
   # =============================================================================
   # MinIO - S3-compatible object storage for local development
-  # Console: http://localhost:9001 (login: a8nhub / a8nhub123)
+  # Console: http://localhost:9001 (login: saas_app / saas_app123)
   # =============================================================================
   minio:
     image: minio/minio:latest
@@ -72,8 +72,8 @@ services:
     volumes:
       - minio-data:/data
     environment:
-      MINIO_ROOT_USER: a8nhub
-      MINIO_ROOT_PASSWORD: a8nhub123
+      MINIO_ROOT_USER: saas_app
+      MINIO_ROOT_PASSWORD: saas_app123
     command: server /data --console-address ":9001"
     healthcheck:
       test: ['CMD', 'mc', 'ready', 'local']
@@ -86,8 +86,8 @@ services:
 
 volumes:
   postgres-data:
-    name: a8n-hub-postgres-data
+    name: saas-template-postgres-data
   pnpm-store:
-    name: a8n-hub-pnpm-store
+    name: saas-template-pnpm-store
   minio-data:
-    name: a8n-hub-minio-data
+    name: saas-template-minio-data

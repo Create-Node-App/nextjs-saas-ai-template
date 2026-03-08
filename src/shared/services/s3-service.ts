@@ -50,7 +50,7 @@ const presignClient = new S3Client({
   }),
 });
 
-const bucket = process.env.S3_BUCKET || env.AWS_S3_BUCKET || 'a8n-hub-uploads';
+const bucket = process.env.S3_BUCKET || env.AWS_S3_BUCKET || 'saas-template-uploads';
 
 // Cache for tenant-specific S3 clients
 const tenantS3Clients = new Map<string, { client: S3Client; presignClient: S3Client; bucket: string }>();

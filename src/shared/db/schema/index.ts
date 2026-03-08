@@ -1,5 +1,5 @@
 /**
- * Database Schema - Agentic A8n Hub
+ * Database Schema - Next.js SaaS AI Template
  *
  * This is the central export for all database tables and types.
  * Import from this file for full schema access.

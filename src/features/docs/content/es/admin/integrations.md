@@ -7,23 +7,23 @@ order: 9
 
 # Integraciones
 
-Agentic A8n Hub puede conectarse con sistemas externos para sincronizar personas, habilidades o actividad y enriquecer perfiles. Los admins configuran **integraciones** (OAuth, API keys, webhooks) y **mapeo de datos** para que la información correcta entre y salga.
+Next.js SaaS AI Template puede conectarse con sistemas externos para sincronizar personas, habilidades o actividad y enriquecer perfiles. Los admins configuran **integraciones** (OAuth, API keys, webhooks) y **mapeo de datos** para que la información correcta entre y salga.
 
 ## Integraciones soportadas (resumen)
 
-| Integración            | Uso típico                                                                          | Notas de configuración                                          |
-| ---------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| **GitHub**             | Vincular perfiles a GitHub; sincronizar repos, actividad o habilidades desde código | App OAuth; mapear identidad GitHub a persona en Agentic A8n Hub |
-| **LinkedIn**           | Importar perfil o habilidades desde LinkedIn                                        | OAuth o API; mapeo de nombre, título, habilidades               |
-| **Slack**              | Notificaciones, bot o vinculación de identidad                                      | OAuth; webhook o token de bot para eventos                      |
-| **Deel**               | Sincronizar contratistas/empleados y contratos                                      | API key; mapear entidades Deel a miembros del tenant            |
-| **BambooHR**           | Sincronizar datos de RR. HH. (nombre, título, departamento, manager)                | API key; mapear campos a persona y estructura org               |
-| **Google Workspace**   | Identidad, calendario o sincronización de directorio                                | OAuth; scope y mapeo para calendario o directorio               |
-| **Resource Guru**      | Sincronizar asignación de recursos o proyectos                                      | API; mapear proyectos/recursos a Agentic A8n Hub                |
-| **Small Improvements** | Importar metas, 1:1s o feedback                                                     | API; mapear a OKRs, reuniones 1:1 o feedback                    |
-| **GitLab**             | Similar a GitHub — repos, actividad, habilidades                                    | OAuth o token; mapear identidad y proyectos                     |
-| **Lattice**            | Metas, performance o datos de engagement                                            | API; mapear a OKRs o performance según corresponda              |
-| **Webhooks**           | Eventos salientes (p. ej. persona actualizada, assessment enviado)                  | Configurar URL, secret, eventos; reintentos opcionales          |
+| Integración            | Uso típico                                                                          | Notas de configuración                                                   |
+| ---------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **GitHub**             | Vincular perfiles a GitHub; sincronizar repos, actividad o habilidades desde código | App OAuth; mapear identidad GitHub a persona en Next.js SaaS AI Template |
+| **LinkedIn**           | Importar perfil o habilidades desde LinkedIn                                        | OAuth o API; mapeo de nombre, título, habilidades                        |
+| **Slack**              | Notificaciones, bot o vinculación de identidad                                      | OAuth; webhook o token de bot para eventos                               |
+| **Deel**               | Sincronizar contratistas/empleados y contratos                                      | API key; mapear entidades Deel a miembros del tenant                     |
+| **BambooHR**           | Sincronizar datos de RR. HH. (nombre, título, departamento, manager)                | API key; mapear campos a persona y estructura org                        |
+| **Google Workspace**   | Identidad, calendario o sincronización de directorio                                | OAuth; scope y mapeo para calendario o directorio                        |
+| **Resource Guru**      | Sincronizar asignación de recursos o proyectos                                      | API; mapear proyectos/recursos a Next.js SaaS AI Template                |
+| **Small Improvements** | Importar metas, 1:1s o feedback                                                     | API; mapear a OKRs, reuniones 1:1 o feedback                             |
+| **GitLab**             | Similar a GitHub — repos, actividad, habilidades                                    | OAuth o token; mapear identidad y proyectos                              |
+| **Lattice**            | Metas, performance o datos de engagement                                            | API; mapear a OKRs o performance según corresponda                       |
+| **Webhooks**           | Eventos salientes (p. ej. persona actualizada, assessment enviado)                  | Configurar URL, secret, eventos; reintentos opcionales                   |
 
 La disponibilidad exacta depende de tu tenant y del despliegue. Usá **Admin** → **Integraciones** para ver cuáles están habilitadas.
 
@@ -32,7 +32,7 @@ La disponibilidad exacta depende de tu tenant y del despliegue. Usá **Admin** �
 Para integraciones que usan **OAuth** (p. ej. GitHub, LinkedIn, Slack, Google):
 
 1. **Creá una app** en el portal de desarrolladores del proveedor. Obtené **Client ID** y **Client Secret**.
-2. **Configurá la redirect URI** — Usá la URL que Agentic A8n Hub te indica (p. ej. `https://your-tenant.a8n-hub.app/api/auth/callback/github`). Debe coincidir exactamente.
+2. **Configurá la redirect URI** — Usá la URL que Next.js SaaS AI Template te indica (p. ej. `https://your-tenant.saas-template.app/api/auth/callback/github`). Debe coincidir exactamente.
 3. En **Admin** → **Integraciones**, seleccioná la integración e ingresá **Client ID** y **Client Secret**. Guardá.
 4. **Scopes** — Solicitá solo los scopes que necesites (p. ej. leer perfil, leer repos). Documentá por qué cada scope es necesario para cumplimiento.
 5. Los miembros pueden **conectar** su cuenta desde perfil o configuración; autorizan mediante la pantalla de consentimiento del proveedor.
@@ -43,8 +43,8 @@ Para integraciones que usan **OAuth** (p. ej. GitHub, LinkedIn, Slack, Google):
 
 Una vez conectada una integración:
 
-- **Sync** — Dispará una sincronización única o programada. La integración obtiene datos (p. ej. de BambooHR o Deel) y actualiza Agentic A8n Hub (personas, roles, relaciones).
-- **Data mapping** — Definí cómo los campos del proveedor se mapean a Agentic A8n Hub:
+- **Sync** — Dispará una sincronización única o programada. La integración obtiene datos (p. ej. de BambooHR o Deel) y actualiza Next.js SaaS AI Template (personas, roles, relaciones).
+- **Data mapping** — Definí cómo los campos del proveedor se mapean a Next.js SaaS AI Template:
   - **Person**: ID externo → person ID; nombre, email, título, departamento → campos del perfil.
   - **Manager / 1:1**: jerarquía o relaciones del proveedor → `person_relations` (p. ej. manager, one_to_one).
   - **Custom fields**: mapeá campos específicos del proveedor a custom fields del tenant si está soportado.
@@ -53,7 +53,7 @@ El mapeo suele configurarse en la configuración de la integración (Admin → I
 
 ## Evidencia automática de sincronizaciones
 
-Cada vez que una sincronización procesa a una persona, Agentic A8n Hub **crea automáticamente un registro de evidencia** en el perfil de esa persona. Esto proporciona un rastro de auditoría transparente de lo que se sincronizó y cuándo.
+Cada vez que una sincronización procesa a una persona, Next.js SaaS AI Template **crea automáticamente un registro de evidencia** en el perfil de esa persona. Esto proporciona un rastro de auditoría transparente de lo que se sincronizó y cuándo.
 
 | Integración            | Título de evidencia (ejemplo)                       | Qué captura                                                                    |
 | ---------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -80,10 +80,10 @@ Esto significa que cuantas más integraciones uses, más ricos y precisos serán
 
 ## Webhooks (salientes)
 
-Los **Webhooks** envían eventos desde Agentic A8n Hub a tu sistema (p. ej. "person created", "assessment submitted"):
+Los **Webhooks** envían eventos desde Next.js SaaS AI Template a tu sistema (p. ej. "person created", "assessment submitted"):
 
 1. **Admin** → **Integraciones** → **Webhooks** (u **Outbound**).
 2. **Agregar webhook** — URL, secret opcional para firmar payloads y **event types** a los que suscribirse.
-3. Guardá. Agentic A8n Hub enviará un payload JSON por POST a la URL en cada evento seleccionado. Implementá idempotencia y verificá la firma.
+3. Guardá. Next.js SaaS AI Template enviará un payload JSON por POST a la URL en cada evento seleccionado. Implementá idempotencia y verificá la firma.
 
-Usá webhooks para mantener herramientas externas sincronizadas o para disparar flujos (p. ej. Slack, HRIS) cuando ocurran eventos clave en Agentic A8n Hub.
+Usá webhooks para mantener herramientas externas sincronizadas o para disparar flujos (p. ej. Slack, HRIS) cuando ocurran eventos clave en Next.js SaaS AI Template.

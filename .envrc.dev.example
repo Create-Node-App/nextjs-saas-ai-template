@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ============================================================================
-# Agentic A8n Hub - Dev Environment Configuration Template
+# Next.js SaaS AI Template - Dev Environment Configuration Template
 # ============================================================================
 # USAGE:
 #   cp .envrc.dev.example .envrc
@@ -29,17 +29,17 @@ export NODE_ENV="${NODE_ENV:-development}"
 export NEXT_PUBLIC_APP_URL="${NEXT_PUBLIC_APP_URL:-http://localhost:3000}"
 
 # Application name
-export NEXT_PUBLIC_APP_NAME="${NEXT_PUBLIC_APP_NAME:-Agentic A8n Hub}"
+export NEXT_PUBLIC_APP_NAME="${NEXT_PUBLIC_APP_NAME:-Next.js SaaS AI Template}"
 
 # ============================================================================
 # Database Configuration (PostgreSQL + pgvector)
 # ============================================================================
 
 # Database connection URL
-# DevContainer: postgresql://a8nhub:a8nhub@db:5432/a8n_hub_dev
-# Local Docker: postgresql://a8nhub:a8nhub@localhost:5432/a8n_hub_dev
+# DevContainer: postgresql://saas_app:saas_app@db:5432/saas_template_dev
+# Local Docker: postgresql://saas_app:saas_app@localhost:5432/saas_template_dev
 # Production: Use a managed PostgreSQL with pgvector support (Neon, Supabase, etc.)
-export DATABASE_URL="${DATABASE_URL:-postgresql://a8nhub:a8nhub@localhost:5432/a8n_hub_dev}"
+export DATABASE_URL="${DATABASE_URL:-postgresql://saas_app:saas_app@localhost:5432/saas_template_dev}"
 
 # ============================================================================
 # Authentication (Auth.js v5)
@@ -51,7 +51,7 @@ export DATABASE_URL="${DATABASE_URL:-postgresql://a8nhub:a8nhub@localhost:5432/a
 export AUTH_SECRET="${AUTH_SECRET:-development-secret-change-in-production-min32chars}"
 
 # Optional: Override the canonical URL (auto-detected in most cases)
-# export AUTH_URL=https://a8n-hub.example.com
+# export AUTH_URL=https://saas-template.example.com
 
 # Auth0 Provider (optional - for SSO)
 export AUTH0_CLIENT_ID="${AUTH0_CLIENT_ID:-}"
@@ -128,7 +128,7 @@ export npm_config_engine_strict=true
 if [[ -n "${REMOTE_CONTAINERS}" ]] || [[ -n "${CODESPACES}" ]]; then
   echo "🐳 Running in DevContainer/Codespaces..."
   # Use container hostname for database
-  export DATABASE_URL="${DATABASE_URL:-postgresql://a8nhub:a8nhub@db:5432/a8n_hub_dev}"
+  export DATABASE_URL="${DATABASE_URL:-postgresql://saas_app:saas_app@db:5432/saas_template_dev}"
 fi
 
 # Check for pnpm
@@ -141,7 +141,7 @@ fi
 # ============================================================================
 
 echo ""
-echo "🚀 Agentic A8n Hub - Available Commands:"
+echo "🚀 Next.js SaaS AI Template - Available Commands:"
 echo "  pnpm dev          - Start development server (port 3000)"
 echo "  pnpm build        - Build for production"
 echo "  pnpm lint         - Run ESLint"

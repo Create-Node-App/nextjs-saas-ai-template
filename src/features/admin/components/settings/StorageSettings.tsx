@@ -103,7 +103,7 @@ export function StorageSettings() {
               id="storage-bucket"
               value={settings.storage?.bucket || ''}
               onChange={(e) => handleStorageUpdate('bucket', e.target.value || undefined)}
-              placeholder="a8n-hub-uploads"
+              placeholder="saas-template-uploads"
             />
           </div>
           <div>

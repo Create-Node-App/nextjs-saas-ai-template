@@ -1,5 +1,5 @@
 /**
- * Preview GitHub organization members and their mapping to Agentic A8n Hub persons.
+ * Preview GitHub organization members and their mapping to Next.js SaaS AI Template persons.
  * GET /api/tenants/[tenant]/admin/integrations/github/org-members?org=my-org
  */
 

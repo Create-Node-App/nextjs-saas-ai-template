@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 /**
  * # Brand Identity
  *
- * Visual reference for Agentic A8n Hub's five signature elements.
+ * Visual reference for Next.js SaaS AI Template's five signature elements.
  * See docs/DESIGN_SYSTEM.md Section 8: Visual Signature
  * and docs/BRAND_GUIDELINES.md for full brand documentation.
  *
@@ -20,10 +20,10 @@ function BrandIdentityShowcase() {
   return (
     <div className="space-y-8 p-6 max-w-4xl">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight mb-1">Agentic A8n Hub Brand Identity</h2>
+        <h2 className="text-2xl font-bold tracking-tight mb-1">Next.js SaaS AI Template Brand Identity</h2>
         <p className="text-muted-foreground text-sm mb-6">
-          Five signature elements that define Agentic A8n Hub&apos;s visual identity. These replace the previous
-          &quot;gradients everywhere&quot; approach.
+          Five signature elements that define Next.js SaaS AI Template&apos;s visual identity. These replace the
+          previous &quot;gradients everywhere&quot; approach.
         </p>
       </div>
 
@@ -32,7 +32,7 @@ function BrandIdentityShowcase() {
         <h3 className="text-lg font-semibold mb-3">1. The Domain Accent Bar</h3>
         <p className="text-sm text-muted-foreground mb-4">
           A consistent 3px left border that communicates domain at a glance. This is the PRIMARY visual signature of
-          Agentic A8n Hub.
+          Next.js SaaS AI Template.
         </p>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {[

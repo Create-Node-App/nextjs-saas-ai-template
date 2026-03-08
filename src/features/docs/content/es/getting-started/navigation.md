@@ -7,7 +7,7 @@ order: 3
 
 # Navegación y vistas
 
-Agentic A8n Hub organiza el producto en **vistas** y una **barra lateral**. Esta página explica cómo moverte por la app, usar la búsqueda global y ajustar tema e idioma.
+Next.js SaaS AI Template organiza el producto en **vistas** y una **barra lateral**. Esta página explica cómo moverte por la app, usar la búsqueda global y ajustar tema e idioma.
 
 ---
 
@@ -50,7 +50,7 @@ Hacé clic en un ítem de la barra lateral para ir a esa página. La página act
 
 ## Búsqueda global (Cmd+K / Ctrl+K)
 
-Agentic A8n Hub ofrece **búsqueda global** para ir a personas, documentación o acciones sin pasar por los menús.
+Next.js SaaS AI Template ofrece **búsqueda global** para ir a personas, documentación o acciones sin pasar por los menús.
 
 1. Pulsá **Cmd+K** (Mac) o **Ctrl+K** (Windows/Linux), o usá el disparador de búsqueda en el encabezado.
 2. Escribí tu consulta (ej. nombre de una persona, título de un doc o una acción como "Crear OKR").
@@ -73,7 +73,7 @@ Dónde está el interruptor puede variar según el layout; revisá la barra supe
 
 ## Selector de idioma (inglés / español)
 
-Agentic A8n Hub se puede usar en varios idiomas (ej. **inglés** y **español**).
+Next.js SaaS AI Template se puede usar en varios idiomas (ej. **inglés** y **español**).
 
 - Usá el **selector de idioma** en el encabezado o el menú de cuenta (suele ser un globo o control "EN" / "ES").
 - Elegí tu idioma preferido. La interfaz y, cuando esté disponible, la documentación pasan a ese idioma.

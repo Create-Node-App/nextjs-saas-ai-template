@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: TenantLoginPageProps) {
   const tenant = await getTenantBySlug(tenantSlug);
 
   return {
-    title: `Sign In | ${tenant?.name || tenantSlug} - Agentic A8n Hub`,
-    description: `Sign in to access ${tenant?.name || tenantSlug} on Agentic A8n Hub`,
+    title: `Sign In | ${tenant?.name || tenantSlug} - Next.js SaaS AI Template`,
+    description: `Sign in to access ${tenant?.name || tenantSlug} on Next.js SaaS AI Template`,
   };
 }
 

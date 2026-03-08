@@ -79,7 +79,7 @@ export function PersonProfilePDFDocument({ dossier }: PersonProfilePDFDocumentPr
   const generatedDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   return (
-    <Document title={`Profile — ${fullName}`} author="Agentic A8n Hub">
+    <Document title={`Profile — ${fullName}`} author="Next.js SaaS AI Template">
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           <Text style={styles.name}>{fullName || 'Unknown'}</Text>

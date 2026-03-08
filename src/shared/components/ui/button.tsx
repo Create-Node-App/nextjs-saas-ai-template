@@ -26,7 +26,7 @@ const buttonVariants = cva(
         secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        // Agentic A8n Hub domain variants
+        // Next.js SaaS AI Template domain variants
         success: 'bg-success text-success-foreground shadow-sm hover:bg-success/90',
         skill: 'bg-skill text-skill-foreground shadow-sm hover:bg-skill/90',
         interest: 'bg-interest text-interest-foreground shadow-sm hover:bg-interest/90',

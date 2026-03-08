@@ -203,18 +203,18 @@ async function resetDatabase() {
 
   for (const table of TABLES_TO_CLEAN) {
     try {
-      // Check if table exists in a8n_hub schema
+      // Check if table exists in saas_template schema
       const tableExists = await db.execute(sql`
         SELECT EXISTS (
           SELECT FROM information_schema.tables
-          WHERE table_schema = 'a8n_hub'
+          WHERE table_schema = 'saas_template'
           AND table_name = ${table}
         );
       `);
 
       if (tableExists.rows[0]?.exists) {
         // Delete all rows from the table (use schema-qualified name)
-        const result = await db.execute(sql.raw(`DELETE FROM "a8n_hub"."${table}"`));
+        const result = await db.execute(sql.raw(`DELETE FROM "saas_template"."${table}"`));
         const rowCount = result.rowCount || 0;
         if (rowCount > 0) {
           console.log(`  ✓ Cleaned ${table}: ${rowCount} rows deleted`);

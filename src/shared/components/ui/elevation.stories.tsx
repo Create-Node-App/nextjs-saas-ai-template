@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 /**
  * # Elevation System
  *
- * Depth in Agentic A8n Hub comes from layered shadows, not gradient backgrounds.
+ * Depth in Next.js SaaS AI Template comes from layered shadows, not gradient backgrounds.
  * Each level uses multiple shadow layers for realistic depth.
  *
  * Interactive cards transition from shadow-sm to shadow-md on hover.

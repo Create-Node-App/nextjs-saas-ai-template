@@ -7,7 +7,7 @@ order: 3
 
 # Perfil y configuración
 
-Tu perfil es cómo te ves en todo Agentic A8n Hub — en el directorio, en el Buscador de personas y para managers y pares. La configuración controla integraciones, zona horaria y datos de contacto.
+Tu perfil es cómo te ves en todo Next.js SaaS AI Template — en el directorio, en el Buscador de personas y para managers y pares. La configuración controla integraciones, zona horaria y datos de contacto.
 
 ## Editar tu perfil
 
@@ -27,10 +27,10 @@ Mantené tu cargo y bio actualizados para que otros te encuentren por las habili
 
 ## Conectar GitHub
 
-Vincular GitHub ayuda a Agentic A8n Hub a entender tu actividad técnica y puede mejorar las sugerencias de habilidades y proyectos.
+Vincular GitHub ayuda a Next.js SaaS AI Template a entender tu actividad técnica y puede mejorar las sugerencias de habilidades y proyectos.
 
 1. En **Configuración** o **Integraciones**, buscá **GitHub**.
-2. Hacé clic en **Conectar** y autorizá Agentic A8n Hub en GitHub.
+2. Hacé clic en **Conectar** y autorizá Next.js SaaS AI Template en GitHub.
 3. Después de vincular, tu perfil puede mostrar repos o actividad relevante (según la configuración del tenant).
 
 Podés desconectar GitHub cuando quieras desde el mismo lugar.
@@ -80,7 +80,7 @@ Si tu tenant lo permite, podés agregar un **email personal** además del labora
 
 ## Visibilidad en búsquedas
 
-Cuando actualizás tu perfil (bio, ubicación, zona horaria u otros ajustes), Agentic A8n Hub actualiza automáticamente tu **perfil de búsqueda** para que los resultados de People Finder estén siempre al día. Mientras más completo sea tu perfil, mejor te encontrarán otros para las oportunidades correctas.
+Cuando actualizás tu perfil (bio, ubicación, zona horaria u otros ajustes), Next.js SaaS AI Template actualiza automáticamente tu **perfil de búsqueda** para que los resultados de People Finder estén siempre al día. Mientras más completo sea tu perfil, mejor te encontrarán otros para las oportunidades correctas.
 
 De forma similar, si tu admin sincroniza datos de integraciones (ej. Deel actualiza tu cargo, o GitHub sincroniza tus repos), tu perfil de búsqueda se actualiza automáticamente y aparece un **registro de evidencia** en tu lista de evidencia mostrando qué se sincronizó.
 

@@ -1,5 +1,5 @@
 /**
- * Auth.js Configuration - Agentic A8n Hub
+ * Auth.js Configuration - Next.js SaaS AI Template
  *
  * Centralized authentication configuration using Auth.js v5.
  * Supports Auth0 as primary provider with Drizzle adapter.

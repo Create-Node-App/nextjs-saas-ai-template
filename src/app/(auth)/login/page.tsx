@@ -6,8 +6,8 @@ import type { TenantRole } from '@/shared/db/schema/auth';
 import { auth } from '@/shared/lib/auth';
 
 export const metadata = {
-  title: 'Sign In | Agentic A8n Hub',
-  description: 'Sign in to your Agentic A8n Hub account',
+  title: 'Sign In | Next.js SaaS AI Template',
+  description: 'Sign in to your Next.js SaaS AI Template account',
 };
 
 // Force dynamic rendering to avoid static generation issues
@@ -50,7 +50,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-gradient-to-br from-primary to-secondary shadow-lg mb-4 animate-pulse">
             <Sparkles className="h-8 w-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold brand-gradient-text mb-2">Welcome to Agentic A8n Hub</h1>
+          <h1 className="text-3xl font-bold brand-gradient-text mb-2">Welcome to Next.js SaaS AI Template</h1>
           <p className="text-muted-foreground">Sign in to manage your skills and career growth</p>
         </div>
         <LoginForm initialEmail={emailParam ?? ''} />

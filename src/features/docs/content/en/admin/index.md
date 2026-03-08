@@ -1,13 +1,13 @@
 ---
 title: Admin Guide Overview
-description: Admin responsibilities, dashboard, and admin permissions in Agentic A8n Hub.
+description: Admin responsibilities, dashboard, and admin permissions in Next.js SaaS AI Template.
 section: admin
 order: 1
 ---
 
 # Admin Guide Overview
 
-Agentic A8n Hub **admins** configure the platform for their organization: members, skills, capabilities, roles, settings, integrations, and more. This guide covers what admins can do and how to access the Admin area.
+Next.js SaaS AI Template **admins** configure the platform for their organization: members, skills, capabilities, roles, settings, integrations, and more. This guide covers what admins can do and how to access the Admin area.
 
 ## Admin Responsibilities
 
@@ -54,7 +54,7 @@ You only see menu items and pages for which you have the corresponding permissio
 
 ## Accessing the Admin Area
 
-1. Log in to Agentic A8n Hub and open the main navigation.
+1. Log in to Next.js SaaS AI Template and open the main navigation.
 2. Go to **Admin** (or the equivalent label for your tenant).
 3. You'll land on the Admin Dashboard. Use the sidebar to open Members, Skills, Settings, and other sections.
 

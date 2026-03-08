@@ -83,7 +83,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_APP_URL: z.url().default('http://localhost:3000'),
-    NEXT_PUBLIC_APP_NAME: z.string().default('Agentic A8n Hub'),
+    NEXT_PUBLIC_APP_NAME: z.string().default('Next.js SaaS AI Template'),
     NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),
   },
 

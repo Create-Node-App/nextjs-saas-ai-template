@@ -1,5 +1,5 @@
 /**
- * Logger Configuration - Agentic A8n Hub
+ * Logger Configuration - Next.js SaaS AI Template
  *
  * Structured logging with Pino for server-side observability.
  * Supports JSON format for production and pretty printing for development.

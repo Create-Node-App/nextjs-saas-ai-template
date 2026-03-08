@@ -47,7 +47,7 @@ interface GlobalSearchState {
 const GlobalSearchContext = React.createContext<GlobalSearchState | null>(null);
 
 const MAX_RECENT_SEARCHES = 10;
-const RECENT_SEARCHES_KEY = 'a8n_hub_recent_searches';
+const RECENT_SEARCHES_KEY = 'saas_template_recent_searches';
 
 interface GlobalSearchProviderProps {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 /**
- * Agentic A8n Hub Tailwind Configuration (minimal)
+ * Next.js SaaS AI Template Tailwind Configuration (minimal)
  *
  * Theme and design tokens live in src/app/globals.css (@theme block).
  * Tailwind v4 is CSS-first; this file is kept for tooling that expects it

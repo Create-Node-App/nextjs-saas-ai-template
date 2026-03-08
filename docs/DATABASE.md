@@ -7,10 +7,10 @@ The Next.js SaaS AI Template uses **Drizzle ORM** with **PostgreSQL** and **pgve
 ### Prerequisites
 
 - PostgreSQL 15+ with pgvector extension
-- Connection string in `.env.local` (search_path should include `a8n_hub,public,drizzle`):
+- Connection string in `.env.local` (search_path should include `saas_template,public,drizzle`):
 
 ```env
-DATABASE_URL="postgresql://user:password@localhost:5432/saas_template?options=--search_path%3Da8n_hub,public,drizzle"
+DATABASE_URL="postgresql://user:password@localhost:5432/saas_template?options=--search_path%3Dsaas_template,public,drizzle"
 ```
 
 ### Commands
@@ -142,7 +142,7 @@ const similarSkills = await db
 
 ## Localized Admin Content
 
-Admin-editable DB content can be localized through `a8n_hub.entity_translations`:
+Admin-editable DB content can be localized through `saas_template.entity_translations`:
 
 - Keys: `tenant_id`, `entity_type`, `entity_id`, `field`, `locale`
 - Value: `value`

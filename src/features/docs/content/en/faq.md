@@ -1,13 +1,13 @@
 ---
 title: Frequently Asked Questions
-description: Common questions about Agentic A8n Hub — password reset, roles, manager vs 1:1er, integrations, AI features, data export, and how to get help.
+description: Common questions about Next.js SaaS AI Template — password reset, roles, manager vs 1:1er, integrations, AI features, data export, and how to get help.
 section: faq
 order: 1
 ---
 
 # Frequently Asked Questions
 
-Answers to common questions about Agentic A8n Hub. For role-specific guides, see [Member](/docs/member), [Manager](/docs/manager), [1:1 Facilitator](/docs/one-on-one), and [Admin](/docs/admin).
+Answers to common questions about Next.js SaaS AI Template. For role-specific guides, see [Member](/docs/member), [Manager](/docs/manager), [1:1 Facilitator](/docs/one-on-one), and [Admin](/docs/admin).
 
 ## How do I reset my password?
 
@@ -17,7 +17,7 @@ Answers to common questions about Agentic A8n Hub. For role-specific guides, see
 
 ## How do roles work?
 
-Agentic A8n Hub uses **permissions**, not job titles. **Roles** (e.g. Member, Manager, Admin, 1:1er) are bundles of **permissions**. What you can do is determined by the **permissions** you have.
+Next.js SaaS AI Template uses **permissions**, not job titles. **Roles** (e.g. Member, Manager, Admin, 1:1er) are bundles of **permissions**. What you can do is determined by the **permissions** you have.
 
 - You can have **multiple roles** in a tenant (e.g. Member + 1:1er). Your effective access is the **union** of all permissions from all your roles.
 - Only **admins** can assign or change roles (Admin → Members). If you don’t see a section (e.g. Manager or 1:1), you likely don’t have the right role/permissions — ask your admin.
@@ -44,7 +44,7 @@ So: you can be someone’s **1:1 facilitator** without being their **manager**, 
 
 ## How do AI features work?
 
-Agentic A8n Hub can use AI for:
+Next.js SaaS AI Template can use AI for:
 
 - **People Finder** — Natural-language and capability-based search (e.g. “Who knows React?”). Uses embeddings and/or chat models depending on configuration.
 - **CV processing** — Extracting text and **suggested skills** from uploaded CVs during onboarding. Admins review and verify or merge skills.
@@ -54,7 +54,7 @@ Admins set the **AI provider and model** in **Admin** → **Settings**. Data sen
 
 ## What is "Integration Sync" evidence?
 
-When your admin runs a sync from an integration (e.g. GitHub, Deel, Resource Guru, Small Improvements), Agentic A8n Hub **automatically creates an evidence record** on each synced person's profile. This shows what data was synced and when. It appears in your **Evidence** tab alongside CVs and other documents.
+When your admin runs a sync from an integration (e.g. GitHub, Deel, Resource Guru, Small Improvements), Next.js SaaS AI Template **automatically creates an evidence record** on each synced person's profile. This shows what data was synced and when. It appears in your **Evidence** tab alongside CVs and other documents.
 
 - These records are labeled **"Integration Sync"** and include a summary (e.g. "GitHub Profile — 25 repos, TypeScript, Python").
 - Each sync **updates** the existing record rather than creating duplicates. The timestamp shows the last sync date.
@@ -93,6 +93,6 @@ If you don’t see an export option, your role may not have permission, or the f
 
 - **In-app**: Use the **Help** or **Docs** link (often in the header or footer) to open this documentation.
 - **Your admin**: For access, roles, invitations, or tenant-specific behavior, contact your **tenant admin** or IT.
-- **Support**: If your organization has a support channel or vendor contact for Agentic A8n Hub, use that for bugs, outages, or account issues.
+- **Support**: If your organization has a support channel or vendor contact for Next.js SaaS AI Template, use that for bugs, outages, or account issues.
 
 > **Tip:** Bookmark the [Docs](/docs) and use the sidebar to jump to your role (Member, Manager, 1:1 Facilitator, Admin) for step-by-step guides.

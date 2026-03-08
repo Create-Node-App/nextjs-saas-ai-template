@@ -22,12 +22,17 @@ const globalForDb = globalThis as unknown as {
 
 const connectionString = process.env.DATABASE_URL;
 
-if (!connectionString) {
+if (!connectionString && !process.env.SKIP_ENV_VALIDATION) {
   throw new Error('DATABASE_URL environment variable is not set');
 }
 
-// Create connection (reuse in development to avoid too many connections)
-const conn = globalForDb.conn ?? postgres(connectionString);
+// During build (SKIP_ENV_VALIDATION=true) use a placeholder that is never called at runtime.
+// At runtime DATABASE_URL is always present (validated by env.ts).
+const conn =
+  globalForDb.conn ??
+  postgres(connectionString ?? 'postgresql://localhost/placeholder', {
+    max: connectionString ? undefined : 0,
+  });
 
 if (process.env.NODE_ENV !== 'production') {
   globalForDb.conn = conn;

@@ -1,33 +1,33 @@
 ---
-title: Welcome to Agentic A8n Hub
-description: Overview of the Agentic A8n Hub platform — skills management, career growth, and team development. Key concepts, user roles, and quick links to guides.
+title: Welcome to Next.js SaaS AI Template
+description: Overview of the Next.js SaaS AI Template platform — skills management, career growth, and team development. Key concepts, user roles, and quick links to guides.
 section: getting-started
 order: 1
 ---
 
-# Welcome to Agentic A8n Hub
+# Welcome to Next.js SaaS AI Template
 
-Agentic A8n Hub is an **AI-native skills management, career growth, and team development platform**. It helps organizations and individuals track skills, set objectives, run performance cycles, and grow together — with AI assistance built in.
+Next.js SaaS AI Template is an **AI-native skills management, career growth, and team development platform**. It helps organizations and individuals track skills, set objectives, run performance cycles, and grow together — with AI assistance built in.
 
 This guide introduces the platform, key concepts, user roles, and where to go next.
 
 ---
 
-## What Agentic A8n Hub Does
+## What Next.js SaaS AI Template Does
 
-Agentic A8n Hub focuses on three pillars:
+Next.js SaaS AI Template focuses on three pillars:
 
 - **Skills management** — Define, assess, and track skills across your organization. Skills can be technical, domain, soft, language, or certifications. Assessments can be self, manager, peer, or AI-inferred.
 - **Career growth** — OKRs (Objectives and Key Results), learning assignments (trainings, roadmaps), performance assessments, 1:1 meetings, and feedback and recognition.
 - **Team development** — Manager and 1:1 facilitator views, team dashboards, project and client management, and analytics so leaders can support their people effectively.
 
-> **Tip:** Agentic A8n Hub is **tenant-based**. Your organization (tenant) has its own skills catalog, members, and settings. If you belong to multiple organizations, you switch between them from the app.
+> **Tip:** Next.js SaaS AI Template is **tenant-based**. Your organization (tenant) has its own skills catalog, members, and settings. If you belong to multiple organizations, you switch between them from the app.
 
 ---
 
 ## Key Concepts
 
-| Concept            | What it means in Agentic A8n Hub                                                                                                            |
+| Concept            | What it means in Next.js SaaS AI Template                                                                                                   |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Tenant**         | Your organization. Each tenant has its own members, skills, capabilities, and configuration.                                                |
 | **Skills**         | Competencies that can be assessed (e.g. "React", "Project Management", "English B2"). They are tenant-specific and support semantic search. |
@@ -42,7 +42,7 @@ Understanding these will make it easier to use the Member, Manager, 1:1, and Adm
 
 ## User Roles
 
-Your experience in Agentic A8n Hub depends on your **role** (and permissions) in the tenant. Roles are separate from your job title; they define what you can see and do.
+Your experience in Next.js SaaS AI Template depends on your **role** (and permissions) in the tenant. Roles are separate from your job title; they define what you can see and do.
 
 | Role                | Who it's for                                       | What you get                                                                                                                                     |
 | ------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -66,13 +66,13 @@ Depending on your role, start here:
 - **1:1 Facilitator** → 1:1 guide: 1:1 dashboard, meetings, and performance/projects for people you 1:1 with.
 - **Admin** → Admin guide: members, skills, capabilities, roles, roadmaps, settings, and integrations.
 
-Use the **docs sidebar** or **search** to jump to any topic. Welcome to Agentic A8n Hub.
+Use the **docs sidebar** or **search** to jump to any topic. Welcome to Next.js SaaS AI Template.
 
 ---
 
 ## Interactive Components
 
-Agentic A8n Hub uses a consistent design system. Here is a live preview of available button variants:
+Next.js SaaS AI Template uses a consistent design system. Here is a live preview of available button variants:
 
 ```preview
 component: ButtonVariants
@@ -81,13 +81,13 @@ props: {}
 
 ---
 
-## Why Agentic A8n Hub?
+## Why Next.js SaaS AI Template?
 
-Agentic A8n Hub is designed to grow with you:
+Next.js SaaS AI Template is designed to grow with you:
 
 - **Skills stay central** — Whether you self-assess, get manager feedback, or use AI-assisted insights, your skills profile is one place for growth and evidence.
 - **Objectives and learning connect** — OKRs and learning assignments (trainings, roadmaps) tie back to skills and capabilities so progress is visible.
 - **Managers and 1:1 facilitators have the right tools** — Separate views and permissions mean managers focus on reports and performance, while 1:1 facilitators focus on development conversations, without mixing the two.
 - **Admins keep the tenant healthy** — Skills catalogs, capabilities, role profiles, and member management are in one place for consistent configuration.
 
-If you have feedback or questions, use your tenant’s usual support channel or reach out to your Agentic A8n Hub admin.
+If you have feedback or questions, use your tenant’s usual support channel or reach out to your Next.js SaaS AI Template admin.

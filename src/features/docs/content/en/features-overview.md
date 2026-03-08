@@ -7,7 +7,7 @@ order: 5
 
 # Platform Features Overview
 
-Agentic A8n Hub combines **skills management**, **career growth**, and **team development** into one integrated platform. This guide provides an overview of every major feature and where to find detailed guides.
+Next.js SaaS AI Template combines **skills management**, **career growth**, and **team development** into one integrated platform. This guide provides an overview of every major feature and where to find detailed guides.
 
 ---
 
@@ -180,7 +180,7 @@ Everything Members have, plus:
 - **HR system connectors** — Sync org data, job changes, departures (via webhooks or API)
 - **Spreadsheet import** — Bulk import members and skills
 - **Webhooks** — Listen to events (user created, OKR updated, performance submitted) and trigger workflows
-- **REST API** — Build custom tools and integrations on top of Agentic A8n Hub
+- **REST API** — Build custom tools and integrations on top of Next.js SaaS AI Template
 
 **Customization:**
 
@@ -263,9 +263,9 @@ Use this quick reference to find guides for the features most relevant to you:
 
 ## Next Steps
 
-- **Just joined?** → [Welcome to Agentic A8n Hub](../getting-started) and [First Login](../getting-started/first-login)
+- **Just joined?** → [Welcome to Next.js SaaS AI Template](../getting-started) and [First Login](../getting-started/first-login)
 - **Managing a team?** → [Manager Guide](../manager) for tools and best practices
 - **Setting up your tenant?** → [Admin Guide](../admin) for configuration and integrations
 - **Have questions?** → [FAQ](../faq) or search the docs using **Cmd+K** (Mac) or **Ctrl+K** (Windows/Linux)
 
-Welcome to Agentic A8n Hub. We're excited to help you and your team grow.
+Welcome to Next.js SaaS AI Template. We're excited to help you and your team grow.

@@ -1,13 +1,13 @@
 ---
 title: Configuración del perfil
-description: Cómo editar tu perfil en Agentic A8n Hub: nombre, cargo, bio, avatar, GitHub y LinkedIn, zona horaria, ubicación, email y pronombres.
+description: Cómo editar tu perfil en Next.js SaaS AI Template: nombre, cargo, bio, avatar, GitHub y LinkedIn, zona horaria, ubicación, email y pronombres.
 section: getting-started
 order: 4
 ---
 
 # Configuración del perfil
 
-Tu **perfil** es cómo te ven tus colegas en Agentic A8n Hub: en el Buscador de personas, en proyectos, en 1:1s y en el directorio. Esta guía explica cómo editar tu perfil y configurar preferencias para que la plataforma te sirva bien.
+Tu **perfil** es cómo te ven tus colegas en Next.js SaaS AI Template: en el Buscador de personas, en proyectos, en 1:1s y en el directorio. Esta guía explica cómo editar tu perfil y configurar preferencias para que la plataforma te sirva bien.
 
 ---
 
@@ -45,7 +45,7 @@ Estos campos definen quién sos en el tenant.
 
 ## Conectar GitHub y LinkedIn
 
-Vincular cuentas externas ayuda a Agentic A8n Hub (y opcionalmente a la IA) a entender tus habilidades y presencia profesional.
+Vincular cuentas externas ayuda a Next.js SaaS AI Template (y opcionalmente a la IA) a entender tus habilidades y presencia profesional.
 
 - **GitHub** — Conecta tu perfil de GitHub. Puede usarse para evidencia, inferencia de habilidades o enlaces a portfolio (según la configuración del tenant).
 - **LinkedIn** — Conecta tu perfil de LinkedIn. Suele usarse para identidad profesional y señales opcionales de habilidades/experiencia.
@@ -54,7 +54,7 @@ Vincular cuentas externas ayuda a Agentic A8n Hub (y opcionalmente a la IA) a en
 
 1. En tu perfil, buscá la sección **Enlaces** o **Cuentas conectadas**.
 2. Hacé clic en **Conectar** (o similar) junto a **GitHub** o **LinkedIn**.
-3. Completá el flujo OAuth en la ventana emergente o redirección (autorizá a Agentic A8n Hub a acceder a los datos solicitados).
+3. Completá el flujo OAuth en la ventana emergente o redirección (autorizá a Next.js SaaS AI Template a acceder a los datos solicitados).
 4. Después de autorizar, la cuenta aparece como "Conectada" y puede que veas la opción **Desconectar**.
 
 Desconectar quita el vínculo y los datos obtenidos de esa cuenta; tu perfil y habilidades no se borran, pero la evidencia o inferencias que dependían de esa conexión pueden verse afectadas según las reglas del tenant.

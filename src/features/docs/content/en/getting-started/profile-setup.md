@@ -1,13 +1,13 @@
 ---
 title: Profile Setup
-description: How to edit your Agentic A8n Hub profile — name, title, bio, avatar, GitHub and LinkedIn, timezone, location, email, and pronouns.
+description: How to edit your Next.js SaaS AI Template profile — name, title, bio, avatar, GitHub and LinkedIn, timezone, location, email, and pronouns.
 section: getting-started
 order: 4
 ---
 
 # Profile Setup
 
-Your **profile** is how you appear to colleagues in Agentic A8n Hub: in People Finder, on projects, in 1:1s, and in the directory. This guide explains how to edit your profile and set preferences so the platform works well for you.
+Your **profile** is how you appear to colleagues in Next.js SaaS AI Template: in People Finder, on projects, in 1:1s, and in the directory. This guide explains how to edit your profile and set preferences so the platform works well for you.
 
 ---
 
@@ -45,7 +45,7 @@ These fields define who you are in the tenant.
 
 ## Connect GitHub and LinkedIn
 
-Linking external accounts helps Agentic A8n Hub (and optionally AI) understand your skills and professional presence.
+Linking external accounts helps Next.js SaaS AI Template (and optionally AI) understand your skills and professional presence.
 
 - **GitHub** — Connects your GitHub profile. Can be used for evidence, skills inference, or portfolio links (depending on tenant configuration).
 - **LinkedIn** — Connects your LinkedIn profile. Often used for professional identity and optional skills/experience signals.
@@ -54,7 +54,7 @@ Linking external accounts helps Agentic A8n Hub (and optionally AI) understand y
 
 1. In your profile, find the **Links** or **Connected accounts** section.
 2. Click **Connect** (or similar) next to **GitHub** or **LinkedIn**.
-3. Complete the OAuth flow in the popup or redirect (authorize Agentic A8n Hub to access the requested data).
+3. Complete the OAuth flow in the popup or redirect (authorize Next.js SaaS AI Template to access the requested data).
 4. After authorization, the account appears as “Connected” and you may see a **Disconnect** option.
 
 Disconnecting removes the link and any data pulled from that account; your profile and skills are not deleted, but evidence or inferences that relied on that connection may be affected depending on tenant rules.

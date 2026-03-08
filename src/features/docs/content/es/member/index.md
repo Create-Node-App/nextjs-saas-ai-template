@@ -1,13 +1,13 @@
 ---
 title: Guía del miembro
-description: Qué pueden hacer los miembros en Agentic A8n Hub: habilidades, aprendizaje, OKRs, desempeño y más.
+description: Qué pueden hacer los miembros en Next.js SaaS AI Template: habilidades, aprendizaje, OKRs, desempeño y más.
 section: member
 order: 1
 ---
 
 # Guía del miembro
 
-Agentic A8n Hub es una plataforma nativa de IA para gestión de habilidades, crecimiento profesional y desarrollo de equipos. Como **miembro**, podés gestionar tu perfil, evaluar tus habilidades, seguir tu aprendizaje, definir OKRs, participar en evaluaciones de desempeño y conectar con colegas.
+Next.js SaaS AI Template es una plataforma nativa de IA para gestión de habilidades, crecimiento profesional y desarrollo de equipos. Como **miembro**, podés gestionar tu perfil, evaluar tus habilidades, seguir tu aprendizaje, definir OKRs, participar en evaluaciones de desempeño y conectar con colegas.
 
 ## Qué podés hacer
 

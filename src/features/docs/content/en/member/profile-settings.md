@@ -7,7 +7,7 @@ order: 3
 
 # Profile & Settings
 
-Your profile is how you appear across Agentic A8n Hub — in the directory, People Finder, and to managers and peers. Settings control integrations, timezone, and contact details.
+Your profile is how you appear across Next.js SaaS AI Template — in the directory, People Finder, and to managers and peers. Settings control integrations, timezone, and contact details.
 
 ## Editing Your Profile
 
@@ -27,10 +27,10 @@ Keep your title and bio current so others can find you for the right skills and 
 
 ## Connect GitHub
 
-Linking GitHub helps Agentic A8n Hub understand your technical activity and can improve skill and project suggestions.
+Linking GitHub helps Next.js SaaS AI Template understand your technical activity and can improve skill and project suggestions.
 
 1. In **Settings** or **Integrations**, find **GitHub**.
-2. Click **Connect** and authorize Agentic A8n Hub in GitHub.
+2. Click **Connect** and authorize Next.js SaaS AI Template in GitHub.
 3. After linking, your profile may show relevant repos or activity (depending on tenant settings).
 
 You can disconnect GitHub at any time from the same place.
@@ -80,7 +80,7 @@ If your tenant allows it, you can add a **personal email** in addition to your w
 
 ## Search Visibility
 
-When you update your profile (bio, location, timezone, or other settings), Agentic A8n Hub automatically refreshes your **search profile** so People Finder results stay current. The more complete your profile, the better others can find you for the right opportunities.
+When you update your profile (bio, location, timezone, or other settings), Next.js SaaS AI Template automatically refreshes your **search profile** so People Finder results stay current. The more complete your profile, the better others can find you for the right opportunities.
 
 Similarly, if your admin syncs data from integrations (e.g. Deel updates your job title, or GitHub syncs your repos), your search profile is updated automatically and an **evidence record** appears in your evidence list showing what was synced.
 

@@ -19,14 +19,14 @@ export async function generateMetadata({ params }: DocsPageProps): Promise<Metad
   const locale = await getLocale();
   const doc = getDocContent(locale, slug);
 
-  if (!doc) return { title: 'Not Found | Agentic A8n Hub Docs' };
+  if (!doc) return { title: 'Not Found | Next.js SaaS AI Template Docs' };
 
   return {
-    title: `${doc.frontmatter.title} | Agentic A8n Hub Docs`,
-    description: doc.frontmatter.description ?? `Agentic A8n Hub documentation — ${doc.frontmatter.title}`,
+    title: `${doc.frontmatter.title} | Next.js SaaS AI Template Docs`,
+    description: doc.frontmatter.description ?? `Next.js SaaS AI Template documentation — ${doc.frontmatter.title}`,
     openGraph: {
-      title: `${doc.frontmatter.title} | Agentic A8n Hub Docs`,
-      description: doc.frontmatter.description ?? `Agentic A8n Hub documentation — ${doc.frontmatter.title}`,
+      title: `${doc.frontmatter.title} | Next.js SaaS AI Template Docs`,
+      description: doc.frontmatter.description ?? `Next.js SaaS AI Template documentation — ${doc.frontmatter.title}`,
       type: 'article',
     },
   };

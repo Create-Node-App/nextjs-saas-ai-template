@@ -1,5 +1,5 @@
 /**
- * Bulk assign GitHub usernames to Agentic A8n Hub persons.
+ * Bulk assign GitHub usernames to Next.js SaaS AI Template persons.
  * POST /api/tenants/[tenant]/admin/integrations/github/assign-usernames
  *
  * Body: { mappings: [{ personId: string, githubUsername: string }] }

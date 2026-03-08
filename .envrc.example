@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ============================================================================
-# Agentic A8n Hub - Dev Environment Configuration
+# Next.js SaaS AI Template - Dev Environment Configuration
 # ============================================================================
 # USAGE:
 #   direnv allow
@@ -16,15 +16,15 @@
 
 export NODE_ENV="${NODE_ENV:-development}"
 export NEXT_PUBLIC_APP_URL="${NEXT_PUBLIC_APP_URL:-http://localhost:3000}"
-export NEXT_PUBLIC_APP_NAME="${NEXT_PUBLIC_APP_NAME:-Agentic A8n Hub}"
+export NEXT_PUBLIC_APP_NAME="${NEXT_PUBLIC_APP_NAME:-Next.js SaaS AI Template}"
 
 # ============================================================================
 # Database Configuration (PostgreSQL + pgvector)
 # ============================================================================
 
-# DevContainer: postgresql://a8n_hub:a8n_hub@db:5432/a8n_hub_dev
-# Local Docker:  postgresql://a8n_hub:a8n_hub@localhost:5432/a8n_hub_dev
-export DATABASE_URL="${DATABASE_URL:-postgresql://a8n_hub:a8n_hub@localhost:5432/a8n_hub_dev}"
+# DevContainer: postgresql://saas_template:saas_template@db:5432/saas_template_dev
+# Local Docker:  postgresql://saas_template:saas_template@localhost:5432/saas_template_dev
+export DATABASE_URL="${DATABASE_URL:-postgresql://saas_template:saas_template@localhost:5432/saas_template_dev}"
 
 # ============================================================================
 # Authentication (Auth.js v5)
@@ -92,7 +92,7 @@ export npm_config_engine_strict=true
 
 if [[ -n "${REMOTE_CONTAINERS}" ]] || [[ -n "${CODESPACES}" ]]; then
   echo "🐳 Running in DevContainer/Codespaces..."
-  export DATABASE_URL="${DATABASE_URL:-postgresql://a8n_hub:a8n_hub@db:5432/a8n_hub_dev}"
+  export DATABASE_URL="${DATABASE_URL:-postgresql://saas_template:saas_template@db:5432/saas_template_dev}"
 fi
 
 if ! command -v pnpm > /dev/null 2>&1; then
@@ -103,7 +103,7 @@ fi
 # Helpful Commands
 # ============================================================================
 echo ""
-echo "🤖 Agentic A8n Hub - Available Commands:"
+echo "🤖 Next.js SaaS AI Template - Available Commands:"
 echo "  pnpm dev          - Start development server (port 3000)"
 echo "  pnpm build        - Build for production"
 echo "  pnpm lint         - Run ESLint"

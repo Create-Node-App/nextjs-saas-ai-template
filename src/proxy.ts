@@ -4,7 +4,7 @@ import type { TenantRole } from '@/shared/db/schema/auth';
 import { auth } from '@/shared/lib/auth';
 
 /**
- * Proxy for Agentic A8n Hub application (formerly middleware)
+ * Proxy for Next.js SaaS AI Template application (formerly middleware)
  *
  * Responsibilities:
  * 1. Inject pathname header for server components

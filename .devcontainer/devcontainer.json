@@ -1,7 +1,7 @@
-// DevContainer configuration for Agentic A8n Hub
+// DevContainer configuration for Next.js SaaS AI Template
 // Docs: https://containers.dev/implementors/json_reference/
 {
-  "name": "Agentic A8n Hub Dev",
+  "name": "Next.js SaaS AI Template Dev",
   "dockerComposeFile": "compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",

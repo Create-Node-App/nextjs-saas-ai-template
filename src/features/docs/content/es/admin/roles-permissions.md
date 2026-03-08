@@ -7,7 +7,7 @@ order: 7
 
 # Roles y permisos
 
-Agentic A8n Hub usa un modelo **basado en permisos** (PBAC): el acceso se determina por **permisos**, no por cargo. Los **roles** son conjuntos de permisos; una persona puede tener **varios roles** por tenant, y sus permisos efectivos son la **unión** de los permisos de todos esos roles.
+Next.js SaaS AI Template usa un modelo **basado en permisos** (PBAC): el acceso se determina por **permisos**, no por cargo. Los **roles** son conjuntos de permisos; una persona puede tener **varios roles** por tenant, y sus permisos efectivos son la **unión** de los permisos de todos esos roles.
 
 ## Roles del sistema
 

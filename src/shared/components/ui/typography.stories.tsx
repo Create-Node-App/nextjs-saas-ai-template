@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 /**
  * # Typography
  *
- * Type scale specimen for the Agentic A8n Hub design system.
+ * Type scale specimen for the Next.js SaaS AI Template design system.
  *
  * **Font**: DM Sans — geometric, friendly, modern
  * **Scale**: Major Third ratio (1.25)

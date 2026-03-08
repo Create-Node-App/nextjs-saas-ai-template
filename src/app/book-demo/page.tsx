@@ -423,7 +423,8 @@ export default function BookDemoPage() {
       <footer className="border-t border-border/40 bg-muted/20 py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm text-muted-foreground">
-            © 2024 Agentic A8n Hub. {locale === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}
+            © 2024 Next.js SaaS AI Template.{' '}
+            {locale === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}
           </p>
         </div>
       </footer>

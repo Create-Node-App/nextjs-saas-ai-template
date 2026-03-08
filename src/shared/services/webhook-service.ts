@@ -449,7 +449,7 @@ export async function sendTestWebhook(
       timestamp: new Date().toISOString(),
       tenant: tenantSlug,
       data: {
-        message: 'This is a test webhook from Agentic A8n Hub',
+        message: 'This is a test webhook from Next.js SaaS AI Template',
         sentAt: new Date().toISOString(),
       },
     };

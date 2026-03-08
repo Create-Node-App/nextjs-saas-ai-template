@@ -7,7 +7,7 @@ order: 14
 
 # Asistente de IA
 
-El **Asistente de IA** es la interfaz conversacional de Agentic A8n Hub. Podés **chatear** en lenguaje natural para buscar personas por habilidades, obtener **recomendaciones** y hacer preguntas sobre la plataforma — sin pasar por varios menús o pantallas de búsqueda.
+El **Asistente de IA** es la interfaz conversacional de Next.js SaaS AI Template. Podés **chatear** en lenguaje natural para buscar personas por habilidades, obtener **recomendaciones** y hacer preguntas sobre la plataforma — sin pasar por varios menús o pantallas de búsqueda.
 
 ## Dónde encontrar el Asistente de IA
 
@@ -29,7 +29,7 @@ El Asistente de IA entiende **lenguaje natural**. Podés preguntar cosas como:
 | **Ayuda en la plataforma** | "¿Cómo evalúo mis habilidades?" "¿Dónde doy feedback?"                                                 |
 | **Recomendaciones**        | "¿Quién puede mentorearme en diseño de sistemas?" "Sugerime una capacitación para habilidades de API." |
 
-Formulá la pregunta como se la harías a un colega; el asistente interpreta y usa datos de Agentic A8n Hub (habilidades, personas, aprendizaje, tu perfil) para responder.
+Formulá la pregunta como se la harías a un colega; el asistente interpreta y usa datos de Next.js SaaS AI Template (habilidades, personas, aprendizaje, tu perfil) para responder.
 
 ## Buscar personas por habilidades
 
@@ -66,7 +66,7 @@ El asistente mapea tu pregunta a habilidades, personas, documentación o proceso
 ## Límites y privacidad
 
 - **Permisos** — El asistente solo devuelve personas y datos que tenés permitido ver. No vas a ver información privada o fuera de alcance.
-- **Precisión** — Las respuestas se basan en datos actuales de Agentic A8n Hub (ej. habilidades evaluadas). Si algo se ve mal, revisá el perfil subyacente o preguntale a un admin.
+- **Precisión** — Las respuestas se basan en datos actuales de Next.js SaaS AI Template (ej. habilidades evaluadas). Si algo se ve mal, revisá el perfil subyacente o preguntale a un admin.
 - **Acciones** — El asistente puede **mostrar** y **sugerir**; las acciones reales (ej. enviar una evaluación, enviar reconocimiento) las hacés vos en la app principal.
 
 > **Tip:** Usá el Asistente de IA como primera parada para preguntas de "quién", "qué" y "cómo". Puede ahorrarte tiempo y llevarte al lugar correcto en la plataforma.

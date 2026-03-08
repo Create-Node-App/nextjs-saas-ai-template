@@ -4,9 +4,9 @@
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "a8n_hub.accounts": {
+    "saas_template.accounts": {
       "name": "accounts",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "user_id": {
           "name": "user_id",
@@ -81,7 +81,7 @@
           "name": "accounts_user_id_users_id_fk",
           "tableFrom": "accounts",
           "tableTo": "users",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["user_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -99,9 +99,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.authenticators": {
+    "saas_template.authenticators": {
       "name": "authenticators",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "credential_id": {
           "name": "credential_id",
@@ -158,7 +158,7 @@
           "name": "authenticators_user_id_users_id_fk",
           "tableFrom": "authenticators",
           "tableTo": "users",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["user_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -182,9 +182,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.sessions": {
+    "saas_template.sessions": {
       "name": "sessions",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "session_token": {
           "name": "session_token",
@@ -211,7 +211,7 @@
           "name": "sessions_user_id_users_id_fk",
           "tableFrom": "sessions",
           "tableTo": "users",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["user_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -224,9 +224,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.tenant_membership_roles": {
+    "saas_template.tenant_membership_roles": {
       "name": "tenant_membership_roles",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "membership_id": {
           "name": "membership_id",
@@ -285,7 +285,7 @@
           "name": "tenant_membership_roles_membership_id_tenant_memberships_id_fk",
           "tableFrom": "tenant_membership_roles",
           "tableTo": "tenant_memberships",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["membership_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -295,7 +295,7 @@
           "name": "tenant_membership_roles_role_id_roles_id_fk",
           "tableFrom": "tenant_membership_roles",
           "tableTo": "roles",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["role_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -313,9 +313,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.tenant_memberships": {
+    "saas_template.tenant_memberships": {
       "name": "tenant_memberships",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -345,7 +345,7 @@
         "role": {
           "name": "role",
           "type": "tenant_role",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'member'"
@@ -429,7 +429,7 @@
           "name": "tenant_memberships_user_id_users_id_fk",
           "tableFrom": "tenant_memberships",
           "tableTo": "users",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["user_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -439,7 +439,7 @@
           "name": "tenant_memberships_tenant_id_tenants_id_fk",
           "tableFrom": "tenant_memberships",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -449,7 +449,7 @@
           "name": "tenant_memberships_person_id_persons_id_fk",
           "tableFrom": "tenant_memberships",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["person_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -459,7 +459,7 @@
           "name": "tenant_memberships_primary_role_id_roles_id_fk",
           "tableFrom": "tenant_memberships",
           "tableTo": "roles",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["primary_role_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -472,9 +472,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.users": {
+    "saas_template.users": {
       "name": "users",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -521,9 +521,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.verification_tokens": {
+    "saas_template.verification_tokens": {
       "name": "verification_tokens",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "identifier": {
           "name": "identifier",
@@ -557,9 +557,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.tenants": {
+    "saas_template.tenants": {
       "name": "tenants",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -621,9 +621,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.person_relations": {
+    "saas_template.person_relations": {
       "name": "person_relations",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -653,7 +653,7 @@
         "relation_type": {
           "name": "relation_type",
           "type": "person_relation_type",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
@@ -704,7 +704,7 @@
           "name": "person_relations_tenant_id_tenants_id_fk",
           "tableFrom": "person_relations",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -714,7 +714,7 @@
           "name": "person_relations_person_id_persons_id_fk",
           "tableFrom": "person_relations",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["person_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -724,7 +724,7 @@
           "name": "person_relations_related_person_id_persons_id_fk",
           "tableFrom": "person_relations",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["related_person_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -737,9 +737,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.persons": {
+    "saas_template.persons": {
       "name": "persons",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -793,7 +793,7 @@
         "status": {
           "name": "status",
           "type": "person_status",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'active'"
@@ -831,7 +831,7 @@
         "employment_type": {
           "name": "employment_type",
           "type": "employment_type",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": false,
           "default": "'employee'"
@@ -937,7 +937,7 @@
           "name": "persons_tenant_id_tenants_id_fk",
           "tableFrom": "persons",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -950,9 +950,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.audit_events": {
+    "saas_template.audit_events": {
       "name": "audit_events",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -1135,7 +1135,7 @@
           "name": "audit_events_tenant_id_tenants_id_fk",
           "tableFrom": "audit_events",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1145,7 +1145,7 @@
           "name": "audit_events_actor_id_persons_id_fk",
           "tableFrom": "audit_events",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["actor_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -1158,9 +1158,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.assistant_conversations": {
+    "saas_template.assistant_conversations": {
       "name": "assistant_conversations",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -1253,7 +1253,7 @@
           "name": "assistant_conversations_tenant_id_tenants_id_fk",
           "tableFrom": "assistant_conversations",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1263,7 +1263,7 @@
           "name": "assistant_conversations_person_id_persons_id_fk",
           "tableFrom": "assistant_conversations",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["person_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1276,9 +1276,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.file_objects": {
+    "saas_template.file_objects": {
       "name": "file_objects",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -1302,7 +1302,7 @@
         "type": {
           "name": "type",
           "type": "file_object_type",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
@@ -1393,7 +1393,7 @@
           "name": "file_objects_tenant_id_tenants_id_fk",
           "tableFrom": "file_objects",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1403,7 +1403,7 @@
           "name": "file_objects_owner_person_id_persons_id_fk",
           "tableFrom": "file_objects",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["owner_person_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -1416,9 +1416,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.department_managers": {
+    "saas_template.department_managers": {
       "name": "department_managers",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -1529,7 +1529,7 @@
           "name": "department_managers_tenant_id_tenants_id_fk",
           "tableFrom": "department_managers",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1539,7 +1539,7 @@
           "name": "department_managers_manager_id_persons_id_fk",
           "tableFrom": "department_managers",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["manager_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1552,9 +1552,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.permissions": {
+    "saas_template.permissions": {
       "name": "permissions",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -1645,7 +1645,7 @@
           "name": "permissions_tenant_id_tenants_id_fk",
           "tableFrom": "permissions",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1658,9 +1658,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.role_permissions": {
+    "saas_template.role_permissions": {
       "name": "role_permissions",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "role_id": {
           "name": "role_id",
@@ -1719,7 +1719,7 @@
           "name": "role_permissions_role_id_roles_id_fk",
           "tableFrom": "role_permissions",
           "tableTo": "roles",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["role_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1729,7 +1729,7 @@
           "name": "role_permissions_permission_id_permissions_id_fk",
           "tableFrom": "role_permissions",
           "tableTo": "permissions",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["permission_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1747,9 +1747,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.roles": {
+    "saas_template.roles": {
       "name": "roles",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -1847,7 +1847,7 @@
           "name": "roles_tenant_id_tenants_id_fk",
           "tableFrom": "roles",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -1860,9 +1860,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.integration_entity_links": {
+    "saas_template.integration_entity_links": {
       "name": "integration_entity_links",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -1880,7 +1880,7 @@
         "provider": {
           "name": "provider",
           "type": "integration_provider",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
@@ -1923,7 +1923,7 @@
         "link_state": {
           "name": "link_state",
           "type": "integration_entity_link_state",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'linked'"
@@ -2049,7 +2049,7 @@
           "name": "integration_entity_links_tenant_id_tenants_id_fk",
           "tableFrom": "integration_entity_links",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -2062,9 +2062,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.integration_field_mappings": {
+    "saas_template.integration_field_mappings": {
       "name": "integration_field_mappings",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -2082,7 +2082,7 @@
         "provider": {
           "name": "provider",
           "type": "integration_provider",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
@@ -2101,7 +2101,7 @@
         "ownership": {
           "name": "ownership",
           "type": "integration_field_ownership",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'merge'"
@@ -2174,7 +2174,7 @@
           "name": "integration_field_mappings_tenant_id_tenants_id_fk",
           "tableFrom": "integration_field_mappings",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -2187,9 +2187,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.integration_sync_conflicts": {
+    "saas_template.integration_sync_conflicts": {
       "name": "integration_sync_conflicts",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -2213,7 +2213,7 @@
         "provider": {
           "name": "provider",
           "type": "integration_provider",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
@@ -2232,7 +2232,7 @@
         "status": {
           "name": "status",
           "type": "integration_conflict_status",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'open'"
@@ -2240,7 +2240,7 @@
         "severity": {
           "name": "severity",
           "type": "integration_conflict_severity",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'medium'"
@@ -2339,7 +2339,7 @@
           "name": "integration_sync_conflicts_tenant_id_tenants_id_fk",
           "tableFrom": "integration_sync_conflicts",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -2349,7 +2349,7 @@
           "name": "integration_sync_conflicts_run_id_integration_sync_runs_id_fk",
           "tableFrom": "integration_sync_conflicts",
           "tableTo": "integration_sync_runs",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["run_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -2359,7 +2359,7 @@
           "name": "integration_sync_conflicts_resolved_by_person_id_persons_id_fk",
           "tableFrom": "integration_sync_conflicts",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["resolved_by_person_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -2372,9 +2372,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.integration_sync_cursors": {
+    "saas_template.integration_sync_cursors": {
       "name": "integration_sync_cursors",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -2392,7 +2392,7 @@
         "provider": {
           "name": "provider",
           "type": "integration_provider",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
@@ -2475,7 +2475,7 @@
           "name": "integration_sync_cursors_tenant_id_tenants_id_fk",
           "tableFrom": "integration_sync_cursors",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -2488,9 +2488,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.integration_sync_run_items": {
+    "saas_template.integration_sync_run_items": {
       "name": "integration_sync_run_items",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -2514,7 +2514,7 @@
         "provider": {
           "name": "provider",
           "type": "integration_provider",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
@@ -2545,7 +2545,7 @@
         "status": {
           "name": "status",
           "type": "integration_sync_item_status",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
@@ -2624,7 +2624,7 @@
           "name": "integration_sync_run_items_tenant_id_tenants_id_fk",
           "tableFrom": "integration_sync_run_items",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -2634,7 +2634,7 @@
           "name": "integration_sync_run_items_run_id_integration_sync_runs_id_fk",
           "tableFrom": "integration_sync_run_items",
           "tableTo": "integration_sync_runs",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["run_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -2647,9 +2647,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.integration_sync_runs": {
+    "saas_template.integration_sync_runs": {
       "name": "integration_sync_runs",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -2667,21 +2667,21 @@
         "provider": {
           "name": "provider",
           "type": "integration_provider",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
         "mode": {
           "name": "mode",
           "type": "integration_sync_mode",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
         "status": {
           "name": "status",
           "type": "integration_sync_run_status",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'queued'"
@@ -2787,7 +2787,7 @@
           "name": "integration_sync_runs_tenant_id_tenants_id_fk",
           "tableFrom": "integration_sync_runs",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -2797,7 +2797,7 @@
           "name": "integration_sync_runs_triggered_by_person_id_persons_id_fk",
           "tableFrom": "integration_sync_runs",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["triggered_by_person_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -2810,9 +2810,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.integration_processing_jobs": {
+    "saas_template.integration_processing_jobs": {
       "name": "integration_processing_jobs",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -2836,14 +2836,14 @@
         "integration": {
           "name": "integration",
           "type": "integration_type",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
         "status": {
           "name": "status",
           "type": "integration_processing_status",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'queued'"
@@ -2960,7 +2960,7 @@
           "name": "integration_processing_jobs_tenant_id_tenants_id_fk",
           "tableFrom": "integration_processing_jobs",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -2970,7 +2970,7 @@
           "name": "integration_processing_jobs_person_id_persons_id_fk",
           "tableFrom": "integration_processing_jobs",
           "tableTo": "persons",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["person_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -2983,9 +2983,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.embedding_chunks": {
+    "saas_template.embedding_chunks": {
       "name": "embedding_chunks",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -3003,7 +3003,7 @@
         "entity_type": {
           "name": "entity_type",
           "type": "embedding_entity_type",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true
         },
@@ -3117,7 +3117,7 @@
           "name": "embedding_chunks_tenant_id_tenants_id_fk",
           "tableFrom": "embedding_chunks",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -3130,9 +3130,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.tenant_invitations": {
+    "saas_template.tenant_invitations": {
       "name": "tenant_invitations",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -3162,7 +3162,7 @@
         "role": {
           "name": "role",
           "type": "tenant_role",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'member'"
@@ -3176,7 +3176,7 @@
         "status": {
           "name": "status",
           "type": "invitation_status",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'pending'"
@@ -3244,7 +3244,7 @@
           "name": "tenant_invitations_tenant_id_tenants_id_fk",
           "tableFrom": "tenant_invitations",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -3254,7 +3254,7 @@
           "name": "tenant_invitations_role_id_roles_id_fk",
           "tableFrom": "tenant_invitations",
           "tableTo": "roles",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["role_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -3264,7 +3264,7 @@
           "name": "tenant_invitations_invited_by_user_id_users_id_fk",
           "tableFrom": "tenant_invitations",
           "tableTo": "users",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["invited_by_user_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -3274,7 +3274,7 @@
           "name": "tenant_invitations_accepted_by_user_id_users_id_fk",
           "tableFrom": "tenant_invitations",
           "tableTo": "users",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["accepted_by_user_id"],
           "columnsTo": ["id"],
           "onDelete": "set null",
@@ -3293,9 +3293,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.webhook_deliveries": {
+    "saas_template.webhook_deliveries": {
       "name": "webhook_deliveries",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -3337,7 +3337,7 @@
         "status": {
           "name": "status",
           "type": "webhook_delivery_status",
-          "typeSchema": "a8n_hub",
+          "typeSchema": "saas_template",
           "primaryKey": false,
           "notNull": true,
           "default": "'pending'"
@@ -3493,7 +3493,7 @@
           "name": "webhook_deliveries_tenant_id_tenants_id_fk",
           "tableFrom": "webhook_deliveries",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -3503,7 +3503,7 @@
           "name": "webhook_deliveries_endpoint_id_webhook_endpoints_id_fk",
           "tableFrom": "webhook_deliveries",
           "tableTo": "webhook_endpoints",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["endpoint_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -3516,9 +3516,9 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "a8n_hub.webhook_endpoints": {
+    "saas_template.webhook_endpoints": {
       "name": "webhook_endpoints",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "columns": {
         "id": {
           "name": "id",
@@ -3641,7 +3641,7 @@
           "name": "webhook_endpoints_tenant_id_tenants_id_fk",
           "tableFrom": "webhook_endpoints",
           "tableTo": "tenants",
-          "schemaTo": "a8n_hub",
+          "schemaTo": "saas_template",
           "columnsFrom": ["tenant_id"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
@@ -3656,9 +3656,9 @@
     }
   },
   "enums": {
-    "a8n_hub.embedding_entity_type": {
+    "saas_template.embedding_entity_type": {
       "name": "embedding_entity_type",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": [
         "skill",
         "skill_alias",
@@ -3671,89 +3671,89 @@
         "person_profile"
       ]
     },
-    "a8n_hub.employment_type": {
+    "saas_template.employment_type": {
       "name": "employment_type",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["employee", "contractor", "intern", "freelancer"]
     },
-    "a8n_hub.file_object_type": {
+    "saas_template.file_object_type": {
       "name": "file_object_type",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["document", "image", "other"]
     },
-    "a8n_hub.integration_conflict_severity": {
+    "saas_template.integration_conflict_severity": {
       "name": "integration_conflict_severity",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["low", "medium", "high", "critical"]
     },
-    "a8n_hub.integration_conflict_status": {
+    "saas_template.integration_conflict_status": {
       "name": "integration_conflict_status",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["open", "resolved", "ignored"]
     },
-    "a8n_hub.integration_entity_link_state": {
+    "saas_template.integration_entity_link_state": {
       "name": "integration_entity_link_state",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["linked", "conflict", "orphaned", "deleted_remote"]
     },
-    "a8n_hub.integration_field_ownership": {
+    "saas_template.integration_field_ownership": {
       "name": "integration_field_ownership",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["remote_authoritative", "local_authoritative", "merge", "append_only"]
     },
-    "a8n_hub.integration_processing_status": {
+    "saas_template.integration_processing_status": {
       "name": "integration_processing_status",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["queued", "processing", "done", "failed"]
     },
-    "a8n_hub.integration_provider": {
+    "saas_template.integration_provider": {
       "name": "integration_provider",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["github"]
     },
-    "a8n_hub.integration_sync_item_status": {
+    "saas_template.integration_sync_item_status": {
       "name": "integration_sync_item_status",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["created", "updated", "skipped_no_change", "conflict", "error"]
     },
-    "a8n_hub.integration_sync_mode": {
+    "saas_template.integration_sync_mode": {
       "name": "integration_sync_mode",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["migration_full", "sync_incremental", "reconcile", "dry_run"]
     },
-    "a8n_hub.integration_sync_run_status": {
+    "saas_template.integration_sync_run_status": {
       "name": "integration_sync_run_status",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["queued", "running", "completed", "failed", "cancelled"]
     },
-    "a8n_hub.integration_type": {
+    "saas_template.integration_type": {
       "name": "integration_type",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["github"]
     },
-    "a8n_hub.person_relation_type": {
+    "saas_template.person_relation_type": {
       "name": "person_relation_type",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["manager", "mentor", "peer"]
     },
-    "a8n_hub.person_status": {
+    "saas_template.person_status": {
       "name": "person_status",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["active", "inactive", "onboarding"]
     },
-    "a8n_hub.tenant_role": {
+    "saas_template.tenant_role": {
       "name": "tenant_role",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["member", "manager", "admin"]
     },
-    "a8n_hub.webhook_delivery_status": {
+    "saas_template.webhook_delivery_status": {
       "name": "webhook_delivery_status",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["pending", "success", "failed", "retrying"]
     },
-    "a8n_hub.invitation_status": {
+    "saas_template.invitation_status": {
       "name": "invitation_status",
-      "schema": "a8n_hub",
+      "schema": "saas_template",
       "values": ["pending", "accepted", "expired", "revoked"]
     }
   },
