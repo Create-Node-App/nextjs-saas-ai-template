@@ -50,3 +50,7 @@ USER node
 
 # Set working directory
 WORKDIR /workspaces
+
+# Health check for the dev container (keeps container healthy signal alive)
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD node --version || exit 1

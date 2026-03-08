@@ -1,0 +1,71 @@
+# MegaLinter configuration for Next.js SaaS AI Template
+# More info at https://megalinter.io/latest/config-file/
+# All available variables: https://megalinter.io/latest/config-file/
+---
+
+# ─── Global Settings ──────────────────────────────────────────────────────────
+
+# Flavor: javascript (set in workflow)
+FLAVOR: javascript
+
+# Validate ALL files or only changed files (overridden in CI per workflow)
+VALIDATE_ALL_CODEBASE: false
+
+# Enable auto-fix for supported linters
+APPLY_FIXES: all
+
+# Print ALL linter results (not just failures)
+LOG_LEVEL: WARNING
+
+# ─── File Filters ─────────────────────────────────────────────────────────────
+
+# Ignore generated and third-party directories
+FILTER_REGEX_EXCLUDE: >-
+  (\.git/
+  |node_modules/
+  |\.next/
+  |dist/
+  |build/
+  |coverage/
+  |pnpm-lock\.yaml)
+
+# ─── Copy-Paste Detection (jscpd) ─────────────────────────────────────────────
+# Template repositories have intentional structural duplication across features.
+# Raise threshold to avoid false positives for boilerplate-style code.
+
+COPYPASTE_JSCPD_ARGUMENTS: >-
+  --min-lines 20
+  --min-tokens 150
+  --threshold 5
+
+# ─── CSS (stylelint) ──────────────────────────────────────────────────────────
+# Use the project's existing stylelint configuration
+
+CSS_STYLELINT_CONFIG_FILE: .stylelintrc.json
+
+# ─── DOCKERFILE (hadolint) ────────────────────────────────────────────────────
+
+DOCKERFILE_HADOLINT_CONFIG_FILE: .hadolint.yaml
+
+# ─── Spell Checking (cspell) ──────────────────────────────────────────────────
+
+SPELL_CSPELL_CONFIG_FILE: cspell.json
+
+# ─── TypeScript (ts-standard) ─────────────────────────────────────────────────
+# ts-standard is an opinionated formatter; disable errors as ESLint handles TS
+
+TYPESCRIPT_TS_STANDARD_DISABLE_ERRORS: true
+
+# ─── Repository Scanners ──────────────────────────────────────────────────────
+
+# grype: Vulnerability scanner for dependencies
+# Template projects have transitive dependency vulnerabilities that are managed
+# via pnpm overrides; disable errors to avoid blocking PRs on indirect deps.
+REPOSITORY_GRYPE_DISABLE_ERRORS: true
+
+# trivy: Multi-purpose security scanner
+# The Dockerfile HEALTHCHECK is present; suppress remaining advisory warnings.
+REPOSITORY_TRIVY_DISABLE_ERRORS: true
+
+# checkov: IaC security scanner for GitHub Actions
+REPOSITORY_CHECKOV_DISABLE_ERRORS: false

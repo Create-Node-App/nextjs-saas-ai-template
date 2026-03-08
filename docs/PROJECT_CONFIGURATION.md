@@ -44,7 +44,7 @@ The project uses [direnv](https://direnv.net/) for automatic environment loading
 
 | File                 | Purpose                                     | Git          |
 | -------------------- | ------------------------------------------- | ------------ |
-| `.envrc.dev.example` | Dev template with default values            | ✅ Committed |
+| `.envrc.example` | Dev template with default values            | ✅ Committed |
 | `.envrc`             | Your local environment (copy of a template) | ❌ Ignored   |
 | `.env.local`         | Additional overrides (API keys, secrets)    | ❌ Ignored   |
 
@@ -52,7 +52,7 @@ The project uses [direnv](https://direnv.net/) for automatic environment loading
 
 ```bash
 # Copy template (dev)
-cp .envrc.dev.example .envrc
+cp .envrc.example .envrc
 
 # Allow direnv
 direnv allow
