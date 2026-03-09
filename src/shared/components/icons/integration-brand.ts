@@ -6,19 +6,13 @@
 import type { ComponentType } from 'react';
 
 import {
-  BambooHRIcon,
-  DeelIcon,
   GitHubIcon,
   GitLabIcon,
   GoogleWorkspaceIcon,
-  LatticeIcon,
   LinkedInIcon,
-  ResourceGuruIcon,
   SlackIcon,
-  SmallImprovementsIcon,
   WebhookBrandIcon,
 } from './integration-icons';
-
 export interface IntegrationBrand {
   icon: ComponentType<{ className?: string }>;
   color: string;
@@ -33,39 +27,6 @@ export interface IntegrationBrand {
 }
 
 export const integrationBrands: Record<string, IntegrationBrand> = {
-  'resource-guru': {
-    icon: ResourceGuruIcon,
-    color: '#2ECC71',
-    bgLight: 'bg-emerald-50',
-    bgDark: 'dark:bg-emerald-950/20',
-    borderLight: 'border-emerald-200',
-    borderDark: 'dark:border-emerald-800',
-    textColor: 'text-emerald-600',
-    gradientFrom: 'from-emerald-50',
-    gradientTo: 'to-emerald-100/50',
-  },
-  deel: {
-    icon: DeelIcon,
-    color: '#0038FF',
-    bgLight: 'bg-blue-50',
-    bgDark: 'dark:bg-blue-950/20',
-    borderLight: 'border-blue-200',
-    borderDark: 'dark:border-blue-800',
-    textColor: 'text-blue-600',
-    gradientFrom: 'from-blue-50',
-    gradientTo: 'to-blue-100/50',
-  },
-  'small-improvements': {
-    icon: SmallImprovementsIcon,
-    color: '#FF6B35',
-    bgLight: 'bg-orange-50',
-    bgDark: 'dark:bg-orange-950/20',
-    borderLight: 'border-orange-200',
-    borderDark: 'dark:border-orange-800',
-    textColor: 'text-orange-600',
-    gradientFrom: 'from-orange-50',
-    gradientTo: 'to-orange-100/50',
-  },
   webhooks: {
     icon: WebhookBrandIcon,
     color: '#6366F1',
@@ -131,28 +92,6 @@ export const integrationBrands: Record<string, IntegrationBrand> = {
     textColor: 'text-blue-700',
     gradientFrom: 'from-blue-50',
     gradientTo: 'to-blue-100/50',
-  },
-  bamboohr: {
-    icon: BambooHRIcon,
-    color: '#73C41D',
-    bgLight: 'bg-lime-50',
-    bgDark: 'dark:bg-lime-950/20',
-    borderLight: 'border-lime-200',
-    borderDark: 'dark:border-lime-800',
-    textColor: 'text-lime-600',
-    gradientFrom: 'from-lime-50',
-    gradientTo: 'to-lime-100/50',
-  },
-  lattice: {
-    icon: LatticeIcon,
-    color: '#6C5CE7',
-    bgLight: 'bg-violet-50',
-    bgDark: 'dark:bg-violet-950/20',
-    borderLight: 'border-violet-200',
-    borderDark: 'dark:border-violet-800',
-    textColor: 'text-violet-600',
-    gradientFrom: 'from-violet-50',
-    gradientTo: 'to-violet-100/50',
   },
 } as const;
 

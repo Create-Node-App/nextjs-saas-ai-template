@@ -7,49 +7,6 @@ interface IconProps {
   className?: string;
 }
 
-/** Resource Guru - Green calendar/schedule mark */
-export function ResourceGuruIcon({ className }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="3" y="6" width="26" height="22" rx="3" fill="#2ECC71" />
-      <rect x="3" y="6" width="26" height="8" rx="3" fill="#27AE60" />
-      <rect x="8" y="3" width="3" height="6" rx="1.5" fill="#27AE60" />
-      <rect x="21" y="3" width="3" height="6" rx="1.5" fill="#27AE60" />
-      <rect x="8" y="18" width="4" height="3" rx="0.5" fill="white" opacity="0.9" />
-      <rect x="14" y="18" width="4" height="3" rx="0.5" fill="white" opacity="0.9" />
-      <rect x="20" y="18" width="4" height="3" rx="0.5" fill="white" opacity="0.9" />
-      <rect x="8" y="23" width="4" height="3" rx="0.5" fill="white" opacity="0.6" />
-      <rect x="14" y="23" width="4" height="3" rx="0.5" fill="white" opacity="0.6" />
-    </svg>
-  );
-}
-
-/** Deel - Blue "D" mark */
-export function DeelIcon({ className }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="6" fill="#0038FF" />
-      <path d="M10 8h6c4.418 0 8 3.582 8 8s-3.582 8-8 8h-6V8zm4 4v8h2c2.21 0 4-1.79 4-4s-1.79-4-4-4h-2z" fill="white" />
-    </svg>
-  );
-}
-
-/** Small Improvements - Orange chat/feedback bubble */
-export function SmallImprovementsIcon({ className }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="6" fill="#FF6B35" />
-      <path
-        d="M8 10c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2h-3l-3 3-3-3h-3c-1.1 0-2-.9-2-2v-8z"
-        fill="white"
-      />
-      <circle cx="12.5" cy="14" r="1.2" fill="#FF6B35" />
-      <circle cx="16" cy="14" r="1.2" fill="#FF6B35" />
-      <circle cx="19.5" cy="14" r="1.2" fill="#FF6B35" />
-    </svg>
-  );
-}
-
 /** Google Workspace - Google "G" multi-color logo */
 export function GoogleWorkspaceIcon({ className }: IconProps) {
   return (
@@ -128,34 +85,6 @@ export function LinkedInIcon({ className }: IconProps) {
         d="M10.5 13.5v8h-2.5v-8h2.5zM9.25 12.25a1.5 1.5 0 110-3 1.5 1.5 0 010 3zM24 21.5h-2.5v-3.9c0-.93-.017-2.13-1.3-2.13-1.3 0-1.5 1.015-1.5 2.063V21.5H16.2v-8h2.4v1.093h.033c.335-.634 1.153-1.3 2.374-1.3 2.539 0 3.007 1.671 3.007 3.843V21.5H24z"
         fill="white"
       />
-    </svg>
-  );
-}
-
-/** BambooHR - Bamboo leaf logo */
-export function BambooHRIcon({ className }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="6" fill="#73C41D" />
-      <path d="M16 6c0 0-6 4-6 10s6 10 6 10 6-4 6-10-6-10-6-10z" fill="white" opacity="0.9" />
-      <path d="M16 8v16M12 12c2 1 4 2 8 1M12 17c2 1 4 2 8 1" stroke="#73C41D" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-/** Lattice - Geometric logo */
-export function LatticeIcon({ className }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="6" fill="#6C5CE7" />
-      <path
-        d="M10 10l6 3 6-3M10 16l6 3 6-3M10 22l6 3 6-3"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M10 10v12M16 13v12M22 10v12" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
     </svg>
   );
 }

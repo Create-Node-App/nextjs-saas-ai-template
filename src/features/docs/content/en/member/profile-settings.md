@@ -82,6 +82,6 @@ If your tenant allows it, you can add a **personal email** in addition to your w
 
 When you update your profile (bio, location, timezone, or other settings), Next.js SaaS AI Template automatically refreshes your **search profile** so People Finder results stay current. The more complete your profile, the better others can find you for the right opportunities.
 
-Similarly, if your admin syncs data from integrations (e.g. Deel updates your job title, or GitHub syncs your repos), your search profile is updated automatically and an **evidence record** appears in your evidence list showing what was synced.
+Similarly, if your admin syncs data from integrations (e.g. GitHub syncs your repos), your search profile is updated automatically and an **evidence record** appears in your evidence list showing what was synced.
 
 > **Tip:** Update profile and timezone when you change role or location so recommendations and scheduling stay accurate.

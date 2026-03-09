@@ -82,6 +82,6 @@ Si tu tenant lo permite, podés agregar un **email personal** además del labora
 
 Cuando actualizás tu perfil (bio, ubicación, zona horaria u otros ajustes), Next.js SaaS AI Template actualiza automáticamente tu **perfil de búsqueda** para que los resultados de People Finder estén siempre al día. Mientras más completo sea tu perfil, mejor te encontrarán otros para las oportunidades correctas.
 
-De forma similar, si tu admin sincroniza datos de integraciones (ej. Deel actualiza tu cargo, o GitHub sincroniza tus repos), tu perfil de búsqueda se actualiza automáticamente y aparece un **registro de evidencia** en tu lista de evidencia mostrando qué se sincronizó.
+De forma similar, si tu admin sincroniza datos de integraciones (ej. GitHub sincroniza tus repos), tu perfil de búsqueda se actualiza automáticamente y aparece un **registro de evidencia** en tu lista de evidencia mostrando qué se sincronizó.
 
 > **Tip:** Actualizá perfil y zona horaria cuando cambies de rol o ubicación para que las recomendaciones y la programación sigan siendo precisas.

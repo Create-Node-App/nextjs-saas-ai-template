@@ -14,7 +14,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  Input,
   Label,
   Select,
   SelectContent,
@@ -23,7 +22,7 @@ import {
   SelectValue,
 } from '@/shared/components/ui';
 
-type Provider = 'small_improvements' | 'deel' | 'resource_guru' | 'github' | 'google_workspace';
+type Provider = 'github' | 'google_workspace';
 type Mode = 'migration_full' | 'sync_incremental' | 'reconcile' | 'dry_run';
 
 interface IntegrationControlPlanePanelProps {
@@ -68,21 +67,14 @@ interface Readiness {
 }
 
 const PROVIDER_TO_ENDPOINT: Record<Provider, string> = {
-  small_improvements: 'small-improvements',
-  deel: 'deel',
-  resource_guru: 'resource-guru',
   github: 'github',
   google_workspace: 'google-workspace',
 };
 
 export function IntegrationControlPlanePanel({ tenantSlug }: IntegrationControlPlanePanelProps) {
   const t = useTranslations('admin.integrationsControl');
-  const [provider, setProvider] = useState<Provider>('small_improvements');
+  const [provider, setProvider] = useState<Provider>('github');
   const [mode, setMode] = useState<Mode>('sync_incremental');
-  const [entities, setEntities] = useState('objectives,praise');
-  const [fromDate, setFromDate] = useState('');
-  const [toDate, setToDate] = useState('');
-  const [personEmails, setPersonEmails] = useState('');
   const [isRunning, setIsRunning] = useState(false);
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
   const [progress, setProgress] = useState<string[]>([]);
@@ -140,24 +132,7 @@ export function IntegrationControlPlanePanel({ tenantSlug }: IntegrationControlP
     setResult(null);
     setProgress([]);
     try {
-      const body =
-        provider === 'small_improvements'
-          ? {
-              mode,
-              entities: entities
-                .split(',')
-                .map((value) => value.trim())
-                .filter(Boolean),
-              scope: {
-                fromDate: fromDate || undefined,
-                toDate: toDate || undefined,
-                personEmails: personEmails
-                  .split(',')
-                  .map((value) => value.trim())
-                  .filter(Boolean),
-              },
-            }
-          : {};
+      const body = {};
 
       const res = await fetch(`/api/tenants/${tenantSlug}/admin/integrations/${endpoint}/sync`, {
         method: 'POST',
@@ -206,7 +181,7 @@ export function IntegrationControlPlanePanel({ tenantSlug }: IntegrationControlP
     } finally {
       setIsRunning(false);
     }
-  }, [endpoint, entities, fromDate, mode, personEmails, provider, refreshOpsData, t, tenantSlug, toDate]);
+  }, [endpoint, mode, provider, refreshOpsData, t, tenantSlug]);
 
   const resolveConflict = useCallback(
     async (conflictId: string) => {
@@ -263,9 +238,6 @@ export function IntegrationControlPlanePanel({ tenantSlug }: IntegrationControlP
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="small_improvements">Small Improvements</SelectItem>
-                <SelectItem value="deel">Deel</SelectItem>
-                <SelectItem value="resource_guru">Resource Guru</SelectItem>
                 <SelectItem value="github">GitHub</SelectItem>
                 <SelectItem value="google_workspace">Google Workspace</SelectItem>
               </SelectContent>
@@ -286,33 +258,6 @@ export function IntegrationControlPlanePanel({ tenantSlug }: IntegrationControlP
             </Select>
           </div>
         </div>
-
-        {provider === 'small_improvements' && (
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label>{t('entities')}</Label>
-              <Input value={entities} onChange={(event) => setEntities(event.target.value)} />
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="space-y-2">
-                <Label>{t('fromDate')}</Label>
-                <Input type="date" value={fromDate} onChange={(event) => setFromDate(event.target.value)} />
-              </div>
-              <div className="space-y-2">
-                <Label>{t('toDate')}</Label>
-                <Input type="date" value={toDate} onChange={(event) => setToDate(event.target.value)} />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label>{t('personEmails')}</Label>
-              <Input
-                value={personEmails}
-                onChange={(event) => setPersonEmails(event.target.value)}
-                placeholder={t('personEmailsPlaceholder')}
-              />
-            </div>
-          </div>
-        )}
 
         <Button onClick={handleRun} disabled={isRunning}>
           {isRunning ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Play className="h-4 w-4 mr-2" />}

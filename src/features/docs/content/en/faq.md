@@ -54,7 +54,7 @@ Admins set the **AI provider and model** in **Admin** → **Settings**. Data sen
 
 ## What is "Integration Sync" evidence?
 
-When your admin runs a sync from an integration (e.g. GitHub, Deel, Resource Guru, Small Improvements), Next.js SaaS AI Template **automatically creates an evidence record** on each synced person's profile. This shows what data was synced and when. It appears in your **Evidence** tab alongside CVs and other documents.
+When your admin runs a sync from an integration (e.g. GitHub), Next.js SaaS AI Template **automatically creates an evidence record** on each synced person's profile. This shows what data was synced and when. It appears in your **Evidence** tab alongside CVs and other documents.
 
 - These records are labeled **"Integration Sync"** and include a summary (e.g. "GitHub Profile — 25 repos, TypeScript, Python").
 - Each sync **updates** the existing record rather than creating duplicates. The timestamp shows the last sync date.

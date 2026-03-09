@@ -55,19 +55,6 @@ export const env = createEnv({
       .default('false')
       .transform((val) => val === 'true'),
 
-    // Resource Guru (OAuth2 API integration)
-    RESOURCE_GURU_CLIENT_ID: z.string().optional().describe('Resource Guru OAuth2 client ID'),
-    RESOURCE_GURU_CLIENT_SECRET: z.string().optional().describe('Resource Guru OAuth2 client secret'),
-
-    // Deel (OAuth2 API integration)
-    DEEL_CLIENT_ID: z.string().optional().describe('Deel OAuth2 client ID'),
-    DEEL_CLIENT_SECRET: z.string().optional().describe('Deel OAuth2 client secret'),
-    DEEL_USE_SANDBOX: z.string().optional().describe('Use Deel sandbox environment'),
-
-    // Small Improvements (PAT-based API)
-    SMALL_IMPROVEMENTS_ACCESS_TOKEN: z.string().optional().describe('Small Improvements Personal Access Token'),
-    SMALL_IMPROVEMENTS_SUBDOMAIN: z.string().optional().describe('Small Improvements company subdomain'),
-
     // GitHub (OAuth App integration)
     GITHUB_INTEGRATION_CLIENT_ID: z.string().optional().describe('GitHub OAuth App client ID'),
     GITHUB_INTEGRATION_CLIENT_SECRET: z.string().optional().describe('GitHub OAuth App client secret'),
@@ -114,13 +101,6 @@ export const env = createEnv({
     S3_REGION: process.env.S3_REGION,
     SENTRY_DSN: process.env.SENTRY_DSN,
     ENABLE_AI_FEATURES: process.env.ENABLE_AI_FEATURES,
-    RESOURCE_GURU_CLIENT_ID: process.env.RESOURCE_GURU_CLIENT_ID,
-    RESOURCE_GURU_CLIENT_SECRET: process.env.RESOURCE_GURU_CLIENT_SECRET,
-    DEEL_CLIENT_ID: process.env.DEEL_CLIENT_ID,
-    DEEL_CLIENT_SECRET: process.env.DEEL_CLIENT_SECRET,
-    DEEL_USE_SANDBOX: process.env.DEEL_USE_SANDBOX,
-    SMALL_IMPROVEMENTS_ACCESS_TOKEN: process.env.SMALL_IMPROVEMENTS_ACCESS_TOKEN,
-    SMALL_IMPROVEMENTS_SUBDOMAIN: process.env.SMALL_IMPROVEMENTS_SUBDOMAIN,
     GITHUB_INTEGRATION_CLIENT_ID: process.env.GITHUB_INTEGRATION_CLIENT_ID,
     GITHUB_INTEGRATION_CLIENT_SECRET: process.env.GITHUB_INTEGRATION_CLIENT_SECRET,
     LINKEDIN_CLIENT_ID: process.env.LINKEDIN_CLIENT_ID,

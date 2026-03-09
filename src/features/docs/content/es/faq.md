@@ -54,7 +54,7 @@ Los admins definen el **proveedor y modelo de IA** en **Admin** → **Configurac
 
 ## ¿Qué es la evidencia de "Sincronización de Integración"?
 
-Cuando tu admin ejecuta una sincronización desde una integración (ej. GitHub, Deel, Resource Guru, Small Improvements), Next.js SaaS AI Template **crea automáticamente un registro de evidencia** en el perfil de cada persona sincronizada. Esto muestra qué datos se sincronizaron y cuándo. Aparece en tu pestaña **Evidencia** junto con CVs y otros documentos.
+Cuando tu admin ejecuta una sincronización desde una integración (ej. GitHub), Next.js SaaS AI Template **crea automáticamente un registro de evidencia** en el perfil de cada persona sincronizada. Esto muestra qué datos se sincronizaron y cuándo. Aparece en tu pestaña **Evidencia** junto con CVs y otros documentos.
 
 - Estos registros se etiquetan como **"Sincronización"** e incluyen un resumen (ej. "GitHub Profile — 25 repos, TypeScript, Python").
 - Cada sync **actualiza** el registro existente en lugar de crear duplicados. La fecha muestra la última sincronización.

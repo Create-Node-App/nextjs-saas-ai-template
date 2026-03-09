@@ -1,6 +1,5 @@
 /**
  * Admin GitHub integration page: credentials config, connection, settings, and sync wizard.
- * Follows the same pattern as Resource Guru and Deel.
  */
 
 import { Plug } from 'lucide-react';

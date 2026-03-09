@@ -20,7 +20,7 @@ Los **admins** de Next.js SaaS AI Template configuran la plataforma para su orga
 | **Entrenamientos y roadmaps** | Crear contenido de entrenamiento; usar el editor visual de roadmaps (arrastrar y soltar); publicar/archivar; vincular a habilidades                        |
 | **Roles y permisos**          | Gestionar roles del sistema y personalizados; asignar permisos; configurar PBAC (acceso basado en permisos)                                                |
 | **Configuración**             | Feature flags, branding (logo, colores), config de proveedor de IA, escalas de habilidades, categorías, almacenamiento                                     |
-| **Integraciones**             | Configurar GitHub, LinkedIn, Slack, Deel, BambooHR, Google Workspace, Resource Guru, Small Improvements, GitLab, Lattice, webhooks; OAuth y mapeo de datos |
+| **Integraciones**             | Configurar GitHub (activo), Webhooks (activo), LinkedIn, Slack, Google Workspace, GitLab (próximos); OAuth y mapeo de datos |
 | **Analíticas y auditoría**    | Ver dashboard de analíticas de admin y registro de auditoría; filtrar por tipo de evento                                                                   |
 | **Onboarding e importación**  | Dar de alta nuevas personas (p. ej. subida de CV); procesamiento de CV con IA y extracción de habilidades; importación masiva                              |
 | **Reconocimientos**           | Gestionar categorías de reconocimiento; habilitar/deshabilitar; ver todos los reconocimientos                                                              |

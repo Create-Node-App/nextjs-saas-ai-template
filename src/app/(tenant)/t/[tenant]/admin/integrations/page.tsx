@@ -39,26 +39,11 @@ export default async function IntegrationsPage({ params }: IntegrationsPageProps
 
   // Load tenant settings to determine connection status
   const settings = await getTenantSettings(tenant);
-  const rgSettings = settings?.integrations?.resourceGuru;
-  const deelSettings = settings?.integrations?.deel;
-  const siSettings = settings?.integrations?.smallImprovements;
   const ghSettings = settings?.integrations?.github;
-  const liSettings = settings?.integrations?.linkedin;
-  const googleSettings = settings?.integrations?.googleWorkspace;
 
   // Define all integrations with their status
   const integrations: IntegrationDef[] = [
     // Active integrations
-    {
-      id: 'resource-guru',
-      nameKey: 'integrationsPage.resourceGuru.name',
-      descriptionKey: 'integrationsPage.resourceGuru.description',
-      href: '/admin/integrations/resource-guru',
-      isConnected: rgSettings?.enabled ?? false,
-      isEnabled: rgSettings?.enabled ?? false,
-      lastSyncAt: null,
-      comingSoon: false,
-    },
     {
       id: 'webhooks',
       nameKey: 'integrationsPage.webhooks.name',
@@ -67,26 +52,6 @@ export default async function IntegrationsPage({ params }: IntegrationsPageProps
       isConnected: (settings?.integrations?.webhooks?.length ?? 0) > 0,
       isEnabled: true,
       lastSyncAt: null,
-      comingSoon: false,
-    },
-    {
-      id: 'deel',
-      nameKey: 'integrationsPage.deel.name',
-      descriptionKey: 'integrationsPage.deel.description',
-      href: '/admin/integrations/deel',
-      isConnected: deelSettings?.enabled ?? false,
-      isEnabled: deelSettings?.enabled ?? false,
-      lastSyncAt: deelSettings?.lastSyncAt ?? null,
-      comingSoon: false,
-    },
-    {
-      id: 'small-improvements',
-      nameKey: 'integrationsPage.smallImprovements.name',
-      descriptionKey: 'integrationsPage.smallImprovements.description',
-      href: '/admin/integrations/small-improvements',
-      isConnected: !!(siSettings?.enabled && siSettings?.accessToken),
-      isEnabled: siSettings?.enabled ?? false,
-      lastSyncAt: siSettings?.lastSyncAt ?? null,
       comingSoon: false,
     },
     // GitHub - active integration
@@ -106,10 +71,10 @@ export default async function IntegrationsPage({ params }: IntegrationsPageProps
       nameKey: 'integrationsPage.googleWorkspace.name',
       descriptionKey: 'integrationsPage.googleWorkspace.description',
       href: '/admin/integrations/google-workspace',
-      isConnected: googleSettings?.enabled ?? false,
-      isEnabled: googleSettings?.enabled ?? false,
-      lastSyncAt: googleSettings?.lastSyncAt ?? null,
-      comingSoon: false,
+      isConnected: false,
+      isEnabled: false,
+      lastSyncAt: null,
+      comingSoon: true,
     },
     {
       id: 'slack',
@@ -136,26 +101,6 @@ export default async function IntegrationsPage({ params }: IntegrationsPageProps
       nameKey: 'integrationsPage.linkedin.name',
       descriptionKey: 'integrationsPage.linkedin.description',
       href: '/admin/integrations/linkedin',
-      isConnected: liSettings?.enabled ?? false,
-      isEnabled: liSettings?.enabled ?? false,
-      lastSyncAt: null,
-      comingSoon: false,
-    },
-    {
-      id: 'bamboohr',
-      nameKey: 'integrationsPage.bamboohr.name',
-      descriptionKey: 'integrationsPage.bamboohr.description',
-      href: '/admin/integrations/bamboohr',
-      isConnected: false,
-      isEnabled: false,
-      lastSyncAt: null,
-      comingSoon: true,
-    },
-    {
-      id: 'lattice',
-      nameKey: 'integrationsPage.lattice.name',
-      descriptionKey: 'integrationsPage.lattice.description',
-      href: '/admin/integrations/lattice',
       isConnected: false,
       isEnabled: false,
       lastSyncAt: null,

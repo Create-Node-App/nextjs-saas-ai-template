@@ -19,7 +19,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ ten
   const tenant = await getTenantBySlug(tenantSlug);
   if (!tenant) return NextResponse.json({ error: 'Tenant not found' }, { status: 404 });
 
-  const provider = (request.nextUrl.searchParams.get('provider') ?? 'small_improvements') as Provider;
+  const provider = (request.nextUrl.searchParams.get('provider') ?? 'github') as Provider;
   const readiness = await getCutoverReadiness({
     tenantId: tenant.id,
     provider,

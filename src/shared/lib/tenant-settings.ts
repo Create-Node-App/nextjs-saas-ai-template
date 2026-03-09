@@ -185,7 +185,7 @@ const integrationBaseSchema = z.object({
 });
 
 const hrisSchema = integrationBaseSchema.extend({
-  provider: z.enum(['workday', 'bamboohr', 'adp', 'custom']).optional(),
+  provider: z.enum(['workday', 'adp', 'custom']).optional(),
   apiUrl: z.string().url().optional(),
   apiKey: z.string().optional(),
   syncIntervalHours: z.number().int().min(1).max(168).optional().default(24),
@@ -195,84 +195,6 @@ const ssoSchema = z.object({
   provider: z.enum(['okta', 'azure_ad', 'google', 'custom']).optional(),
   enabled: z.boolean().optional().default(false),
 });
-
-/** Resource Guru integration settings */
-const resourceGuruSettingsSchema = integrationBaseSchema.extend({
-  /**
-   * OAuth2 Client ID for Resource Guru. If not set, falls back to RESOURCE_GURU_CLIENT_ID env var.
-   * Create an OAuth app at https://developers.resourceguruapp.com/
-   */
-  clientId: z.string().optional(),
-  /**
-   * OAuth2 Client Secret for Resource Guru. If not set, falls back to RESOURCE_GURU_CLIENT_SECRET env var.
-   */
-  clientSecret: z.string().optional(),
-  /** Allow managers to import clients/projects from Resource Guru */
-  allowManagerImport: z.boolean().optional().default(false),
-  /** Default Resource Guru account subdomain for this tenant */
-  defaultAccountSubdomain: z.string().optional(),
-  /** Default role slugs for auto-created persons */
-  defaultRolesForNewPersons: z.array(z.string()).optional().default(['member']),
-  /** Auto-create persons or require admin approval */
-  autoCreatePersons: z.boolean().optional().default(false),
-});
-
-export type ResourceGuruSettings = z.infer<typeof resourceGuruSettingsSchema>;
-
-// ============================================================================
-// Deel Integration Schema
-// ============================================================================
-
-const deelSettingsSchema = integrationBaseSchema.extend({
-  /**
-   * OAuth2 Client ID for Deel. If not set, falls back to DEEL_CLIENT_ID env var.
-   */
-  clientId: z.string().optional(),
-  /**
-   * OAuth2 Client Secret for Deel. If not set, falls back to DEEL_CLIENT_SECRET env var.
-   */
-  clientSecret: z.string().optional(),
-  /** Use Deel sandbox environment (for development/testing) */
-  useSandbox: z.boolean().optional().default(false),
-  /** Sync departments from Deel */
-  syncDepartments: z.boolean().optional().default(true),
-  /** Sync manager relationships from Deel */
-  syncManagers: z.boolean().optional().default(true),
-  /** Default role slugs for auto-created persons */
-  defaultRolesForNewPersons: z.array(z.string()).optional().default(['member']),
-  /** Auto-create persons or require admin approval */
-  autoCreatePersons: z.boolean().optional().default(false),
-  /** Last sync timestamp */
-  lastSyncAt: z.string().datetime().optional(),
-});
-
-export type DeelSettings = z.infer<typeof deelSettingsSchema>;
-
-// ============================================================================
-// Small Improvements Integration Schema
-// ============================================================================
-
-const smallImprovementsSettingsSchema = integrationBaseSchema.extend({
-  /**
-   * Personal Access Token for Small Improvements API.
-   * Generated in Small Improvements Settings > Integrations > Personal Access Tokens.
-   * Stored encrypted.
-   */
-  accessToken: z.string().optional(),
-  /**
-   * Company subdomain for Small Improvements (e.g., 'acme' for acme.small-improvements.com).
-   */
-  companySubdomain: z.string().optional(),
-  /** Default SI sync mode for control-plane operations */
-  defaultSyncMode: z
-    .enum(['migration_full', 'sync_incremental', 'reconcile', 'dry_run'])
-    .optional()
-    .default('sync_incremental'),
-  /** Last sync timestamp */
-  lastSyncAt: z.string().datetime().optional(),
-});
-
-export type SmallImprovementsSettings = z.infer<typeof smallImprovementsSettingsSchema>;
 
 // ============================================================================
 // Google Workspace Integration Schema
@@ -387,12 +309,6 @@ export const integrationsSchema = z.object({
   hris: hrisSchema.optional(),
   /** SSO configuration (placeholder for future) */
   sso: ssoSchema.optional(),
-  /** Resource Guru integration settings */
-  resourceGuru: resourceGuruSettingsSchema.optional(),
-  /** Deel integration settings */
-  deel: deelSettingsSchema.optional(),
-  /** Small Improvements integration settings */
-  smallImprovements: smallImprovementsSettingsSchema.optional(),
   /** Google Workspace integration settings */
   googleWorkspace: googleWorkspaceSettingsSchema.optional(),
   /** GitHub integration settings */
@@ -661,12 +577,6 @@ export const DEFAULT_UI: NonNullable<TenantSettings['ui']> = {
 
 export const DEFAULT_INTEGRATIONS: NonNullable<TenantSettings['integrations']> = {
   webhooks: [],
-  resourceGuru: {
-    enabled: false,
-    allowManagerImport: false,
-    defaultRolesForNewPersons: ['member'],
-    autoCreatePersons: false,
-  },
   googleWorkspace: {
     enabled: false,
     defaultMeetingLanguage: 'en-US',

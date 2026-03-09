@@ -20,7 +20,7 @@ Next.js SaaS AI Template **admins** configure the platform for their organizatio
 | **Trainings & Roadmaps**  | Create training content; use the visual roadmap editor (drag-and-drop); publish/archive; link to skills                                                   |
 | **Roles & Permissions**   | Manage system and custom roles; assign permissions; configure PBAC (permission-based access)                                                              |
 | **Settings**              | Feature flags, branding (logo, colors), AI provider config, skill scales, categories, storage                                                             |
-| **Integrations**          | Configure GitHub, LinkedIn, Slack, Deel, BambooHR, Google Workspace, Resource Guru, Small Improvements, GitLab, Lattice, webhooks; OAuth and data mapping |
+| **Integrations**          | Configure GitHub (active), Webhooks (active), LinkedIn, Slack, Google Workspace, GitLab (coming soon); OAuth and data mapping |
 | **Analytics & Audit**     | View admin analytics dashboard and audit log; filter by event type                                                                                        |
 | **Onboarding & Import**   | Onboard new persons (e.g. CV upload); AI-powered CV processing and skill extraction; bulk import                                                          |
 | **Recognitions**          | Manage recognition categories; enable/disable; view all recognitions                                                                                      |
