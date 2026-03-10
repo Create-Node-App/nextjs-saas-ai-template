@@ -20,7 +20,7 @@ A fully-featured, production-ready Next.js 15 template for building multi-tenant
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ How to Use This Template
 
 > [!TIP]
 > **Using the CLI is always recommended over cloning this repo directly.**
@@ -57,12 +57,13 @@ cd my-saas-app
 
 ---
 
-### 🐳 Option 3 — DevContainer (local dev environment)
+## 🚀 Getting Started
+
+Once you have created your project (via the CLI or GitHub template above), start the local development environment using **DevContainer** — no manual setup needed.
 
 **Prerequisites:** [Docker](https://www.docker.com/) + IDE with Dev Containers support (VS Code, Cursor)
 
 ```bash
-git clone https://github.com/Create-Node-App/nextjs-saas-ai-template.git my-saas-app
 cd my-saas-app
 # Open in VS Code/Cursor and click "Reopen in Container"
 pnpm dev
@@ -73,14 +74,12 @@ Or with the DevContainer CLI:
 ```bash
 npm install -g @devcontainers/cli
 
-git clone https://github.com/Create-Node-App/nextjs-saas-ai-template.git my-saas-app
 cd my-saas-app
-
 devcontainer up --workspace-folder .
 devcontainer exec --workspace-folder . pnpm dev
 ```
 
-The DevContainer automatically configures PostgreSQL + pgvector, environment variables, and all tooling. No manual setup needed.
+The DevContainer automatically configures PostgreSQL + pgvector, environment variables, and all tooling.
 
 Open [http://localhost:3000](http://localhost:3000).
 
