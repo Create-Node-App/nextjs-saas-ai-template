@@ -14,6 +14,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  Input,
   Label,
   Select,
   SelectContent,
@@ -181,7 +182,7 @@ export function IntegrationControlPlanePanel({ tenantSlug }: IntegrationControlP
     } finally {
       setIsRunning(false);
     }
-  }, [endpoint, mode, provider, refreshOpsData, t, tenantSlug]);
+  }, [endpoint, refreshOpsData, t, tenantSlug]);
 
   const resolveConflict = useCallback(
     async (conflictId: string) => {
