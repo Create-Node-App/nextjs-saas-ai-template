@@ -20,6 +20,73 @@ A fully-featured, production-ready Next.js 15 template for building multi-tenant
 
 ---
 
+## 🛠️ How to Use This Template
+
+> [!TIP]
+> **Using the CLI is always recommended over cloning this repo directly.**
+> This template repository may become outdated over time. The CLI always fetches the latest version of the template plus lets you add extensions (Tailwind, shadcn/ui, Auth.js, Drizzle, i18n, and more) in a single command.
+
+### ⚡ Option 1 — CLI (Recommended — always up to date)
+
+Use **[`create-awesome-node-app`](https://www.npmjs.com/package/create-awesome-node-app)** to scaffold the latest version of this template with optional addons:
+
+```bash
+npx create-awesome-node-app my-saas-app \
+  --template nextjs-saas-ai-starter
+```
+
+Browse all available templates, extensions, and docs at **[create-awesome-node-app.vercel.app](https://create-awesome-node-app.vercel.app/)**.
+
+> [!NOTE]
+> The CLI automatically pulls the latest template version and lets you compose extensions on top of it.
+> This repo snapshot may lag behind. **Always prefer the CLI for new projects.**
+
+---
+
+### 🐙 Option 2 — GitHub Template (quick start, may be outdated)
+
+Click the **"Use this template"** button at the top of this page, or:
+
+```bash
+gh repo create my-saas-app --template Create-Node-App/nextjs-saas-ai-template --clone
+cd my-saas-app
+```
+
+> [!WARNING]
+> This repository is a point-in-time snapshot. It may not include the latest updates, bug fixes, or new extensions available through the CLI. For production projects, **Option 1 is strongly recommended**.
+
+---
+
+## 🚀 Getting Started
+
+Once you have created your project (via the CLI or GitHub template above), start the local development environment using **DevContainer** — no manual setup needed.
+
+**Prerequisites:** [Docker](https://www.docker.com/) + IDE with Dev Containers support (VS Code, Cursor)
+
+```bash
+cd my-saas-app
+# Open in VS Code/Cursor and click "Reopen in Container"
+pnpm dev
+```
+
+Or with the DevContainer CLI:
+
+```bash
+npm install -g @devcontainers/cli
+
+cd my-saas-app
+devcontainer up --workspace-folder .
+devcontainer exec --workspace-folder . pnpm dev
+```
+
+The DevContainer automatically configures PostgreSQL + pgvector, environment variables, and all tooling.
+
+Open [http://localhost:3000](http://localhost:3000).
+
+> **Note:** Create `.env.local` only if you need to override specific values (e.g., `OPENAI_API_KEY` for AI features).
+
+---
+
 ## ✨ Features
 
 - 🏢 **Multi-tenant architecture** — tenant-scoped routes (`/t/[tenant]`), full tenant isolation in DB
@@ -37,48 +104,6 @@ A fully-featured, production-ready Next.js 15 template for building multi-tenant
 - 📚 **Storybook** — component development and visual testing
 - ⚡ **GitHub Actions CI** — build, lint, type-check, tests, mega-linter
 - 🧩 **Feature template** — `_feature-template_` scaffold for adding new features
-
----
-
-## 🚀 Quick Start
-
-### Option 1: Use this template (Recommended)
-
-Click **"Use this template"** on [GitHub](https://github.com/Create-Node-App/nextjs-saas-ai-template), or use the CLI:
-
-```bash
-gh repo create my-saas-app --template Create-Node-App/nextjs-saas-ai-template
-cd my-saas-app
-```
-
-### Option 2: Clone and run with DevContainer
-
-**Prerequisites:** [Docker](https://www.docker.com/) + IDE with Dev Containers support (VS Code, Cursor)
-
-```bash
-git clone https://github.com/Create-Node-App/nextjs-saas-ai-template.git my-saas-app
-cd my-saas-app
-# Open in VS Code/Cursor and click "Reopen in Container"
-pnpm dev
-```
-
-The DevContainer automatically configures PostgreSQL + pgvector, environment variables, and all tooling. No manual setup needed.
-
-### Option 3: DevContainer CLI
-
-```bash
-npm install -g @devcontainers/cli
-
-git clone https://github.com/Create-Node-App/nextjs-saas-ai-template.git my-saas-app
-cd my-saas-app
-
-devcontainer up --workspace-folder .
-devcontainer exec --workspace-folder . pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-> **Note:** Create `.env.local` only if you need to override specific values (e.g., `OPENAI_API_KEY` for AI features).
 
 ---
 
