@@ -10,15 +10,18 @@
 
 import 'dotenv/config';
 import { sql } from 'drizzle-orm';
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import * as readline from 'readline';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+const DATABASE_URL = process.env.DATABASE_URL;
+if (!DATABASE_URL) {
+  throw new Error('DATABASE_URL environment variable is not set');
+}
 
-const db = drizzle(pool);
+const queryClient = postgres(DATABASE_URL, { idle_timeout: 20 });
+
+const db = drizzle(queryClient);
 
 // Tables in correct deletion order (respecting foreign keys)
 // Order: Child tables first, then parent tables
@@ -130,13 +133,15 @@ async function resetDatabase() {
           SELECT FROM information_schema.tables
           WHERE table_schema = 'saas_template'
           AND table_name = ${table}
-        );
+        ) as exists
       `);
 
-      if (tableExists.rows[0]?.exists) {
+      const exists = tableExists[0]?.exists;
+
+      if (exists) {
         // Delete all rows from the table (use schema-qualified name)
-        const result = await db.execute(sql.raw(`DELETE FROM "saas_template"."${table}"`));
-        const rowCount = result.rowCount || 0;
+        const result = await db.execute(sql`DELETE FROM "saas_template"."${table}"`);
+        const rowCount = result.length > 0 ? Number(result[0]?.count || 0) : 0;
         if (rowCount > 0) {
           console.log(`  ✓ Cleaned ${table}: ${rowCount} rows deleted`);
           deletedCount += rowCount;
@@ -167,7 +172,7 @@ async function main() {
     console.error('\n❌ Reset failed:', error);
     process.exit(1);
   } finally {
-    await pool.end();
+    await queryClient.end();
   }
 }
 
