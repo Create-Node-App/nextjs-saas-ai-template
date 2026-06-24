@@ -35,7 +35,7 @@ npx create-awesome-node-app my-saas-app \
   --template nextjs-saas-ai-starter
 ```
 
-Browse all available templates, extensions, and docs at **[create-awesome-node-app.vercel.app](https://create-awesome-node-app.vercel.app/)**.
+Browse all available templates, extensions, and docs at **[create-awesome-node-app.vercel.app](https://create-awesome-node-app.vercel.app/)**. Template definitions live in **[Create-Node-App/cna-templates](https://github.com/Create-Node-App/cna-templates)**.
 
 > [!NOTE]
 > The CLI automatically pulls the latest template version and lets you compose extensions on top of it.
