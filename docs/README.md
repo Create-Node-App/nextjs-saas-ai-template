@@ -2,6 +2,10 @@
 
 This folder is the **single source of truth** for the Next.js SaaS AI Template. AI agents should use [AGENTS.md](../AGENTS.md) as an index; humans and agents read these docs for authoritative content.
 
+## Template Consumption
+
+This repository is part of the [Create-Node-App](https://github.com/Create-Node-App) ecosystem. New projects should consume this template through [`create-awesome-node-app`](https://www.npmjs.com/package/create-awesome-node-app) using the `nextjs-saas-ai-starter` template, while canonical template definitions live in [Create-Node-App/cna-templates](https://github.com/Create-Node-App/cna-templates).
+
 ## Core Documentation
 
 | Document                                            | Description                                                |
