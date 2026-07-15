@@ -60,20 +60,13 @@ export function CommandPalette({ open: controlledOpen, onOpenChange }: CommandPa
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open, setOpen]);
 
-  // Clear state when closing
-  useEffect(() => {
-    if (!open) {
-      setQuery('');
-      setResults([]);
-      setSearchMethod(null);
-    }
-  }, [open]);
-
   // Debounced search
   useEffect(() => {
     if (!query.trim() || !tenant?.slug) {
-      setResults([]);
-      setSearchMethod(null);
+      Promise.resolve().then(() => {
+        setResults([]);
+        setSearchMethod(null);
+      });
       return;
     }
 
@@ -140,8 +133,17 @@ export function CommandPalette({ open: controlledOpen, onOpenChange }: CommandPa
     setQuery(recentQuery);
   }, []);
 
+  const handleOpenChangeWrapper = useCallback((newOpen: boolean) => {
+    setOpen(newOpen);
+    if (!newOpen) {
+      setQuery('');
+      setResults([]);
+      setSearchMethod(null);
+    }
+  }, [setOpen]);
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChangeWrapper}>
       <DialogContent className="overflow-hidden p-0 shadow-lg max-w-2xl">
         <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           <div className="flex items-center border-b px-3">

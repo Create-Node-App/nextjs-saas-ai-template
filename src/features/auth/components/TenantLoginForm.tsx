@@ -75,7 +75,7 @@ export function TenantLoginForm({ tenantSlug, tenantName, initialEmail = '' }: T
       } else if (result?.url) {
         // Keep navigation on current origin even if Auth.js returns an absolute URL with a stale host.
         const target = new URL(result.url, window.location.origin);
-        window.location.href = `${target.pathname}${target.search}${target.hash}`;
+        window.location.assign(`${target.pathname}${target.search}${target.hash}`);
       }
     } catch {
       setServerError('An unexpected error occurred');

@@ -123,7 +123,10 @@ export function IntegrationControlPlanePanel({ tenantSlug }: IntegrationControlP
   }, [provider, tenantSlug]);
 
   useEffect(() => {
-    void refreshOpsData();
+    const fetchData = async () => {
+      await refreshOpsData();
+    };
+    void fetchData();
   }, [refreshOpsData]);
 
   const endpoint = useMemo(() => PROVIDER_TO_ENDPOINT[provider], [provider]);
