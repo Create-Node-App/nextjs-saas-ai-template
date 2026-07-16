@@ -194,3 +194,11 @@ MIT — see [LICENSE](./LICENSE) for details.
 ---
 
 _Part of the [Create-Node-App](https://github.com/Create-Node-App) ecosystem — spin up production-ready applications with best practices baked in._
+
+## 👥 Contributors
+
+<a href="https://github.com/Create-Node-App/nextjs-saas-ai-template/contributors">
+  <img src="https://contrib.rocks/image?repo=Create-Node-App/nextjs-saas-ai-template"/>
+</a>
+
+Made with [contributors-img](https://contrib.rocks).
