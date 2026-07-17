@@ -1,3 +1,23 @@
+> [!IMPORTANT]
+> **Showcase sample — prefer the CLI for new projects.**
+>
+> This repository is a **capability demo** of
+> [`create-awesome-node-app`](https://www.npmjs.com/package/create-awesome-node-app):
+> a real multi-tenant Next.js SaaS with AI, built from the
+> `nextjs-saas-ai-starter` template.
+>
+> It is **not** the recommended way to start a new product. This snapshot can
+> lag the live template bank, miss bugfixes, and omit newer extensions.
+>
+> **Start here instead:**
+>
+> ```bash
+> npx create-awesome-node-app my-saas-app --template nextjs-saas-ai-starter
+> ```
+>
+> Docs & catalog: [create-awesome-node-app.vercel.app](https://create-awesome-node-app.vercel.app/) ·
+> Templates: [Create-Node-App/cna-templates](https://github.com/Create-Node-App/cna-templates)
+
 # Next.js SaaS AI Template
 
 > Production-ready Next.js boilerplate for multi-tenant SaaS with AI built-in

@@ -45,9 +45,11 @@ export function SearchSuggestions({
   const displayResults = results.slice(0, maxResults);
 
   // Reset selection when results change
-  React.useEffect(() => {
+  const [prevResults, setPrevResults] = React.useState(results);
+  if (results !== prevResults) {
+    setPrevResults(results);
     setSelectedIndex(-1);
-  }, [results]);
+  }
 
   // Keyboard navigation
   React.useEffect(() => {
