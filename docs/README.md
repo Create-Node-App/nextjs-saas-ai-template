@@ -1,5 +1,12 @@
 # Next.js SaaS AI Template — Documentation
 
+> [!IMPORTANT]
+> This repo is a **showcase** of
+> [`create-awesome-node-app`](https://www.npmjs.com/package/create-awesome-node-app).
+> For new projects, scaffold with the CLI (`--template nextjs-saas-ai-starter`)
+> instead of cloning this repository — the live template bank stays current;
+> this snapshot may not.
+
 This folder is the **single source of truth** for the Next.js SaaS AI Template. AI agents should use [AGENTS.md](../AGENTS.md) as an index; humans and agents read these docs for authoritative content.
 
 ## Template Consumption

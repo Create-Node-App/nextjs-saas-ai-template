@@ -61,15 +61,17 @@ export function GlobalSearchProvider({ children }: GlobalSearchProviderProps) {
 
   // Load recent searches from localStorage on mount
   React.useEffect(() => {
-    try {
-      const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored) as RecentSearch[];
-        setRecentSearches(parsed.slice(0, MAX_RECENT_SEARCHES));
+    Promise.resolve().then(() => {
+      try {
+        const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored) as RecentSearch[];
+          setRecentSearches(parsed.slice(0, MAX_RECENT_SEARCHES));
+        }
+      } catch (e) {
+        console.error('Failed to load recent searches:', e);
       }
-    } catch (e) {
-      console.error('Failed to load recent searches:', e);
-    }
+    });
   }, []);
 
   // Save recent searches to localStorage when they change

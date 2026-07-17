@@ -147,7 +147,7 @@ describe('LoginForm', () => {
       await user.click(devButton);
 
       await waitFor(() => {
-        expect(mockLocation.href).toBe('/select-tenant');
+        expect(mockLocation.assign).toHaveBeenCalledWith('/select-tenant');
       });
     });
 
