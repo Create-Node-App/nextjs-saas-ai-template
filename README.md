@@ -222,3 +222,11 @@ _Part of the [Create-Node-App](https://github.com/Create-Node-App) ecosystem —
 </a>
 
 Made with [contributors-img](https://contrib.rocks).
+
+## Setup
+
+Copy the example environment file and adjust values:
+
+```bash
+cp .env.example .env
+```
