@@ -1,0 +1,9 @@
+Results of markdownlint linter (version 0.45.0)
+See documentation on https://megalinter.io/8.8.0/descriptors/markdown_markdownlint/
+-----------------------------------------------
+
+❌ [ERROR] for workspace /github/workspace
+Linter raw log:
+README.md:163 MD040/fenced-code-language Fenced code blocks should have a language specified [Context: "```"]
+README.md:233:3 MD045/no-alt-text Images should have alternate text (alt text)
+

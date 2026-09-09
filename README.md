@@ -142,7 +142,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## 🛠️ Tech Stack
 
 | Category     | Technology                                            |
-| ------------ | ----------------------------------------------------- |
+|--------------|-------------------------------------------------------|
 | Framework    | Next.js 15 (App Router, RSC, Turbopack)               |
 | Language     | TypeScript 5+ (strict)                                |
 | Styling      | Tailwind CSS v4 + shadcn/ui                           |
@@ -184,7 +184,7 @@ src/
 ## 📜 Scripts
 
 | Command           | Description                   |
-| ----------------- | ----------------------------- |
+|-------------------|-------------------------------|
 | `pnpm dev`        | Start development server      |
 | `pnpm build`      | Build for production          |
 | `pnpm lint`       | Run ESLint                    |

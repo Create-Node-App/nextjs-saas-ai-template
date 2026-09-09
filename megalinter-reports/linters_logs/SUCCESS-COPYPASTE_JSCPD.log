@@ -1,0 +1,7 @@
+Results of jscpd linter (version 4.0.5)
+See documentation on https://megalinter.io/8.8.0/descriptors/copypaste_jscpd/
+-----------------------------------------------
+
+✅ [SUCCESS] for workspace /github/workspace
+
+copy-paste folder has been removed, as no excessive copy-paste has been detected
