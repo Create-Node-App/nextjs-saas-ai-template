@@ -8,6 +8,8 @@
 > template (e.g. `npx create-awesome-node-app my-saas-app --template nextjs-saas-ai-starter`).
 > This snapshot is kept for reference only and will receive no further updates.
 
+---
+
 > [!IMPORTANT]
 > **Showcase sample — prefer the CLI for new projects.**
 >
