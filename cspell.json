@@ -72,6 +72,7 @@
     "jscpd",
     "killall",
     "langchain",
+    "lightningcss",
     "linter",
     "linters",
     "lintstagedrc",
@@ -112,6 +113,7 @@
     "preprocess",
     "preprocessed",
     "presigned",
+    "presigner",
     "quay",
     "radix",
     "RBAC",
@@ -166,8 +168,10 @@
     "vercel",
     "virtualize",
     "virtualized",
+    "wcag",
     "Webhook",
     "webhooks",
+    "xyflow",
     "zod"
   ]
 }
