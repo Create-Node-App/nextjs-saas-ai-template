@@ -1,0 +1,7 @@
+# Loopback URLs never resolve from CI runners, and the npmjs package page
+# answers 403 to automated traffic while remaining valid in browsers,
+# so both are excluded from automated link checking.
+exclude = [
+  "^http://localhost",
+  "^https://www\\.npmjs\\.com/package/create-awesome-node-app$",
+]
