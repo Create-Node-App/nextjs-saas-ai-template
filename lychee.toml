@@ -1,5 +1,5 @@
-# Loopback URLs never resolve from CI runners, and the npmjs package page
-# answers 403 to automated traffic while remaining valid in browsers,
+# Loopback URLs never resolve from CI runners, and the package registry
+# page answers 403 to automated traffic while remaining valid in browsers,
 # so both are excluded from automated link checking.
 exclude = [
   "^http://localhost",

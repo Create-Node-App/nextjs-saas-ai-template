@@ -4,7 +4,7 @@
       "pattern": "^http://localhost"
     },
     {
-      "pattern": "^https://www\\.npmjs\\.com/package/create-awesome-node-app$"
+      "pattern": "^https://www.npmjs.com/package/create-awesome-node-app$"
     }
   ],
   "timeout": "20s",
