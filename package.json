@@ -1,5 +1,6 @@
 {
   "name": "nextjs-saas-ai-template",
+  "version": "0.0.0",
   "scripts": {
     "dev": "next dev --turbopack --hostname 0.0.0.0 --port 3000",
     "build": "NODE_ENV=production next build",

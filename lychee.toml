@@ -3,5 +3,5 @@
 # so both are excluded from automated link checking.
 exclude = [
   "^http://localhost",
-  "^https://www\\.npmjs\\.com/package/create-awesome-node-app$",
+  "^https://www\\.npmjs\\.com/package/create-awesome-node-app",
 ]
