@@ -1,3 +1,15 @@
+> [!WARNING]
+> **Deprecated — this repository is archived and read-only.**
+>
+> Active development has moved to the
+> [Create-Node-App/cna-templates](https://github.com/Create-Node-App/cna-templates)
+> template catalog. For new projects, use the
+> [`templates/nextjs-saas-ai-starter`](https://github.com/Create-Node-App/cna-templates/tree/main/templates/nextjs-saas-ai-starter)
+> template (e.g. `npx create-awesome-node-app my-saas-app --template nextjs-saas-ai-starter`).
+> This snapshot is kept for reference only and will receive no further updates.
+
+---
+
 > [!IMPORTANT]
 > **Showcase sample — prefer the CLI for new projects.**
 >
@@ -130,7 +142,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## 🛠️ Tech Stack
 
 | Category     | Technology                                            |
-| ------------ | ----------------------------------------------------- |
+|--------------|-------------------------------------------------------|
 | Framework    | Next.js 15 (App Router, RSC, Turbopack)               |
 | Language     | TypeScript 5+ (strict)                                |
 | Styling      | Tailwind CSS v4 + shadcn/ui                           |
@@ -172,7 +184,7 @@ src/
 ## 📜 Scripts
 
 | Command           | Description                   |
-| ----------------- | ----------------------------- |
+|-------------------|-------------------------------|
 | `pnpm dev`        | Start development server      |
 | `pnpm build`      | Build for production          |
 | `pnpm lint`       | Run ESLint                    |

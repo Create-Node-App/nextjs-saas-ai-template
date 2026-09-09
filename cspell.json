@@ -2,9 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
   "version": "0.2",
   "language": "en",
-  "dictionaries": [
-    "project-words"
-  ],
+  "dictionaries": ["project-words"],
   "dictionaryDefinitions": [
     {
       "name": "project-words",
@@ -72,6 +70,7 @@
     "jscpd",
     "killall",
     "langchain",
+    "lightningcss",
     "linter",
     "linters",
     "lintstagedrc",
@@ -112,6 +111,7 @@
     "preprocess",
     "preprocessed",
     "presigned",
+    "presigner",
     "quay",
     "radix",
     "RBAC",
@@ -153,6 +153,7 @@
     "trivy",
     "trpc",
     "trufflehog",
+    "turbopack",
     "typecheck",
     "ulises",
     "ulisesjeremias",
@@ -165,8 +166,10 @@
     "vercel",
     "virtualize",
     "virtualized",
+    "wcag",
     "Webhook",
     "webhooks",
+    "xyflow",
     "zod"
   ]
 }
