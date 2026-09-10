@@ -24,14 +24,16 @@ import {
 // S3 client configuration - supports both AWS S3 and MinIO
 // Uses internal endpoint (minio:9000) for server-side operations
 const s3Config = {
-  region: env.AWS_REGION || 'us-east-1',
-  ...(process.env.S3_ENDPOINT && {
-    endpoint: process.env.S3_ENDPOINT,
-    forcePathStyle: true, // Required for MinIO
-  }),
+  region: env.AWS_REGION ?? 'us-east-1',
+  ...(process.env.S3_ENDPOINT !== undefined && process.env.S3_ENDPOINT !== ''
+    ? {
+        endpoint: process.env.S3_ENDPOINT,
+        forcePathStyle: true, // Required for MinIO
+      }
+    : {}),
   credentials: {
-    accessKeyId: process.env.S3_ACCESS_KEY || env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.S3_SECRET_KEY || env.AWS_SECRET_ACCESS_KEY || '',
+    accessKeyId: process.env.S3_ACCESS_KEY ?? env.AWS_ACCESS_KEY_ID ?? '',
+    secretAccessKey: process.env.S3_SECRET_KEY ?? env.AWS_SECRET_ACCESS_KEY ?? '',
   },
 };
 
@@ -39,25 +41,35 @@ const s3Client = new S3Client(s3Config);
 
 // For presigned URLs, we need a browser-accessible endpoint
 // S3_PUBLIC_ENDPOINT should be set to the externally accessible URL (e.g., http://localhost:9000)
-const publicEndpoint = process.env.S3_PUBLIC_ENDPOINT || process.env.S3_ENDPOINT;
+const publicEndpoint = process.env.S3_PUBLIC_ENDPOINT ?? process.env.S3_ENDPOINT;
 
 // Create a separate client for presigned URL generation with public endpoint
 const presignClient = new S3Client({
   ...s3Config,
-  ...(publicEndpoint && {
-    endpoint: publicEndpoint,
-    forcePathStyle: true,
-  }),
+  ...(publicEndpoint !== undefined && publicEndpoint !== ''
+    ? {
+        endpoint: publicEndpoint,
+        forcePathStyle: true,
+      }
+    : {}),
 });
 
-const bucket = process.env.S3_BUCKET || env.AWS_S3_BUCKET || 'saas-template-uploads';
+const bucket: string = process.env.S3_BUCKET ?? env.AWS_S3_BUCKET ?? 'saas-template-uploads';
 
 // Cache for tenant-specific S3 clients
 const tenantS3Clients = new Map<string, { client: S3Client; presignClient: S3Client; bucket: string }>();
 
 /**
- * Get S3 clients for a specific tenant
- * Falls back to env vars if tenant has no storage settings configured
+ * Get S3 clients for a specific tenant.
+ *
+ * Returns the cached clients when present; otherwise reads the tenant's
+ * storage settings (merged over {@link DEFAULT_STORAGE}) and builds
+ * tenant-scoped clients, falling back to the environment-variable clients
+ * when the tenant has no storage configured.
+ *
+ * @param tenantId - The tenant ID to resolve storage settings for.
+ * @returns The S3 client, presign client, bucket, and effective settings.
+ * @throws Never throws for missing settings (falls back to env defaults).
  */
 export async function getTenantS3Client(tenantId: string): Promise<{
   client: S3Client;
@@ -67,11 +79,11 @@ export async function getTenantS3Client(tenantId: string): Promise<{
 }> {
   // Check cache first
   const cached = tenantS3Clients.get(tenantId);
-  if (cached) {
+  if (cached !== undefined) {
     const tenant = await db.query.tenants.findFirst({
       where: eq(tenants.id, tenantId),
     });
-    const tenantSettings = tenant ? parseTenantSettings(tenant.settings) : {};
+    const tenantSettings = tenant != null ? parseTenantSettings(tenant.settings) : {};
     const storageSettings = { ...DEFAULT_STORAGE, ...tenantSettings.storage };
     return { ...cached, settings: storageSettings };
   }
@@ -81,39 +93,43 @@ export async function getTenantS3Client(tenantId: string): Promise<{
     where: eq(tenants.id, tenantId),
   });
 
-  const tenantSettings = tenant ? parseTenantSettings(tenant.settings) : {};
+  const tenantSettings = tenant != null ? parseTenantSettings(tenant.settings) : {};
   const storageSettings = { ...DEFAULT_STORAGE, ...tenantSettings.storage };
 
   // Check if tenant has storage configured
   if (hasStorageConfigured(tenantSettings)) {
-    const storage = tenantSettings.storage!;
+    const storage = tenantSettings.storage ?? DEFAULT_STORAGE;
     const tenantConfig = {
-      region: storage.region || 'us-east-1',
-      ...(storage.endpoint && {
-        endpoint: storage.endpoint,
-        forcePathStyle: storage.forcePathStyle !== false,
-      }),
+      region: storage.region ?? 'us-east-1',
+      ...(storage.endpoint !== undefined && storage.endpoint !== ''
+        ? {
+            endpoint: storage.endpoint,
+            forcePathStyle: storage.forcePathStyle !== false,
+          }
+        : {}),
       credentials: {
-        accessKeyId: storage.accessKey!,
-        secretAccessKey: storage.secretKey!,
+        accessKeyId: storage.accessKey ?? '',
+        secretAccessKey: storage.secretKey ?? '',
       },
     };
 
     const client = new S3Client(tenantConfig);
 
-    const presignEndpoint = storage.publicEndpoint || storage.endpoint;
+    const presignEndpoint = storage.publicEndpoint ?? storage.endpoint;
     const presignClientTenant = new S3Client({
       ...tenantConfig,
-      ...(presignEndpoint && {
-        endpoint: presignEndpoint,
-        forcePathStyle: storage.forcePathStyle !== false,
-      }),
+      ...(presignEndpoint !== undefined && presignEndpoint !== ''
+        ? {
+            endpoint: presignEndpoint,
+            forcePathStyle: storage.forcePathStyle !== false,
+          }
+        : {}),
     });
 
     const result = {
       client,
       presignClient: presignClientTenant,
-      bucket: storage.bucket!,
+      bucket: storage.bucket ?? '',
     };
     tenantS3Clients.set(tenantId, result);
     return { ...result, settings: storageSettings };
@@ -129,7 +145,13 @@ export async function getTenantS3Client(tenantId: string): Promise<{
 }
 
 /**
- * Clear cached S3 client for a tenant (call when settings change)
+ * Clear the cached S3 clients for a tenant.
+ *
+ * Call this after the tenant's storage settings change so the next request
+ * picks up the new credentials/bucket instead of reusing stale clients.
+ *
+ * @param tenantId - The tenant whose cached clients should be dropped.
+ * @returns Nothing.
  */
 export function clearTenantS3Client(tenantId: string): void {
   tenantS3Clients.delete(tenantId);
@@ -153,8 +175,14 @@ export interface UploadResult {
 }
 
 /**
- * Generate a presigned URL for uploading a file to S3
- * Uses the public endpoint so browsers can access it
+ * Generate a presigned URL for uploading a file to S3.
+ *
+ * Uses the public endpoint so browsers can PUT directly without routing
+ * bytes through the app server.
+ *
+ * @param options - Target `key`, `contentType`, optional `expiresIn` (default 3600s) and `maxSize`.
+ * @returns A presigned PUT URL.
+ * @throws When URL signing fails (e.g. invalid credentials).
  */
 export async function getPresignedUploadUrl(options: PresignedUrlOptions): Promise<string> {
   const { key, contentType, expiresIn = 3600 } = options;
@@ -170,8 +198,14 @@ export async function getPresignedUploadUrl(options: PresignedUrlOptions): Promi
 }
 
 /**
- * Generate a presigned URL for downloading a file from S3
- * Uses the public endpoint so browsers can access it
+ * Generate a presigned URL for downloading a file from S3.
+ *
+ * Uses the public endpoint so browsers can GET directly.
+ *
+ * @param key - File key (path) in S3.
+ * @param expiresIn - URL lifetime in seconds (default 3600 = 1 hour).
+ * @returns A presigned GET URL.
+ * @throws When URL signing fails (e.g. invalid credentials).
  */
 export async function getPresignedDownloadUrl(key: string, expiresIn = 3600): Promise<string> {
   const command = new GetObjectCommand({
@@ -184,7 +218,15 @@ export async function getPresignedDownloadUrl(key: string, expiresIn = 3600): Pr
 }
 
 /**
- * Generate a presigned URL for uploading using tenant-specific storage settings
+ * Generate a presigned upload URL using tenant-specific storage settings.
+ *
+ * Resolves the tenant's bucket and presign client via
+ * {@link getTenantS3Client} so uploads land in the tenant's own storage.
+ *
+ * @param tenantId - The tenant owning the target bucket.
+ * @param options - Target `key`, `contentType`, optional `expiresIn` (default 3600s) and `maxSize`.
+ * @returns A presigned PUT URL for the tenant's bucket.
+ * @throws When URL signing fails (e.g. invalid credentials).
  */
 export async function getTenantPresignedUploadUrl(tenantId: string, options: PresignedUrlOptions): Promise<string> {
   const { key, contentType, expiresIn = 3600 } = options;
@@ -201,7 +243,13 @@ export async function getTenantPresignedUploadUrl(tenantId: string, options: Pre
 }
 
 /**
- * Generate a presigned URL for downloading using tenant-specific storage settings
+ * Generate a presigned download URL using tenant-specific storage settings.
+ *
+ * @param tenantId - The tenant owning the target bucket.
+ * @param key - File key (path) in the tenant's bucket.
+ * @param expiresIn - URL lifetime in seconds (default 3600 = 1 hour).
+ * @returns A presigned GET URL for the tenant's bucket.
+ * @throws When URL signing fails (e.g. invalid credentials).
  */
 export async function getTenantPresignedDownloadUrl(tenantId: string, key: string, expiresIn = 3600): Promise<string> {
   const { presignClient: tenantPresignClient, bucket: tenantBucket } = await getTenantS3Client(tenantId);
@@ -216,7 +264,15 @@ export async function getTenantPresignedDownloadUrl(tenantId: string, key: strin
 }
 
 /**
- * Generate a unique file key with tenant isolation
+ * Generate a unique file key with tenant isolation.
+ *
+ * Layout is `<tenantId>/<category>/<timestamp>-<random>-<sanitized-name>`
+ * so keys never collide across tenants and are safe for URLs.
+ *
+ * @param tenantId - Tenant prefix isolating the key.
+ * @param category - Logical grouping, e.g. `'avatars'`.
+ * @param filename - Original filename (sanitized to `[a-zA-Z0-9.-]`).
+ * @returns The namespaced unique file key.
  */
 export function generateFileKey(tenantId: string, category: string, filename: string): string {
   const timestamp = Date.now();
@@ -226,10 +282,17 @@ export function generateFileKey(tenantId: string, category: string, filename: st
 }
 
 /**
- * Get the public URL for a file (if bucket has public read access)
+ * Get the public URL for a file.
+ *
+ * Only usable when the bucket has public read access; otherwise use
+ * {@link getPresignedDownloadUrl}.
+ *
+ * @param key - File key (path) in S3.
+ * @returns The direct public URL for the key.
  */
 export function getPublicUrl(key: string): string {
-  const endpoint = process.env.S3_ENDPOINT || `https://s3.${env.AWS_REGION || 'us-east-1'}.amazonaws.com`;
+  const region: string = env.AWS_REGION ?? 'us-east-1';
+  const endpoint: string = process.env.S3_ENDPOINT ?? `https://s3.${region}.amazonaws.com`;
   return `${endpoint}/${bucket}/${key}`;
 }
 

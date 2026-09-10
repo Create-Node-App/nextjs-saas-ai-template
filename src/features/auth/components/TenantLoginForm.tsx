@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -18,16 +19,16 @@ import {
   FormLabel,
   Input,
 } from '@/shared/components/ui';
+import { getAuthProviderDisplayName, getPublicAuthProviderId } from '@/shared/lib/auth-providers';
+import { navigateToSameOrigin } from '@/shared/lib/navigation';
 
 // ============================================================================
-// Validation Schema
+// Form Values
 // ============================================================================
 
-const tenantLoginSchema = z.object({
-  email: z.string().min(1, 'Email is required').email('Please enter a valid email address'),
-});
-
-type TenantLoginFormValues = z.infer<typeof tenantLoginSchema>;
+interface TenantLoginFormValues {
+  email: string;
+}
 
 // ============================================================================
 // Component
@@ -41,6 +42,7 @@ interface TenantLoginFormProps {
 }
 
 export function TenantLoginForm({ tenantSlug, tenantName, initialEmail = '' }: TenantLoginFormProps) {
+  const t = useTranslations('auth');
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
@@ -49,7 +51,11 @@ export function TenantLoginForm({ tenantSlug, tenantName, initialEmail = '' }: T
     handleSubmit,
     formState: { errors },
   } = useForm<TenantLoginFormValues>({
-    resolver: zodResolver(tenantLoginSchema),
+    resolver: zodResolver(
+      z.object({
+        email: z.string().min(1, t('emailRequired')).email(t('enterValidEmail')),
+      }),
+    ),
     defaultValues: {
       email: initialEmail,
     },
@@ -73,24 +79,26 @@ export function TenantLoginForm({ tenantSlug, tenantName, initialEmail = '' }: T
       if (result?.error) {
         setServerError(result.error);
       } else if (result?.url) {
-        // Keep navigation on current origin even if Auth.js returns an absolute URL with a stale host.
-        const target = new URL(result.url, window.location.origin);
-        window.location.assign(`${target.pathname}${target.search}${target.hash}`);
+        navigateToSameOrigin(result.url);
       }
     } catch {
-      setServerError('An unexpected error occurred');
+      setServerError(t('unexpectedError'));
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Handle Auth0 login
-  const handleAuth0Login = async () => {
+  // Active production SSO provider (Auth0 default, WorkOS when configured)
+  const ssoProviderId = getPublicAuthProviderId();
+  const ssoProviderName = getAuthProviderDisplayName(ssoProviderId);
+
+  // Handle SSO login with the active provider
+  const handleSsoLogin = async () => {
     setIsLoading(true);
     try {
-      await signIn('auth0', { callbackUrl });
+      await signIn(ssoProviderId, { callbackUrl });
     } catch {
-      setServerError('Failed to initiate login');
+      setServerError(t('failedToStartLogin'));
       setIsLoading(false);
     }
   };
@@ -101,23 +109,23 @@ export function TenantLoginForm({ tenantSlug, tenantName, initialEmail = '' }: T
   return (
     <Card className="w-full border shadow-xl bg-card">
       <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl">Sign in to {tenantName}</CardTitle>
-        <CardDescription>Choose your preferred sign in method</CardDescription>
+        <CardTitle className="text-2xl">{t('signInToTenant', { tenant: tenantName })}</CardTitle>
+        <CardDescription>{t('chooseMethod')}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <FormGlobalError visible={!!serverError} id="tenant-login-error">
           {serverError}
         </FormGlobalError>
 
-        {/* Auth0 Login Button */}
+        {/* SSO Login Button (active provider) */}
         <Button
           type="button"
           className="w-full h-12 bg-primary hover:opacity-90 shadow-md text-base font-medium"
-          onClick={handleAuth0Login}
+          onClick={handleSsoLogin}
           disabled={isLoading}
           aria-busy={isLoading}
         >
-          {isLoading ? 'Signing in...' : 'Continue with Auth0'}
+          {isLoading ? t('signingIn') : t('continueWith', { provider: ssoProviderName })}
         </Button>
 
         <div className="relative">
@@ -125,15 +133,15 @@ export function TenantLoginForm({ tenantSlug, tenantName, initialEmail = '' }: T
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-card px-2 text-muted-foreground">Or development login</span>
+            <span className="bg-card px-2 text-muted-foreground">{t('orDevelopmentLogin')}</span>
           </div>
         </div>
 
         {/* Development Login Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" aria-label="Development login form" noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" aria-label={t('devLoginFormLabel')} noValidate>
           <div className="space-y-2">
             <FormLabel htmlFor="tenant-email" required>
-              Email
+              {t('email')}
             </FormLabel>
             <Input
               id="tenant-email"
@@ -151,12 +159,12 @@ export function TenantLoginForm({ tenantSlug, tenantName, initialEmail = '' }: T
             </FormFieldError>
           </div>
           <Button type="submit" variant="outline" className="w-full h-11" disabled={isLoading} aria-busy={isLoading}>
-            {isLoading ? 'Signing in...' : 'Dev Login'}
+            {isLoading ? t('signingIn') : t('devLoginShort')}
           </Button>
         </form>
 
         <p className="text-xs text-center text-muted-foreground mt-4">
-          By signing in, you agree to access {tenantName}&apos;s workspace.
+          {t('agreeToWorkspace', { tenant: tenantName })}
         </p>
       </CardContent>
     </Card>

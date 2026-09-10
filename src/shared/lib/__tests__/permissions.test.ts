@@ -296,6 +296,27 @@ describe('permissions', () => {
       expect(result).toEqual({ 'tenant-1': [] });
     });
 
+    it('should return an empty array for a membership without roles alongside role-bearing memberships', async () => {
+      (mockDb.query.tenantMemberships.findMany as jest.Mock).mockResolvedValue([
+        { id: 'membership-1', tenant: { id: 'tenant-1', slug: 'tenant-a' } },
+        { id: 'membership-2', tenant: { id: 'tenant-2', slug: 'tenant-b' } },
+      ]);
+      (mockDb.query.tenantMembershipRoles.findMany as jest.Mock).mockResolvedValue([
+        { membershipId: 'membership-1', roleId: 'role-1' },
+      ]);
+      (mockDb.query.rolePermissions.findMany as jest.Mock).mockResolvedValue([
+        { roleId: 'role-1', permissionId: 'perm-1' },
+      ]);
+      (mockDb.query.permissions.findMany as jest.Mock).mockResolvedValue([
+        { id: 'perm-1', key: 'admin:settings', tenantId: null },
+      ]);
+
+      const result = await getAllTenantPermissionsForUser('user-123');
+
+      expect(result['tenant-a']).toEqual(['admin:settings']);
+      expect(result['tenant-b']).toEqual([]);
+    });
+
     it('should return permissions for all tenants', async () => {
       (mockDb.query.tenantMemberships.findMany as jest.Mock).mockResolvedValue([
         { id: 'membership-1', tenant: { id: 'tenant-1', slug: 'tenant-a' } },
