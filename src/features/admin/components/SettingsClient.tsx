@@ -31,7 +31,7 @@ import {
   TabsTrigger,
 } from '@/shared/components/ui';
 import { useUrlTab } from '@/shared/hooks';
-import type { TenantSettings } from '@/shared/lib/tenant-settings';
+import type { AIProvider, StorageProvider, TenantSettings } from '@/shared/lib/tenant-settings';
 import {
   aiProviders,
   DEFAULT_AI,
@@ -167,10 +167,9 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
   };
 
   // AI settings update
-  const handleAIUpdate = (
-    key: keyof NonNullable<TenantSettings['ai']>,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    value: any,
+  const handleAIUpdate = <K extends keyof NonNullable<TenantSettings['ai']>>(
+    key: K,
+    value: NonNullable<TenantSettings['ai']>[K],
   ) => {
     const newAI = { ...ai, [key]: value };
     setSettings({ ...settings, ai: newAI });
@@ -179,10 +178,9 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
   };
 
   // Storage settings update
-  const handleStorageUpdate = (
-    key: keyof NonNullable<TenantSettings['storage']>,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    value: any,
+  const handleStorageUpdate = <K extends keyof NonNullable<TenantSettings['storage']>>(
+    key: K,
+    value: NonNullable<TenantSettings['storage']>[K],
   ) => {
     const newStorage = { ...storage, [key]: value };
     setSettings({ ...settings, storage: newStorage });
@@ -441,7 +439,7 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
                 <select
                   id="ai-provider"
                   value={ai.provider || ''}
-                  onChange={(e) => handleAIUpdate('provider', e.target.value || undefined)}
+                  onChange={(e) => handleAIUpdate('provider', (e.target.value || undefined) as AIProvider | undefined)}
                   className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                 >
                   <option value="">Select provider...</option>
@@ -468,8 +466,13 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
                     type="button"
                     onClick={() => setShowAIApiKey(!showAIApiKey)}
                     className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    aria-label={showAIApiKey ? 'Hide API key' : 'Show API key'}
                   >
-                    {showAIApiKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {showAIApiKey ? (
+                      <EyeOff className="h-4 w-4" aria-hidden />
+                    ) : (
+                      <Eye className="h-4 w-4" aria-hidden />
+                    )}
                   </button>
                 </div>
               </div>
@@ -586,7 +589,7 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
                 <select
                   id="storage-provider"
                   value={storage.provider || ''}
-                  onChange={(e) => handleStorageUpdate('provider', e.target.value || undefined)}
+                  onChange={(e) => handleStorageUpdate('provider', (e.target.value || undefined) as StorageProvider | undefined)}
                   className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                 >
                   <option value="">Select provider...</option>
@@ -668,8 +671,13 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
                     type="button"
                     onClick={() => setShowStorageSecretKey(!showStorageSecretKey)}
                     className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    aria-label={showStorageSecretKey ? 'Hide secret key' : 'Show secret key'}
                   >
-                    {showStorageSecretKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {showStorageSecretKey ? (
+                      <EyeOff className="h-4 w-4" aria-hidden />
+                    ) : (
+                      <Eye className="h-4 w-4" aria-hidden />
+                    )}
                   </button>
                 </div>
               </div>
@@ -752,6 +760,7 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
                     }
                     className="w-32 font-mono"
                     placeholder="#0066FF"
+                    aria-label="Primary color hex value"
                   />
                 </div>
               </div>
@@ -772,6 +781,7 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
                   />
                   <Input
                     value={ui.secondaryColor}
+                    aria-label="Secondary color hex value"
                     onChange={(e) =>
                       setSettings({
                         ...settings,

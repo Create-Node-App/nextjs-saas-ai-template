@@ -57,25 +57,16 @@ export function PersonMiniCard({
   const hasContext = score != null || (met && met.length > 0) || (gaps && gaps.length > 0);
   const hasAttributes = person.attributes && person.attributes.length > 0;
 
-  const row = (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div
-      className={cn(
-        'rounded-lg px-3 py-2 transition-colors group',
-        href ? 'hover:bg-muted/60 cursor-pointer' : '',
-        rank === 1 && 'bg-primary/5',
-        className,
-      )}
-      onClick={!href ? onViewProfile : undefined}
-      onKeyDown={(e) => {
-        if ((e.key === 'Enter' || e.key === ' ') && !href) {
-          e.preventDefault();
-          onViewProfile?.();
-        }
-      }}
-      role={!href ? 'button' : undefined}
-      tabIndex={!href ? 0 : undefined}
-    >
+  const rowClassName = cn(
+    'rounded-lg px-3 py-2 transition-colors group',
+    'hover:bg-muted/60 cursor-pointer',
+    rank === 1 && 'bg-primary/5',
+    className,
+  );
+
+  const rowContent = (
+    <>
+
       {/* Main row: rank + avatar + name + department + score + chevron */}
       <div className="flex items-center gap-2.5">
         {/* Rank badge */}
@@ -190,17 +181,24 @@ export function PersonMiniCard({
           )}
         </div>
       )}
-    </div>
+    </>
   );
 
+  // Native elements per case: a real button handles keyboard interaction
+  // natively when the row itself is the action; a plain div suffices inside
+  // the link wrapper.
   if (href) {
     return (
       <Link href={href} aria-label={t('viewProfile')}>
-        {row}
+        <div className={rowClassName}>{rowContent}</div>
       </Link>
     );
   }
-  return row;
+  return (
+    <button type="button" className={cn(rowClassName, 'w-full text-left')} onClick={onViewProfile}>
+      {rowContent}
+    </button>
+  );
 }
 
 /**
