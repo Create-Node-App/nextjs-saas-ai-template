@@ -54,7 +54,7 @@ const presignClient = new S3Client({
     : {}),
 });
 
-const bucket = process.env.S3_BUCKET ?? env.AWS_S3_BUCKET ?? 'saas-template-uploads';
+const bucket: string = process.env.S3_BUCKET ?? env.AWS_S3_BUCKET ?? 'saas-template-uploads';
 
 // Cache for tenant-specific S3 clients
 const tenantS3Clients = new Map<string, { client: S3Client; presignClient: S3Client; bucket: string }>();
@@ -291,7 +291,7 @@ export function generateFileKey(tenantId: string, category: string, filename: st
  * @returns The direct public URL for the key.
  */
 export function getPublicUrl(key: string): string {
-  const region = env.AWS_REGION ?? 'us-east-1';
+  const region: string = env.AWS_REGION ?? 'us-east-1';
   const endpoint = process.env.S3_ENDPOINT ?? `https://s3.${region}.amazonaws.com`;
   return `${endpoint}/${bucket}/${key}`;
 }

@@ -8,10 +8,6 @@ import { DependencyList, useEffect, useRef } from 'react';
  * - Cleanup/cancellation when dependencies change
  * - Avoiding state updates after unmount
  *
- * The latest `effect` callback is always invoked via a ref that is refreshed
- * inside the effect (never during render), so the caller-owned `deps` array
- * needs no static verification and no suppression comments.
- *
  * @example
  * ```tsx
  * useAsyncEffect(async (signal) => {
@@ -23,22 +19,20 @@ import { DependencyList, useEffect, useRef } from 'react';
  * ```
  */
 export function useAsyncEffect(
-  effect: (signal: AbortSignal) => Promise<(() => void) | undefined>,
+  effect: (signal: AbortSignal) => Promise<void | (() => void)>,
   deps: DependencyList,
 ): void {
   const isMountedRef = useRef(true);
-  const effectRef = useRef(effect);
 
   useEffect(() => {
-    effectRef.current = effect;
     const abortController = new AbortController();
     isMountedRef.current = true;
 
-    let cleanup: (() => void) | undefined;
+    let cleanup: void | (() => void);
 
-    const runEffect = async (): Promise<void> => {
+    const runEffect = async () => {
       try {
-        cleanup = await effectRef.current(abortController.signal);
+        cleanup = await effect(abortController.signal);
       } catch (error) {
         // Only log errors if not aborted
         if (!abortController.signal.aborted) {
@@ -47,7 +41,7 @@ export function useAsyncEffect(
       }
     };
 
-    void runEffect();
+    runEffect();
 
     return () => {
       isMountedRef.current = false;
@@ -56,8 +50,6 @@ export function useAsyncEffect(
         cleanup();
       }
     };
-    // `deps` is caller-provided (not an array literal), so static verification
-    // is impossible by design; callers own their dependency lists.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }
@@ -74,15 +66,12 @@ export function useAsyncEffect(
  * ```
  */
 export function useAsyncEffectOnce(effect: () => Promise<void>, deps: DependencyList): void {
-  const effectRef = useRef(effect);
-
   useEffect(() => {
-    effectRef.current = effect;
     let mounted = true;
 
-    const run = async (): Promise<void> => {
+    const run = async () => {
       try {
-        await effectRef.current();
+        await effect();
       } catch (error) {
         if (mounted) {
           console.error('useAsyncEffectOnce error:', error);
@@ -90,13 +79,11 @@ export function useAsyncEffectOnce(effect: () => Promise<void>, deps: Dependency
       }
     };
 
-    void run();
+    run();
 
     return () => {
       mounted = false;
     };
-    // `deps` is caller-provided (not an array literal), so static verification
-    // is impossible by design; callers own their dependency lists.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }
