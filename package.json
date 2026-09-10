@@ -65,6 +65,7 @@
     "@tiptap/pm": "^3.19.0",
     "@tiptap/react": "^3.19.0",
     "@tiptap/starter-kit": "^3.19.0",
+    "@workos-inc/authkit-nextjs": "^4.3.1",
     "@xyflow/react": "^12.10.0",
     "ai": "^6.0.42",
     "class-variance-authority": "^0.7.1",

@@ -2,18 +2,18 @@
 # More info at https://megalinter.io/latest/config-file/
 # All available variables: https://megalinter.io/latest/config-file/
 ---
-
 # ─── File Filters ─────────────────────────────────────────────────────────────
 
-# Ignore generated and third-party directories
+# Ignore generated and third-party directories (plus MegaLinter's own reports,
+# so auto-fix runs never flag or re-lint their output)
 FILTER_REGEX_EXCLUDE: >-
-  (\.git/|node_modules/|\.next/|dist/|build/|coverage/|pnpm-lock\.yaml)
+  (\.git/|node_modules/|\.next/|dist/|build/|coverage/|pnpm-lock\.yaml|megalinter-reports/)
 
 # ─── Copy-Paste Detection (jscpd) ─────────────────────────────────────────────
 # Template repositories have intentional structural duplication across features.
 # Raise threshold to avoid false positives for boilerplate-style code.
 
-COPYPASTE_JSCPD_ARGUMENTS: "--min-lines 20 --min-tokens 150 --threshold 5"
+COPYPASTE_JSCPD_ARGUMENTS: '--min-lines 20 --min-tokens 150 --threshold 5'
 
 # ─── CSS (stylelint) ──────────────────────────────────────────────────────────
 # Use the project's existing stylelint configuration
@@ -29,10 +29,14 @@ DOCKERFILE_HADOLINT_CONFIG_FILE: .hadolint.yaml
 SPELL_CSPELL_CONFIG_FILE: cspell.json
 
 # ─── TypeScript (ts-standard) ─────────────────────────────────────────────────
-# ts-standard is an opinionated formatter; ESLint (with TypeScript) handles TS
-# linting for this project so ts-standard errors are informational only.
+# ts-standard enforces standard.js style (no semicolons), which contradicts
+# this repo's prettier config (semi: true) and flip-flops with lint-staged.
+# TypeScript is linted by the repo ESLint + type-check CI jobs instead, so the
+# whole TYPESCRIPT descriptor is disabled (per-linter DISABLE_ERRORS is
+# ignored by MegaLinter and the check still fails).
 
-TYPESCRIPT_TS_STANDARD_DISABLE_ERRORS: true
+DISABLE:
+  - TYPESCRIPT
 
 # ─── Repository Scanners ──────────────────────────────────────────────────────
 
@@ -45,4 +49,3 @@ REPOSITORY_GRYPE_DISABLE_ERRORS: true
 # trivy: Multi-purpose security scanner.
 # Dockerfile HEALTHCHECK is present; disable hard errors for remaining advisories.
 REPOSITORY_TRIVY_DISABLE_ERRORS: true
-
