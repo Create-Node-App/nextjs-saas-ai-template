@@ -2,8 +2,11 @@
 # answers 403 to automated traffic, and the WorkOS dashboard redirect-loops
 # bots through its signin bootstrap — all remain valid in browsers, so they
 # are excluded from automated link checking.
+# Patreon bot-blocks link checkers the same way (403); the URL below comes
+# from vendored package-lock metadata, not repo content.
 exclude = [
   "^http://localhost",
   "^https://www\\.npmjs\\.com/package/create-awesome-node-app",
   "^https://dashboard\\.workos\\.com",
+  "^https://www\\.patreon\\.com/feross",
 ]
