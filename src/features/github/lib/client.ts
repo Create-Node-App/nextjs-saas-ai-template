@@ -13,6 +13,32 @@ import { Octokit } from 'octokit';
 
 import type { GitHubContributionSummary, GitHubOrg, GitHubRepo, GitHubUser } from '../types';
 
+/**
+ * Subset of the Octokit repository payload consumed by {@link GitHubClient.mapRepo}.
+ *
+ * All three list endpoints used here (`listForAuthenticatedUser`,
+ * `listForUser`, `listForOrg`) return at least this shape. Counters, dates,
+ * and flags are optional in the `minimal-repository` schema, which is why
+ * `mapRepo` applies `??` fallbacks for them.
+ */
+interface OctokitRepoPayload {
+  id: number;
+  name: string;
+  full_name: string;
+  private: boolean;
+  html_url: string;
+  fork?: boolean;
+  description?: string | null;
+  language?: string | null;
+  stargazers_count?: number;
+  forks_count?: number;
+  topics?: string[];
+  pushed_at?: string | null;
+  created_at?: string | null;
+  updated_at?: string | null;
+  archived?: boolean;
+}
+
 export class GitHubClient {
   private octokit: Octokit;
 
@@ -334,8 +360,7 @@ export class GitHubClient {
   // Helpers
   // ============================================================================
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private mapRepo(repo: any): GitHubRepo {
+  private mapRepo(repo: OctokitRepoPayload): GitHubRepo {
     return {
       id: repo.id,
       name: repo.name,
@@ -348,8 +373,8 @@ export class GitHubClient {
       forks_count: repo.forks_count ?? 0,
       topics: repo.topics ?? [],
       pushed_at: repo.pushed_at ?? null,
-      created_at: repo.created_at,
-      updated_at: repo.updated_at,
+      created_at: repo.created_at ?? '',
+      updated_at: repo.updated_at ?? '',
       archived: repo.archived ?? false,
       fork: repo.fork ?? false,
     };
