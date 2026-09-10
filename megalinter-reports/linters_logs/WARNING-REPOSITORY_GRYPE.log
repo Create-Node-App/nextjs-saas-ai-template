@@ -1,0 +1,11 @@
+Results of grype linter (version 0.94.0)
+See documentation on https://megalinter.io/8.8.0/descriptors/repository_grype/
+-----------------------------------------------
+
+❌ [ERROR] for workspace /github/workspace
+Linter raw log:
+[0000]  WARN no explicit name and version provided for directory source, deriving artifact ID from the given path (which is not ideal)
+[0017]  WARN Failed to activate downloaded database from /github/home/.cache/grype/db/grype-db-download3634358799, attempting cleanup of temporary download directory.
+[0017]  WARN error updating db error=unable to activate new vulnerability database: failed to hydrate database: failed to open db: unable to migrate: constraint failed: UNIQUE constraint failed: operating_systems.name, operating_systems.release_id, operating_systems.major_version, operating_systems.minor_version, operating_systems.label_version (2067)
+[0017] ERROR failed to load vulnerability db: database does not exist
+
