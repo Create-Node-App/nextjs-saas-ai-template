@@ -7,7 +7,7 @@ environment variables — no database migration is required.
 ## What Changes
 
 | Old (Auth0)                         | New (WorkOS)                              |
-| ----------------------------------- | ----------------------------------------- |
+|-------------------------------------|-------------------------------------------|
 | `AUTH0_CLIENT_ID`                   | `WORKOS_CLIENT_ID`                        |
 | `AUTH0_CLIENT_SECRET`               | `WORKOS_CLIENT_SECRET` (`sk_...` API key) |
 | `AUTH0_ISSUER`                      | `WORKOS_CONNECTION_ID` (optional)         |
