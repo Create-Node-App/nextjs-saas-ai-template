@@ -5,8 +5,8 @@ Next.js SaaS AI Template is configured with modern tooling for type safety, code
 ## Tech Stack
 
 | Category   | Technology                                                  |
-| ---------- | ----------------------------------------------------------- |
-| Framework  | Next.js 15 (App Router)                                     |
+|------------|-------------------------------------------------------------|
+| Framework  | Next.js 16 (App Router)                                     |
 | Language   | TypeScript 5+ (strict)                                      |
 | Styling    | Tailwind CSS v4 + shadcn/ui (theme in `globals.css` @theme) |
 | Database   | Drizzle ORM + PostgreSQL + pgvector                         |
@@ -42,11 +42,11 @@ Husky is a tool for executing git hooks. Use Husky to run your code validations 
 
 The project uses [direnv](https://direnv.net/) for automatic environment loading. When you `cd` into the project directory, direnv automatically loads the environment variables.
 
-| File                 | Purpose                                     | Git          |
-| -------------------- | ------------------------------------------- | ------------ |
+| File             | Purpose                                     | Git         |
+|------------------|---------------------------------------------|-------------|
 | `.envrc.example` | Dev template with default values            | ✅ Committed |
-| `.envrc`             | Your local environment (copy of a template) | ❌ Ignored   |
-| `.env.local`         | Additional overrides (API keys, secrets)    | ❌ Ignored   |
+| `.envrc`         | Your local environment (copy of a template) | ❌ Ignored   |
+| `.env.local`     | Additional overrides (API keys, secrets)    | ❌ Ignored   |
 
 **Setup (handled automatically by DevContainer):**
 
@@ -80,7 +80,7 @@ const appName = env.NEXT_PUBLIC_APP_NAME; // Client safe
 ### Required Variables
 
 | Variable       | Description                   | Default                         |
-| -------------- | ----------------------------- | ------------------------------- |
+|----------------|-------------------------------|---------------------------------|
 | `DATABASE_URL` | PostgreSQL connection string  | `postgresql://...@localhost`    |
 | `AUTH_SECRET`  | Auth.js secret (min 32 chars) | Dev default (override in prod!) |
 | `AUTH0_*`      | Auth0 configuration           | Optional (for SSO)              |

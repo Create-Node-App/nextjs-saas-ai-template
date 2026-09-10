@@ -59,8 +59,8 @@ export function SidebarMobileHeader({
           />
         )}
         {tenantSlug && (
-          <Button variant="ghost" size="icon" onClick={onMenuOpen}>
-            <Menu className="h-5 w-5" />
+          <Button variant="ghost" size="icon" onClick={onMenuOpen} aria-label="Open menu">
+            <Menu className="h-5 w-5" aria-hidden />
           </Button>
         )}
       </div>

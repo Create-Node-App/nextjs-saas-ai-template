@@ -49,6 +49,11 @@ describe('utils', () => {
       const result = formatDate('2024-03-15', { month: 'long' });
       expect(result).toMatch(/March/);
     });
+
+    it('should format a non-date-only datetime string', () => {
+      const result = formatDate('2024-03-15T12:30:00.000Z');
+      expect(result).toMatch(/Mar 15, 2024/);
+    });
   });
 
   describe('formatRelativeTime', () => {
