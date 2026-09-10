@@ -30,13 +30,9 @@ environment variables — no database migration is required.
 
 ## Step 2 — Configure the SSO Connection
 
-1. In the WorkOS dashboard, create an SSO connection (SAML or OIDC) for
-   your organization, or enable social logins
-2. Add the redirect URI for every environment:
-   - Local: `http://localhost:3000/api/auth/callback/workos`
-   - Production: `https://your-app.com/api/auth/callback/workos`
-3. (Optional) Copy the connection ID (`conn_...`) → `WORKOS_CONNECTION_ID`
-   to pin logins to one connection; omit it to let users pick by domain
+1. In the WorkOS dashboard, create an SSO connection (SAML or OIDC) for your organization, or enable social logins
+2. Add the redirect URI for every environment — local `http://localhost:3000/api/auth/callback/workos` and production `https://your-app.com/api/auth/callback/workos`
+3. (Optional) Copy the connection ID (`conn_...`) → `WORKOS_CONNECTION_ID` to pin logins to one connection; omit it to let users pick by domain
 
 ## Step 3 — Set the New Environment Variables
 

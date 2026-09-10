@@ -164,9 +164,7 @@ Auth.js tables are defined in `src/shared/db/schema/auth.ts`:
 ## Auth0 Setup
 
 1. Create an Auth0 application (Regular Web Application)
-2. Configure callback URLs:
-   - Allowed Callback URLs: `http://localhost:3000/api/auth/callback/auth0`
-   - Allowed Logout URLs: `http://localhost:3000`
+2. Set the Allowed Callback URL to `http://localhost:3000/api/auth/callback/auth0` and the Allowed Logout URL to `http://localhost:3000`
 3. Copy Client ID, Client Secret, and Issuer to `.env.local`
 
 ## Choosing a Production SSO Provider
@@ -197,17 +195,11 @@ both variables together when deploying.
 
 ## WorkOS Setup
 
-1. Create a WorkOS account at [dashboard.workos.com](https://dashboard.workos.com/)
-   and copy the API key (`WORKOS_CLIENT_SECRET`) and Client ID (`WORKOS_CLIENT_ID`)
-2. Configure the redirect URI in the WorkOS dashboard:
-   - `http://localhost:3000/api/auth/callback/workos` (add production URLs per environment)
-3. (Optional) Create an SSO connection (SAML/OIDC) and set `WORKOS_CONNECTION_ID`
-   to route logins through it; without it, users pick their organization's
-   connection via domain
+1. Create a WorkOS account at [dashboard.workos.com](https://dashboard.workos.com/) and copy the API key (`WORKOS_CLIENT_SECRET`) and Client ID (`WORKOS_CLIENT_ID`)
+2. Configure the redirect URI `http://localhost:3000/api/auth/callback/workos` in the WorkOS dashboard (add production URLs per environment)
+3. (Optional) Create an SSO connection (SAML/OIDC) and set `WORKOS_CONNECTION_ID` to route logins through it; without it, users pick their organization's connection via domain
 4. Set `AUTH_PROVIDER=workos` and `NEXT_PUBLIC_AUTH_PROVIDER=workos` in `.env.local`
-5. Sign in — users land in the same `users`/`accounts` tables with
-   `accounts.provider = 'workos'`; RBAC, multi-tenant scoping, and sessions
-   behave identically to Auth0
+5. Sign in — users land in the same `users`/`accounts` tables with `accounts.provider = 'workos'`; RBAC, multi-tenant scoping, and sessions behave identically to Auth0
 
 See [docs/MIGRATION_AUTH0_TO_WORKOS.md](./MIGRATION_AUTH0_TO_WORKOS.md) for
 migrating an existing Auth0 deployment.
