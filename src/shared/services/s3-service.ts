@@ -292,7 +292,7 @@ export function generateFileKey(tenantId: string, category: string, filename: st
  */
 export function getPublicUrl(key: string): string {
   const region: string = env.AWS_REGION ?? 'us-east-1';
-  const endpoint = process.env.S3_ENDPOINT ?? `https://s3.${region}.amazonaws.com`;
+  const endpoint: string = process.env.S3_ENDPOINT ?? `https://s3.${region}.amazonaws.com`;
   return `${endpoint}/${bucket}/${key}`;
 }
 
