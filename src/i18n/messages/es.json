@@ -69,6 +69,24 @@
     "alreadyHaveAccount": "¿Ya tienes una cuenta?",
     "dontHaveAccount": "¿No tienes una cuenta?"
   },
+  "search": {
+    "placeholder": "Buscar en la base de conocimiento...",
+    "defaultPlaceholder": "Buscar...",
+    "semantic": "Semántica",
+    "recentSearches": "Búsquedas recientes",
+    "recentCount": "{count} recientes",
+    "clear": "Borrar",
+    "clearSearch": "Borrar búsqueda",
+    "startTyping": "Empieza a escribir para buscar...",
+    "naturalExample": "Usa lenguaje natural como \"cómo desplegar en AWS\"",
+    "noResults": "Sin resultados para \"{query}\"",
+    "resultsHeading": "Resultados",
+    "searching": "Buscando...",
+    "resultsCount": "{count, plural, one {# resultado} other {# resultados}}",
+    "navigateHint": "navegar",
+    "selectHint": "seleccionar",
+    "closeHint": "cerrar"
+  },
   "nav": {
     "home": "Inicio",
     "dashboard": "Panel",
