@@ -58,7 +58,7 @@
     "@react-pdf/renderer": "^4.3.2",
     "@t3-oss/env-nextjs": "^0.13.10",
     "@tailwindcss/postcss": "^4.1.18",
-    "@tiptap/core": "^3.19.0",
+    "@tiptap/core": "^3.30.5",
     "@tiptap/extension-image": "^3.19.0",
     "@tiptap/extension-link": "^3.19.0",
     "@tiptap/extension-placeholder": "^3.19.0",
