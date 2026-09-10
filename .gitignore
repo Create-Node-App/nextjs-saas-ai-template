@@ -52,3 +52,6 @@ next-env.d.ts
 
 # git worktrees
 .worktrees/
+
+# MegaLinter auto-fix reports (never commit CI-generated artifacts)
+/megalinter-reports/
