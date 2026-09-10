@@ -39,7 +39,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/Create-Node-App/nextjs-saas-ai-template?style=social)](https://github.com/Create-Node-App/nextjs-saas-ai-template)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![pnpm](https://img.shields.io/badge/pnpm-9-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
@@ -48,7 +48,7 @@
 
 </div>
 
-A fully-featured, production-ready Next.js 15 template for building multi-tenant SaaS applications with AI capabilities built-in. Part of the [Create-Node-App](https://github.com/Create-Node-App) ecosystem.
+A fully-featured, production-ready Next.js 16 template for building multi-tenant SaaS applications with AI capabilities built-in. Part of the [Create-Node-App](https://github.com/Create-Node-App) ecosystem.
 
 ---
 
@@ -117,6 +117,38 @@ Open [http://localhost:3000](http://localhost:3000).
 
 > **Note:** Create `.env.local` only if you need to override specific values (e.g., `OPENAI_API_KEY` for AI features).
 
+### Manual Setup
+
+For development outside the DevContainer, install Node.js 22 or newer, pnpm 10
+or newer, and PostgreSQL 17 with the pgvector extension. MinIO is optional and
+is only needed to exercise local file storage.
+
+```bash
+pnpm install
+cp .env.example .env.local
+```
+
+Set `DATABASE_URL` in `.env.local` to a reachable PostgreSQL database before
+running database commands or starting the application:
+
+```dotenv
+DATABASE_URL=postgresql://user:password@localhost:5432/saas_template_dev
+```
+
+Also set `AUTH_SECRET` in `.env.local` to a secret of at least 32 characters
+before running database commands or starting the application (generate one with
+`openssl rand -base64 32`):
+
+```dotenv
+AUTH_SECRET=your-secret-key-at-least-32-characters-long
+```
+
+Then run `pnpm db:push` and `pnpm dev`. Production builds also validate the
+environment, so `DATABASE_URL` must normally be available to `pnpm build`.
+For build-only checks that deliberately do not connect to services, use
+`SKIP_ENV_VALIDATION=true pnpm build`. This bypasses validation only; it does
+not configure a working database for runtime use.
+
 ---
 
 ## ✨ Features
@@ -143,7 +175,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Category     | Technology                                            |
 |--------------|-------------------------------------------------------|
-| Framework    | Next.js 15 (App Router, RSC, Turbopack)               |
+| Framework    | Next.js 16 (App Router, RSC, Turbopack)               |
 | Language     | TypeScript 5+ (strict)                                |
 | Styling      | Tailwind CSS v4 + shadcn/ui                           |
 | Database     | PostgreSQL 17 + pgvector + Drizzle ORM                |
