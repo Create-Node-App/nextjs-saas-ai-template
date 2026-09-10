@@ -157,7 +157,7 @@ export class GitHubClient {
   ): Promise<GitHubRepo[]> {
     const { type = 'owner', sort = 'pushed', perPage = 100 } = options;
 
-    if (!username) {
+    if (username === undefined || username === '') {
       // Authenticated user's repos
       const repos: GitHubRepo[] = [];
       for await (const response of this.octokit.paginate.iterator(this.octokit.rest.repos.listForAuthenticatedUser, {
@@ -345,7 +345,8 @@ export class GitHubClient {
         since,
         per_page: 100,
       })) {
-        count += response.data.length;
+        const page: unknown[] = response.data;
+        count += page.length;
         // Cap at 1000 commits per repo to avoid excessive API calls
         if (count >= 1000) break;
       }

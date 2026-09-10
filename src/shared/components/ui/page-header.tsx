@@ -128,7 +128,7 @@ export function PageHeader({
 
       {/* Main Header */}
       {/* Main Header — hero uses brand gradient (the ONE gradient), compact uses card surface.
-           See DESIGN_SYSTEM.md Section 8.4: "The Brand Moment" */}
+        See DESIGN_SYSTEM.md Section 8.4: "The Brand Moment" */}
       <div
         className={cn(
           'relative overflow-hidden rounded-lg entrance-fade',

@@ -50,8 +50,8 @@ export interface AuditLogInput {
 export async function getCorrelationIds(): Promise<{ requestId: string; traceId: string }> {
   const headersList = await headers();
   return {
-    requestId: headersList.get('x-request-id') || uuidv4(),
-    traceId: headersList.get('x-trace-id') || uuidv4(),
+    requestId: headersList.get('x-request-id') ?? uuidv4(),
+    traceId: headersList.get('x-trace-id') ?? uuidv4(),
   };
 }
 
@@ -82,7 +82,7 @@ export async function logAuditEvent(input: AuditLogInput): Promise<string> {
       metadata: input.metadata,
       requestId,
       traceId,
-      ipAddress: headersList.get('x-forwarded-for') || headersList.get('x-real-ip'),
+      ipAddress: headersList.get('x-forwarded-for') ?? headersList.get('x-real-ip'),
       userAgent: headersList.get('user-agent'),
       aiModelVersion: input.aiModelVersion,
       aiPromptVersion: input.aiPromptVersion,

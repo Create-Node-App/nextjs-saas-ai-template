@@ -34,8 +34,8 @@ const tenantOpenAIClients = new Map<string, OpenAI>();
  * @throws When `OPENAI_API_KEY` is not set.
  */
 export function getOpenAIClient(): OpenAI {
-  if (!defaultOpenai) {
-    if (!env.OPENAI_API_KEY) {
+  if (defaultOpenai == null) {
+    if (env.OPENAI_API_KEY === undefined || env.OPENAI_API_KEY === '') {
       throw new Error('OPENAI_API_KEY is required for embedding generation');
     }
     defaultOpenai = new OpenAI({ apiKey: env.OPENAI_API_KEY });
@@ -58,12 +58,12 @@ export function getOpenAIClient(): OpenAI {
 export async function getTenantOpenAIClient(tenantId: string): Promise<{ client: OpenAI; settings: AISettings }> {
   // Check cache first
   const cachedClient = tenantOpenAIClients.get(tenantId);
-  if (cachedClient) {
+  if (cachedClient !== undefined) {
     // Get settings for the model names
     const tenant = await db.query.tenants.findFirst({
       where: eq(tenants.id, tenantId),
     });
-    const tenantSettings = tenant ? parseTenantSettings(tenant.settings) : {};
+    const tenantSettings = tenant != null ? parseTenantSettings(tenant.settings) : {};
     const aiSettings = { ...DEFAULT_AI, ...tenantSettings.ai };
     return { client: cachedClient, settings: aiSettings };
   }
@@ -73,12 +73,14 @@ export async function getTenantOpenAIClient(tenantId: string): Promise<{ client:
     where: eq(tenants.id, tenantId),
   });
 
-  const tenantSettings = tenant ? parseTenantSettings(tenant.settings) : {};
+  const tenantSettings = tenant != null ? parseTenantSettings(tenant.settings) : {};
   const aiSettings = { ...DEFAULT_AI, ...tenantSettings.ai };
 
   // Check if tenant has AI configured
   if (hasAIConfigured(tenantSettings)) {
-    const client = new OpenAI({ apiKey: tenantSettings.ai!.apiKey! });
+    // hasAIConfigured guarantees a truthy key; the fallback is unreachable.
+    const tenantApiKey = tenantSettings.ai?.apiKey ?? '';
+    const client = new OpenAI({ apiKey: tenantApiKey });
     tenantOpenAIClients.set(tenantId, client);
     return { client, settings: aiSettings };
   }
@@ -173,7 +175,7 @@ export async function generateTenantEmbedding(tenantId: string, text: string): P
   const { client, settings } = await getTenantOpenAIClient(tenantId);
 
   const response = await client.embeddings.create({
-    model: settings.embeddingModel || EMBEDDING_MODEL,
+    model: settings.embeddingModel ?? EMBEDDING_MODEL,
     input: text.slice(0, 8000), // Truncate to model limit
     dimensions: EMBEDDING_DIMENSIONS,
   });

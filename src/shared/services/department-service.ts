@@ -81,7 +81,7 @@ export async function getDepartmentsWithDetails(
       where: eq(schema.tenants.slug, tenantSlug),
     });
 
-    if (!tenant) {
+    if (tenant == null) {
       return { success: false, error: 'Tenant not found' };
     }
 
@@ -149,7 +149,7 @@ export async function getDepartmentMembers(
       where: eq(schema.tenants.slug, tenantSlug),
     });
 
-    if (!tenant) {
+    if (tenant == null) {
       return { success: false, error: 'Tenant not found' };
     }
 
@@ -157,7 +157,7 @@ export async function getDepartmentMembers(
     const settings = await getTenantSettings(tenantSlug);
     const department = settings.departments?.list?.find((d: Department) => d.id === departmentId);
 
-    if (!department) {
+    if (department == null) {
       return { success: false, error: 'Department not found' };
     }
 
@@ -219,7 +219,7 @@ export async function getDepartmentManager(
       where: eq(schema.tenants.slug, tenantSlug),
     });
 
-    if (!tenant) {
+    if (tenant == null) {
       return { success: false, error: 'Tenant not found' };
     }
 
@@ -378,7 +378,7 @@ export async function deleteDepartment(
       where: eq(schema.tenants.slug, tenantSlug),
     });
 
-    if (!tenant) {
+    if (tenant == null) {
       return { success: false, error: 'Tenant not found' };
     }
 
@@ -452,7 +452,7 @@ export async function assignPersonToDepartment(
       where: eq(schema.tenants.slug, tenantSlug),
     });
 
-    if (!tenant) {
+    if (tenant == null) {
       return { success: false, error: 'Tenant not found' };
     }
 
@@ -464,16 +464,16 @@ export async function assignPersonToDepartment(
       },
     });
 
-    if (!person) {
+    if (person == null) {
       return { success: false, error: 'Person not found' };
     }
 
     // If departmentId provided, verify it exists
-    if (departmentId) {
+    if (departmentId != null && departmentId !== '') {
       const settings = await getTenantSettings(tenantSlug);
       const department = settings.departments?.list?.find((d: Department) => d.id === departmentId);
 
-      if (!department) {
+      if (department == null) {
         return { success: false, error: 'Department not found' };
       }
     }
@@ -519,7 +519,7 @@ export async function assignManagerToDepartment(
       where: eq(schema.tenants.slug, tenantSlug),
     });
 
-    if (!tenant) {
+    if (tenant == null) {
       return { success: false, error: 'Tenant not found' };
     }
 
@@ -527,7 +527,7 @@ export async function assignManagerToDepartment(
     const settings = await getTenantSettings(tenantSlug);
     const department = settings.departments?.list?.find((d: Department) => d.id === departmentId);
 
-    if (!department) {
+    if (department == null) {
       return { success: false, error: 'Department not found' };
     }
 
@@ -539,7 +539,7 @@ export async function assignManagerToDepartment(
       },
     });
 
-    if (!manager) {
+    if (manager == null) {
       return { success: false, error: 'Manager not found' };
     }
 
@@ -613,7 +613,7 @@ export async function removeManagerFromDepartment(
       where: eq(schema.tenants.slug, tenantSlug),
     });
 
-    if (!tenant) {
+    if (tenant == null) {
       return { success: false, error: 'Tenant not found' };
     }
 

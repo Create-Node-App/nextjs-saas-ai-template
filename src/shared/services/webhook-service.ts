@@ -87,7 +87,7 @@ export async function emitWebhookEvent(
   try {
     // Get tenant
     const tenant = await getTenantBySlug(tenantSlug);
-    if (!tenant) {
+    if (tenant == null) {
       console.warn(`[Webhook] Tenant not found: ${tenantSlug}`);
       return { success: false, deliveryIds: [] };
     }
@@ -178,9 +178,11 @@ async function processDelivery(
       where: eq(schema.webhookDeliveries.id, deliveryId),
     });
 
-    if (!delivery) {
+    if (delivery == null) {
       return;
     }
+
+    const attempts: number = delivery.attempts;
 
     // Make HTTP request
     const result = await deliverWebhook(endpoint, payload);
@@ -193,7 +195,7 @@ async function processDelivery(
         .update(schema.webhookDeliveries)
         .set({
           status: 'success' as WebhookDeliveryStatus,
-          attempts: delivery.attempts + 1,
+          attempts: attempts + 1,
           lastAttemptAt: new Date(),
           completedAt: new Date(),
           responseStatus: result.status,
@@ -203,7 +205,8 @@ async function processDelivery(
         .where(eq(schema.webhookDeliveries.id, deliveryId));
     } else {
       // Check if we should retry
-      const shouldRetry = delivery.attempts + 1 < endpoint.retryCount;
+      const retryCount: number = endpoint.retryCount;
+      const shouldRetry = attempts + 1 < retryCount;
 
       if (shouldRetry) {
         // Calculate next retry time (exponential backoff: 1min, 5min, 15min, 30min, 1hr)
@@ -215,7 +218,7 @@ async function processDelivery(
           .update(schema.webhookDeliveries)
           .set({
             status: 'retrying' as WebhookDeliveryStatus,
-            attempts: delivery.attempts + 1,
+            attempts: attempts + 1,
             lastAttemptAt: new Date(),
             nextRetryAt,
             responseStatus: result.status,
@@ -230,7 +233,7 @@ async function processDelivery(
           .update(schema.webhookDeliveries)
           .set({
             status: 'failed' as WebhookDeliveryStatus,
-            attempts: delivery.attempts + 1,
+            attempts: attempts + 1,
             lastAttemptAt: new Date(),
             completedAt: new Date(),
             responseStatus: result.status,
@@ -358,7 +361,7 @@ export async function processRetryQueue(): Promise<{ processed: number; succeede
   let failed = 0;
 
   for (const delivery of pendingDeliveries) {
-    if (!delivery.endpoint) {
+    if (delivery.endpoint == null) {
       // Endpoint was deleted - mark as failed
       await db
         .update(schema.webhookDeliveries)
@@ -372,6 +375,9 @@ export async function processRetryQueue(): Promise<{ processed: number; succeede
       continue;
     }
 
+    const attempts: number = delivery.attempts;
+    const retryCount: number = delivery.endpoint.retryCount;
+
     const payload = delivery.payload as unknown as WebhookEventPayload;
     const result = await deliverWebhook(delivery.endpoint, payload);
 
@@ -380,7 +386,7 @@ export async function processRetryQueue(): Promise<{ processed: number; succeede
         .update(schema.webhookDeliveries)
         .set({
           status: 'success' as WebhookDeliveryStatus,
-          attempts: delivery.attempts + 1,
+          attempts: attempts + 1,
           lastAttemptAt: new Date(),
           completedAt: new Date(),
           responseStatus: result.status,
@@ -389,7 +395,7 @@ export async function processRetryQueue(): Promise<{ processed: number; succeede
         .where(eq(schema.webhookDeliveries.id, delivery.id));
       succeeded++;
     } else {
-      const shouldRetry = delivery.attempts + 1 < delivery.endpoint.retryCount;
+      const shouldRetry = attempts + 1 < retryCount;
 
       if (shouldRetry) {
         const backoffMinutes = [1, 5, 15, 30, 60];
@@ -400,7 +406,7 @@ export async function processRetryQueue(): Promise<{ processed: number; succeede
           .update(schema.webhookDeliveries)
           .set({
             status: 'retrying' as WebhookDeliveryStatus,
-            attempts: delivery.attempts + 1,
+            attempts: attempts + 1,
             lastAttemptAt: new Date(),
             nextRetryAt,
             errorMessage: result.error,
@@ -412,7 +418,7 @@ export async function processRetryQueue(): Promise<{ processed: number; succeede
           .update(schema.webhookDeliveries)
           .set({
             status: 'failed' as WebhookDeliveryStatus,
-            attempts: delivery.attempts + 1,
+            attempts: attempts + 1,
             lastAttemptAt: new Date(),
             completedAt: new Date(),
             errorMessage: result.error,
@@ -452,7 +458,7 @@ export async function sendTestWebhook(
 ): Promise<{ success: boolean; error?: string; status?: number; durationMs?: number }> {
   try {
     const tenant = await getTenantBySlug(tenantSlug);
-    if (!tenant) {
+    if (tenant == null) {
       return { success: false, error: 'Tenant not found' };
     }
 
@@ -460,7 +466,7 @@ export async function sendTestWebhook(
       where: and(eq(schema.webhookEndpoints.id, endpointId), eq(schema.webhookEndpoints.tenantId, tenant.id)),
     });
 
-    if (!endpoint) {
+    if (endpoint == null) {
       return { success: false, error: 'Endpoint not found' };
     }
 

@@ -24,14 +24,16 @@ import {
 // S3 client configuration - supports both AWS S3 and MinIO
 // Uses internal endpoint (minio:9000) for server-side operations
 const s3Config = {
-  region: env.AWS_REGION || 'us-east-1',
-  ...(process.env.S3_ENDPOINT && {
-    endpoint: process.env.S3_ENDPOINT,
-    forcePathStyle: true, // Required for MinIO
-  }),
+  region: env.AWS_REGION ?? 'us-east-1',
+  ...(process.env.S3_ENDPOINT !== undefined && process.env.S3_ENDPOINT !== ''
+    ? {
+        endpoint: process.env.S3_ENDPOINT,
+        forcePathStyle: true, // Required for MinIO
+      }
+    : {}),
   credentials: {
-    accessKeyId: process.env.S3_ACCESS_KEY || env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.S3_SECRET_KEY || env.AWS_SECRET_ACCESS_KEY || '',
+    accessKeyId: process.env.S3_ACCESS_KEY ?? env.AWS_ACCESS_KEY_ID ?? '',
+    secretAccessKey: process.env.S3_SECRET_KEY ?? env.AWS_SECRET_ACCESS_KEY ?? '',
   },
 };
 
@@ -39,18 +41,20 @@ const s3Client = new S3Client(s3Config);
 
 // For presigned URLs, we need a browser-accessible endpoint
 // S3_PUBLIC_ENDPOINT should be set to the externally accessible URL (e.g., http://localhost:9000)
-const publicEndpoint = process.env.S3_PUBLIC_ENDPOINT || process.env.S3_ENDPOINT;
+const publicEndpoint = process.env.S3_PUBLIC_ENDPOINT ?? process.env.S3_ENDPOINT;
 
 // Create a separate client for presigned URL generation with public endpoint
 const presignClient = new S3Client({
   ...s3Config,
-  ...(publicEndpoint && {
-    endpoint: publicEndpoint,
-    forcePathStyle: true,
-  }),
+  ...(publicEndpoint !== undefined && publicEndpoint !== ''
+    ? {
+        endpoint: publicEndpoint,
+        forcePathStyle: true,
+      }
+    : {}),
 });
 
-const bucket = process.env.S3_BUCKET || env.AWS_S3_BUCKET || 'saas-template-uploads';
+const bucket = process.env.S3_BUCKET ?? env.AWS_S3_BUCKET ?? 'saas-template-uploads';
 
 // Cache for tenant-specific S3 clients
 const tenantS3Clients = new Map<string, { client: S3Client; presignClient: S3Client; bucket: string }>();
@@ -75,11 +79,11 @@ export async function getTenantS3Client(tenantId: string): Promise<{
 }> {
   // Check cache first
   const cached = tenantS3Clients.get(tenantId);
-  if (cached) {
+  if (cached !== undefined) {
     const tenant = await db.query.tenants.findFirst({
       where: eq(tenants.id, tenantId),
     });
-    const tenantSettings = tenant ? parseTenantSettings(tenant.settings) : {};
+    const tenantSettings = tenant != null ? parseTenantSettings(tenant.settings) : {};
     const storageSettings = { ...DEFAULT_STORAGE, ...tenantSettings.storage };
     return { ...cached, settings: storageSettings };
   }
@@ -89,39 +93,43 @@ export async function getTenantS3Client(tenantId: string): Promise<{
     where: eq(tenants.id, tenantId),
   });
 
-  const tenantSettings = tenant ? parseTenantSettings(tenant.settings) : {};
+  const tenantSettings = tenant != null ? parseTenantSettings(tenant.settings) : {};
   const storageSettings = { ...DEFAULT_STORAGE, ...tenantSettings.storage };
 
   // Check if tenant has storage configured
   if (hasStorageConfigured(tenantSettings)) {
-    const storage = tenantSettings.storage!;
+    const storage = tenantSettings.storage ?? DEFAULT_STORAGE;
     const tenantConfig = {
-      region: storage.region || 'us-east-1',
-      ...(storage.endpoint && {
-        endpoint: storage.endpoint,
-        forcePathStyle: storage.forcePathStyle !== false,
-      }),
+      region: storage.region ?? 'us-east-1',
+      ...(storage.endpoint !== undefined && storage.endpoint !== ''
+        ? {
+            endpoint: storage.endpoint,
+            forcePathStyle: storage.forcePathStyle !== false,
+          }
+        : {}),
       credentials: {
-        accessKeyId: storage.accessKey!,
-        secretAccessKey: storage.secretKey!,
+        accessKeyId: storage.accessKey ?? '',
+        secretAccessKey: storage.secretKey ?? '',
       },
     };
 
     const client = new S3Client(tenantConfig);
 
-    const presignEndpoint = storage.publicEndpoint || storage.endpoint;
+    const presignEndpoint = storage.publicEndpoint ?? storage.endpoint;
     const presignClientTenant = new S3Client({
       ...tenantConfig,
-      ...(presignEndpoint && {
-        endpoint: presignEndpoint,
-        forcePathStyle: storage.forcePathStyle !== false,
-      }),
+      ...(presignEndpoint !== undefined && presignEndpoint !== ''
+        ? {
+            endpoint: presignEndpoint,
+            forcePathStyle: storage.forcePathStyle !== false,
+          }
+        : {}),
     });
 
     const result = {
       client,
       presignClient: presignClientTenant,
-      bucket: storage.bucket!,
+      bucket: storage.bucket ?? '',
     };
     tenantS3Clients.set(tenantId, result);
     return { ...result, settings: storageSettings };
@@ -283,7 +291,8 @@ export function generateFileKey(tenantId: string, category: string, filename: st
  * @returns The direct public URL for the key.
  */
 export function getPublicUrl(key: string): string {
-  const endpoint = process.env.S3_ENDPOINT || `https://s3.${env.AWS_REGION || 'us-east-1'}.amazonaws.com`;
+  const region = env.AWS_REGION ?? 'us-east-1';
+  const endpoint = process.env.S3_ENDPOINT ?? `https://s3.${region}.amazonaws.com`;
   return `${endpoint}/${bucket}/${key}`;
 }
 
