@@ -130,7 +130,7 @@
     "buffer": "^6.0.3",
     "dotenv": "^17.2.3",
     "drizzle-kit": "^0.31.8",
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.5",
     "eslint-config-next": "^15.5.9",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
