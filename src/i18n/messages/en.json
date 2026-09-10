@@ -67,7 +67,21 @@
     "welcomeBack": "Welcome back",
     "createAccount": "Create an account",
     "alreadyHaveAccount": "Already have an account?",
-    "dontHaveAccount": "Don't have an account?"
+    "dontHaveAccount": "Don't have an account?",
+    "signInTitle": "Sign in",
+    "signInToTenant": "Sign in to {tenant}",
+    "chooseMethod": "Choose your preferred sign in method",
+    "orDevelopmentLogin": "Or development login",
+    "developmentLogin": "Development Login",
+    "devLoginShort": "Dev Login",
+    "devLoginOnly": "Development login is only available in development mode",
+    "devLoginFormLabel": "Development login form",
+    "signingIn": "Signing in...",
+    "emailRequired": "Email is required",
+    "enterValidEmail": "Please enter a valid email address",
+    "unexpectedError": "An unexpected error occurred",
+    "failedToStartLogin": "Failed to initiate login",
+    "agreeToWorkspace": "By signing in, you agree to access {tenant}'s workspace."
   },
   "search": {
     "placeholder": "Search knowledge base...",
