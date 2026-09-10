@@ -653,7 +653,7 @@ export function SettingsClient({ tenantSlug, tenantName, tenantDescription, init
                   id="storage-access-key"
                   value={settings.storage?.accessKey || ''}
                   onChange={(e) => handleStorageUpdate('accessKey', e.target.value || undefined)}
-                  placeholder="AKIAIOSFODNN7EXAMPLE"
+                  placeholder="Your S3-compatible access key"
                 />
               </div>
               <div>
