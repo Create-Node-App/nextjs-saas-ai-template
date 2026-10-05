@@ -25,5 +25,8 @@
   },
   "devDependencies": {
     "typescript": "^5.5.4"
+  },
+  "overrides": {
+    "braces": "https://codeload.github.com/micromatch/braces/tar.gz/28d440b5dd449dbf1fe6f3506cf94ecca4d02660"
   }
 }
