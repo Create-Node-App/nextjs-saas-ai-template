@@ -35,7 +35,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 'v22.14.0'
+          node-version: 'v24.22.2'
 
       - name: Install dependencies
         run: npm install
